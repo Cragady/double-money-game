@@ -1,6 +1,19 @@
+#include <iostream>
+#include <terminal-colors.h>
+
 #include "Demo.hpp"
 #include "imgui.h"
 #include "rlImGui.h"
+#include <raylib.h>
+
+Demo::Demo() {
+  Prepare();
+  GameLoop();
+}
+
+Demo::~Demo() {
+  Shutdown();
+}
 
 void Demo::Prepare() {
 
@@ -40,10 +53,10 @@ void Demo::Update() {
   rlImGuiEnd();
 
   EndDrawing();
-  //----------------------------------------------------------------------------------
 }
 
 void Demo::Shutdown() {
+  std::cout << TERM_RED "Shutting Down" TERM_CRESET << std::endl;
 
   rlImGuiShutdown();
 
@@ -75,3 +88,9 @@ void Demo::DoMainMenu() {
     ImGui::EndMainMenuBar();
   }
 }
+
+void Demo::GameLoop() {
+  while (!WindowShouldClose() && !Quit) {
+    Update();
+  }
+};

@@ -22,11 +22,4 @@ void SanityPrint() {
 
 void SanityWindow() {
   Demo demo;
-  demo.Prepare();
-
-  while (!WindowShouldClose() && !demo.Quit) {
-    demo.Update();
-  }
-
-  demo.Shutdown();
 }

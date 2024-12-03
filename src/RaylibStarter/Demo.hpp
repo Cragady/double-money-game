@@ -5,10 +5,13 @@
 #include "SceneViewWindow.hpp"
 class Demo {
 public:
+  Demo();
+  ~Demo();
   void Prepare();
   void Update();
   void Shutdown();
   void DoMainMenu();
+  void GameLoop();
 
   bool Quit = false;
   bool ImGuiDemoOpen = false;
