@@ -4,3 +4,6 @@
 [submodule "vendor/rlImGui"]
 	path = vendor/rlImGui
 	url = git@github.com:raylib-extras/rlImGui.git
+[submodule "vendor/raylib"]
+	path = vendor/raylib
+	url = git@github.com:raysan5/raylib.git
