@@ -3,10 +3,14 @@
 
 set (DMG_SOURCES
   main.cpp
+  RandomChance/RandomChance.cpp
   # example-editor.cpp
 )
 
-set (DMG_HEADERS)
+set (DMG_HEADERS
+  main.hpp
+  RandomChance/RandomChance.hpp
+)
 
 set(DMG_INCLUDE_DIRS "${CMAKE_SOURCE_DIR}/include")
 foreach(_headerFile ${DMG_HEADERS})
