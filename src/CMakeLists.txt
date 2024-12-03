@@ -3,10 +3,10 @@
 
 set (DMG_SOURCES
   main.cpp
-  # example-editor.cpp
   RandomChance/RandomChance.cpp
   RaylibStarter/ImageViewerWindow.cpp
   RaylibStarter/SceneViewWindow.cpp
+  RaylibStarter/Demo.cpp
 )
 
 set (DMG_HEADERS
@@ -15,6 +15,7 @@ set (DMG_HEADERS
   RaylibStarter/DocumentWindow.hpp
   RaylibStarter/ImageViewerWindow.hpp
   RaylibStarter/SceneViewWindow.hpp
+  RaylibStarter/Demo.hpp
 )
 
 set(DMG_INCLUDE_DIRS "${CMAKE_SOURCE_DIR}/include")
