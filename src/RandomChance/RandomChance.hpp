@@ -1,5 +1,5 @@
-#ifndef RANDOMCHANCE_HPP
-#define RANDOMCHANCE_HPP
+#ifndef RANDOM_CHANCE_HPP
+#define RANDOM_CHANCE_HPP
 
 class RandomChance {
 public:
