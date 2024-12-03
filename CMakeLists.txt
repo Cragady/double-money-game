@@ -22,6 +22,13 @@ cmake_policy(SET CMP0054 NEW)
 # See https://cmake.org/cmake/help/latest/policy/CMP0063.html
 cmake_policy(SET CMP0063 NEW)
 
+set(BUILD_OUTPUT ${CMAKE_SOURCE_DIR}/build)
+
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${BUILD_OUTPUT}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${BUILD_OUTPUT}/lib)
+# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BUILD_OUTPUT}/bin)
+# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BUILD_OUTPUT})
+
 # Anywhere you see include(...) you can check <root>/cmake for that file
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 

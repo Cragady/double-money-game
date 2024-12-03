@@ -34,7 +34,7 @@ target_include_directories(DMG PRIVATE ${DMG_INCLUDE_DIRS})
 target_link_libraries(DMG raylib imgui rlimgui)
 # target_link_libraries(DMG Xrander)
 # target_link_libraries(DMG glfw3 cglm GL X11 pthread Xi dl)
-set_target_properties(DMG PROPERTIES RUNTIME_OUTPUT_DIRECTORY ../build)
+set_target_properties(DMG PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${BUILD_OUTPUT})
 
 # add_custom_command(
 #   TARGET DMG
