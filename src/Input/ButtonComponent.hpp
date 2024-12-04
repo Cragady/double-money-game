@@ -13,7 +13,8 @@ public:
                                            ImGuiWindowFlags_NoCollapse |
                                            ImGuiWindowFlags_NoNav |
                                            ImGuiWindowFlags_NoResize |
-                                           ImGuiWindowFlags_NoDecoration,
+                                           ImGuiWindowFlags_NoDecoration, // |
+                                           // ImGuiWindowFlags_NoMove,
                   void (*clickEvent)() = &DefaultEvent);
   ~ButtonComponent();
   void Update();
