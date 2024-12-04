@@ -10,7 +10,7 @@ public:
     .width = 1200,
     .height = 900,
     .fps = 144,
-    .name = "Econ Wrecker"
+    .name = "Econ Wrecker: DMG"
   });
   ~RayWrapper();
 

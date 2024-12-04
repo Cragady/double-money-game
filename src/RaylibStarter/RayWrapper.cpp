@@ -63,7 +63,7 @@ void RayWrapper::Update() {
 
 void RayWrapper::TesterApplication() {
   // TODO: remove/replace for actual implementation
-  ImGui::Begin("My First Tool", &game_running_, ImGuiWindowFlags_MenuBar);
+  ImGui::Begin("My First Tool", &game_running_, ImGuiWindowFlags_NoBackground);
   if (ImGui::BeginMenuBar()) {
     if (ImGui::BeginMenu("File")) {
       if (ImGui::MenuItem("Open..", "Ctrl+O")) { /* Do stuff */
