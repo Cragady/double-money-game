@@ -24,6 +24,13 @@ This gives us several purchasable upgrades right off the bat:
 * Minimum / Maximum chance on double button press
 * Rate of decrease of percentage on double button press
 
+Other items that could give even more purchasable upgrades:
+
+* Additive button press amount e.g. Not $1, but a min and max here too
+* Random change on additive button press amount
+
+* Mini-Games that will help with the main game
+
 
 Think on "Prestiging" and what "Prestiging" means in this game.
 Think on potentially having different "Levels"

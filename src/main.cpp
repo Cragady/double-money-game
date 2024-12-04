@@ -1,15 +1,13 @@
-#include <cstring>
 #include <iostream>
 #include <terminal-colors.h>
-#include <raylib.h>
 
-#include "main.hpp"
-#include "Demo.hpp"
 #include "RandomChance/RandomChance.hpp"
+#include "RayWrapper.hpp"
+#include "main.hpp"
 
 int main(int argc, char **argv) {
-  SanityPrint();
-  SanityWindow();
+  // SanityPrint();
+  RayWrapper game;
   return 0;
 }
 
@@ -20,6 +18,3 @@ void SanityPrint() {
   doubleChance.TestRandom();
 }
 
-void SanityWindow() {
-  Demo demo;
-}

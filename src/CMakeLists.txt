@@ -7,6 +7,8 @@ set (DMG_SOURCES
   RaylibStarter/ImageViewerWindow.cpp
   RaylibStarter/SceneViewWindow.cpp
   RaylibStarter/Demo.cpp
+  RaylibStarter/RayWrapper.cpp
+  Input/KeyboardInput.cpp
 )
 
 set (DMG_HEADERS
@@ -16,6 +18,8 @@ set (DMG_HEADERS
   RaylibStarter/ImageViewerWindow.hpp
   RaylibStarter/SceneViewWindow.hpp
   RaylibStarter/Demo.hpp
+  RaylibStarter/RayWrapper.hpp
+  Input/KeyboardInput.hpp
 )
 
 set(DMG_INCLUDE_DIRS "${CMAKE_SOURCE_DIR}/include")
