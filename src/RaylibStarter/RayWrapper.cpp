@@ -55,6 +55,7 @@ void RayWrapper::Update() {
   if (key_input_.EscapeSequence()) {
     game_running_ = false;
   }
+  button.Update();
   /* ---------------------------------------------*/
   // Test Only. Remove for actual implementation.
   TesterApplication();

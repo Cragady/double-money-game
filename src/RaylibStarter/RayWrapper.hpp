@@ -3,6 +3,7 @@
 
 #include "../Input/KeyboardInput.hpp"
 #include "../GameOptions.hpp"
+#include "ButtonComponent.hpp"
 
 class RayWrapper {
 public:
@@ -22,6 +23,7 @@ public:
 
 
   KeyboardInput key_input_;
+  ButtonComponent button;
   bool game_running_;
   int screen_width_;
   int screen_height_;
