@@ -13,6 +13,7 @@ set (DMG_SOURCES
 
 set (DMG_HEADERS
   main.hpp
+  GameOptions.hpp
   RandomChance/RandomChance.hpp
   RaylibStarter/DocumentWindow.hpp
   RaylibStarter/ImageViewerWindow.hpp

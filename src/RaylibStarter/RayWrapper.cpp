@@ -8,19 +8,19 @@
 #include "imgui.h"
 #include "rlImGui.h"
 
-RayWrapper::RayWrapper(int width, int height, int fps) {
-  screen_width_ = width;
-  screen_height_ = height;
-  target_fps_ = fps;
+RayWrapper::RayWrapper(GameOptions game_options) {
+  screen_width_ = game_options.width;
+  screen_height_ = game_options.height;
+  target_fps_ = game_options.fps;
 
-  SetExitKey(KEY_NULL);
   SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
   InitWindow(screen_width_, screen_height_,
-             "raylib-Extras [ImGui] example - ImGui Demo");
+             game_options.name.c_str());
   SetTargetFPS(target_fps_);
 
   rlImGuiSetup(true);
   game_running_ = true;
+  SetExitKey(KEY_NULL);
   Loop();
 }
 

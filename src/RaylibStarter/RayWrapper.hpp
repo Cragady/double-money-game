@@ -2,10 +2,16 @@
 #define RAY_WRAPPER_HPP
 
 #include "../Input/KeyboardInput.hpp"
+#include "../GameOptions.hpp"
 
 class RayWrapper {
 public:
-  RayWrapper(int width = 800, int height = 450, int fps = 144);
+  RayWrapper(GameOptions game_options = GameOptions {
+    .width = 1200,
+    .height = 900,
+    .fps = 144,
+    .name = "Econ Wrecker"
+  });
   ~RayWrapper();
 
   void StartOfLoop();
