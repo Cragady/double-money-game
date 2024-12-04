@@ -8,6 +8,7 @@ Makefile
 cmake_install.cmake
 compile_commands.json
 .cache/
+imgui.ini
 
 # Prerequisites
 *.d

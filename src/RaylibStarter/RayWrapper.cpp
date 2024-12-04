@@ -7,6 +7,7 @@
 #include "RayWrapper.hpp"
 #include "imgui.h"
 #include "rlImGui.h"
+#include "../Events/event-functions.hpp"
 
 RayWrapper::RayWrapper(GameOptions game_options) {
   screen_width_ = game_options.width;
@@ -18,6 +19,7 @@ RayWrapper::RayWrapper(GameOptions game_options) {
              game_options.name.c_str());
   SetTargetFPS(target_fps_);
 
+  button.ClickEvent = events::TestEvent;
   rlImGuiSetup(true);
   game_running_ = true;
   SetExitKey(KEY_NULL);

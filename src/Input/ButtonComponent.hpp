@@ -13,9 +13,12 @@ public:
                                            ImGuiWindowFlags_NoCollapse |
                                            ImGuiWindowFlags_NoNav |
                                            ImGuiWindowFlags_NoResize |
-                                           ImGuiWindowFlags_NoDecoration);
+                                           ImGuiWindowFlags_NoDecoration,
+                  void (*clickEvent)() = &DefaultEvent);
   ~ButtonComponent();
   void Update();
+  void (*ClickEvent)();
+  static void DefaultEvent();
 
   std::string name_;
   std::string button_text_;

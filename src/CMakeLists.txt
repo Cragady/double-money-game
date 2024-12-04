@@ -10,6 +10,7 @@ set (DMG_SOURCES
   RaylibStarter/RayWrapper.cpp
   Input/KeyboardInput.cpp
   Input/ButtonComponent.cpp
+  Events/event-functions.cpp
 )
 
 set (DMG_HEADERS
@@ -23,6 +24,7 @@ set (DMG_HEADERS
   RaylibStarter/RayWrapper.hpp
   Input/KeyboardInput.hpp
   Input/ButtonComponent.hpp
+  Events/event-functions.hpp
 )
 
 set(DMG_INCLUDE_DIRS "${CMAKE_SOURCE_DIR}/include")
