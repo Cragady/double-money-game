@@ -35,6 +35,8 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 include(RayLibImport)
 include(ImGuiImport)
 include(RLImGuiImport)
+include(glfwImport)
+include(gladImport)
 
 include(CompilerFlags)
 

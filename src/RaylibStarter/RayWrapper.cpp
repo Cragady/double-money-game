@@ -3,6 +3,10 @@
 #include <raylib.h>
 #include <raymath.h>
 #include <terminal-colors.h>
+// clang-format off
+#include <glad/gl.h>
+#include <GLFW/glfw3.h>
+// clang-format on
 
 #include "RayWrapper.hpp"
 #include "imgui.h"
@@ -14,6 +18,13 @@ RayWrapper::RayWrapper(GameOptions game_options) {
   screen_height_ = game_options.height;
   target_fps_ = game_options.fps;
 
+
+  glfw_ready_ = glfwInit();
+  if (!glfw_ready_) {
+    std::cout << TERM_RED "\nGLFW is not able to be used!\n" TERM_CRESET << std::endl;
+  } else {
+    std::cout << TERM_GRN "\nGLFW is now ready!\n" TERM_CRESET << std::endl;
+  }
   SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
   InitWindow(screen_width_, screen_height_,
              game_options.name.c_str());
@@ -23,6 +34,9 @@ RayWrapper::RayWrapper(GameOptions game_options) {
   rlImGuiSetup(true);
   game_running_ = true;
   SetExitKey(KEY_NULL);
+  GLFWwindow *window = (GLFWwindow *)GetWindowHandle();
+  glfwSetWindowAttrib(window, GLFW_DECORATED, GLFW_FALSE);
+  glfwSetWindowSize(window, screen_width_, screen_height_);
   Loop();
 }
 

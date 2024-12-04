@@ -25,6 +25,7 @@ public:
   KeyboardInput key_input_;
   ButtonComponent button;
   bool game_running_;
+  bool glfw_ready_;
   int screen_width_;
   int screen_height_;
   int target_fps_;
