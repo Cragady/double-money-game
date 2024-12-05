@@ -80,7 +80,7 @@ void RayWrapper::Update() {
   // Update Portion
   button.Update();
   // Render Portion
-  debug_window_.Render();
+  debug_window_.FullRender();
   ImGuiDemo();
   TesterApplication();
 }

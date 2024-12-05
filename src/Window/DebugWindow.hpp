@@ -24,8 +24,10 @@ public:
   void Setup() override;
   void Shutdown() override;
   void Update() override;
+  void BeginRender() override;
   void Render() override;
   void EndRender() override;
+  void FullRender() override;
 
   void CopyBoolPtrs(Dw_CbpArgs ctrl_one, Dw_CbpArgs ctrl_two);
   void SetProgramFlag(Dw_CbpArgs ctrl);

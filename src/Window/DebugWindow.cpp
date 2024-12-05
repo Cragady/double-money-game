@@ -19,37 +19,58 @@ DebugWindow::~DebugWindow() {
 void DebugWindow::Setup() {}
 void DebugWindow::Shutdown() {}
 void DebugWindow::Update() {}
+void DebugWindow::BeginRender() {
+  render_ready_ = ImGui::Begin(name_.c_str(), &open_, flags_);
+  render_ended_ = false;
+}
 void DebugWindow::Render() {
-  bool window_started = ImGui::Begin(name_.c_str(), &open_, flags_);
-  if (!window_started) {
+  render_ended_ = true;
+  if (!render_ready_) {
     EndRender();
     return;
   }
 
-  ImGui::SeparatorText("Program Control");
-  if (_program_flag_ != nullptr) {
-    if (ImGui::Button(_program_flag_show_.c_str())) {
-      *_program_flag_ = !*_program_flag_;
+  if (ImGui::BeginTabBar("Debugg Tabs", ImGuiTabBarFlags_FittingPolicyScroll)) {
+    if (ImGui::BeginTabItem("Program Control")) {
+      if (_program_flag_ != nullptr) {
+        if (ImGui::Button(_program_flag_show_.c_str())) {
+          *_program_flag_ = !*_program_flag_;
+        }
+      }
+      ImGui::EndTabItem();
     }
-  }
 
-  ImGui::SeparatorText("Miscellaneous Control");
-  if (_control_show_1_ != nullptr) {
-    if (ImGui::Button(_control_1_.c_str())) {
-      *_control_show_1_ = !*_control_show_1_;
+    if (ImGui::BeginTabItem("Miscellaneous Control")) {
+      if (_control_show_1_ != nullptr) {
+        if (ImGui::Button(_control_1_.c_str())) {
+          *_control_show_1_ = !*_control_show_1_;
+        }
+      }
+      if (_control_show_2_ != nullptr) {
+        if (ImGui::Button(_control_2_.c_str())) {
+          *_control_show_2_ = !*_control_show_2_;
+        }
+      }
+      ImGui::EndTabItem();
     }
-  }
-  if (_control_show_2_ != nullptr) {
-    if (ImGui::Button(_control_2_.c_str())) {
-      *_control_show_2_ = !*_control_show_2_;
-    }
+
+    ImGui::EndTabBar();
   }
 
   EndRender();
 }
 
 void DebugWindow::EndRender() {
+  if (!render_ended_)
+    return;
   ImGui::End();
+  render_ended_ = false;
+}
+
+void DebugWindow::FullRender() {
+  BeginRender();
+  Render();
+  EndRender();
 }
 
 void DebugWindow::CopyBoolPtrs(Dw_CbpArgs ctrl_one, Dw_CbpArgs ctrl_two) {
@@ -69,4 +90,3 @@ void DebugWindow::SetProgramFlag(Dw_CbpArgs ctrl) {
   _program_flag_ = ctrl.bool_ptr;
   _program_flag_show_ = ctrl.name;
 }
-
