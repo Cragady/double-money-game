@@ -26,6 +26,14 @@ void DebugWindow::Render() {
     return;
   }
 
+  ImGui::SeparatorText("Program Control");
+  if (_program_flag_ != nullptr) {
+    if (ImGui::Button(_program_flag_show_.c_str())) {
+      *_program_flag_ = !*_program_flag_;
+    }
+  }
+
+  ImGui::SeparatorText("Miscellaneous Control");
   if (_control_show_1_ != nullptr) {
     if (ImGui::Button(_control_1_.c_str())) {
       *_control_show_1_ = !*_control_show_1_;
@@ -52,5 +60,13 @@ void DebugWindow::CopyBoolPtrs(Dw_CbpArgs ctrl_one, Dw_CbpArgs ctrl_two) {
   _control_1_ = ctrl_one.name;
   _control_show_2_ = ctrl_two.bool_ptr;
   _control_2_ = ctrl_two.name;
+}
+
+void DebugWindow::SetProgramFlag(Dw_CbpArgs ctrl) {
+  std::cout << TERM_YEL "WARN: This class is now in control of boolean "
+                        "resources it does not have sole ownership over."
+            << std::endl;
+  _program_flag_ = ctrl.bool_ptr;
+  _program_flag_show_ = ctrl.name;
 }
 

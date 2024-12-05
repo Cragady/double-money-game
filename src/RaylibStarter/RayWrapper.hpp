@@ -35,6 +35,7 @@ public:
   bool glfw_ready_ = false;
   bool imgui_demo_active_ = false;
   bool tester_application_active_ = false;
+  bool reset_gui_ = false;
 };
 
 #endif

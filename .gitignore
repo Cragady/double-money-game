@@ -10,6 +10,7 @@ compile_commands.json
 .cache/
 imgui.ini
 gladsources/
+*.log
 
 # Prerequisites
 *.d

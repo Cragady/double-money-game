@@ -22,6 +22,8 @@ RayWrapper::RayWrapper(GameOptions game_options) {
       Dw_CbpArgs{.name = "ImGui Demo", .bool_ptr = &imgui_demo_active_},
       Dw_CbpArgs{.name = "Tester Application",
                  .bool_ptr = &tester_application_active_});
+  debug_window_.SetProgramFlag(
+      Dw_CbpArgs{.name = "Reset GUI", .bool_ptr = &reset_gui_});
 
   glfw_ready_ = glfwInit();
   if (!glfw_ready_) {
@@ -93,7 +95,8 @@ void RayWrapper::TesterApplication() {
   if (!tester_application_active_)
     return;
 
-  ImGui::Begin("My First Tool", &tester_application_active_, ImGuiWindowFlags_NoBackground);
+  ImGui::Begin("My First Tool", &tester_application_active_,
+               ImGuiWindowFlags_NoBackground);
   if (ImGui::BeginMenuBar()) {
     if (ImGui::BeginMenu("File")) {
       if (ImGui::MenuItem("Open..", "Ctrl+O")) { /* Do stuff */
