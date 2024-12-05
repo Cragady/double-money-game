@@ -47,4 +47,44 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_subdirectory(src)
 
+add_custom_target(
+  run
+  COMMAND ${CMAKE_SOURCE_DIR}/build/DMG
+)
+
+add_custom_target(
+  val
+  COMMAND valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=${CMAKE_SOURCE_DIR}/log/valgrind.log ${CMAKE_SOURCE_DIR}/build/DMG
+)
+
+add_custom_target(
+  og
+  COMMAND gcc ${CMAKE_SOURCE_DIR}/ref/double-money-game.c -Iinclude -Wall -Wpedantic -Werror -o ${CMAKE_SOURCE_DIR}/build/og.out
+)
+
+add_custom_target(
+  print-test
+  COMMAND gcc ${CMAKE_SOURCE_DIR}/ref/terminal-print-test.c -Iinclude -Wall -Wpedantic -Werror -o ${CMAKE_SOURCE_DIR}/build/print-test.out
+)
+
+add_custom_target(
+  alt-all
+  COMMAND make og
+  COMMAND make print-test
+)
+
+add_custom_target(
+  run-og
+  COMMAND ${CMAKE_SOURCE_DIR}/build/og.out
+)
+
+add_custom_target(
+  run-print-test
+  COMMAND ${CMAKE_SOURCE_DIR}/build/print-test.out
+)
+
+add_custom_target(
+  ultra-clean
+  COMMAND rm -rf ${CMAKE_SOURCE_DIR}/build/*
+)
 # target_link_libraries(DMG PRIVATE ncurses)
