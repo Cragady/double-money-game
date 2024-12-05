@@ -35,7 +35,7 @@ RayWrapper::RayWrapper(GameOptions game_options) {
   game_running_ = true;
   SetExitKey(KEY_NULL);
   GLFWwindow *window = (GLFWwindow *)GetWindowHandle();
-  glfwSetWindowAttrib(window, GLFW_DECORATED, GLFW_FALSE);
+  // glfwSetWindowAttrib(window, GLFW_DECORATED, GLFW_FALSE);
   glfwSetWindowSize(window, screen_width_, screen_height_);
   Loop();
 }
