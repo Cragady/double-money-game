@@ -8,26 +8,33 @@
 #include <GLFW/glfw3.h>
 // clang-format on
 
+#include "../Events/event-functions.hpp"
 #include "RayWrapper.hpp"
 #include "imgui.h"
 #include "rlImGui.h"
-#include "../Events/event-functions.hpp"
 
 RayWrapper::RayWrapper(GameOptions game_options) {
   screen_width_ = game_options.width;
   screen_height_ = game_options.height;
   target_fps_ = game_options.fps;
-
+  imgui_demo_active_ = false;
+  tester_application_active_ = false;
+  // debug_window_.CopyBoolPtrs(&imgui_demo_active_,
+  // &tester_application_active_);
+  debug_window_.CopyBoolPtrs(
+      Dw_CbpArgs{.name = "ImGui Demo", .bool_ptr = &imgui_demo_active_},
+      Dw_CbpArgs{.name = "Tester Application",
+                 .bool_ptr = &tester_application_active_});
 
   glfw_ready_ = glfwInit();
   if (!glfw_ready_) {
-    std::cout << TERM_RED "\nGLFW is not able to be used!\n" TERM_CRESET << std::endl;
+    std::cout << TERM_RED "\nGLFW is not able to be used!\n" TERM_CRESET
+              << std::endl;
   } else {
     std::cout << TERM_GRN "\nGLFW is now ready!\n" TERM_CRESET << std::endl;
   }
   SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
-  InitWindow(screen_width_, screen_height_,
-             game_options.name.c_str());
+  InitWindow(screen_width_, screen_height_, game_options.name.c_str());
   SetTargetFPS(target_fps_);
 
   button.ClickEvent = events::TestEvent;
@@ -71,16 +78,25 @@ void RayWrapper::Update() {
   if (key_input_.EscapeSequence()) {
     game_running_ = false;
   }
+  // Update Portion
   button.Update();
-  /* ---------------------------------------------*/
-  // Test Only. Remove for actual implementation.
+  // Render Portion
+  debug_window_.Render();
+  ImGuiDemo();
   TesterApplication();
-  /* ---------------------------------------------*/
+}
+
+void RayWrapper::ImGuiDemo() {
+  if (imgui_demo_active_)
+    ImGui::ShowDemoWindow(&imgui_demo_active_);
 }
 
 void RayWrapper::TesterApplication() {
   // TODO: remove/replace for actual implementation
-  ImGui::Begin("My First Tool", &game_running_, ImGuiWindowFlags_NoBackground);
+  if (!tester_application_active_)
+    return;
+
+  ImGui::Begin("My First Tool", &tester_application_active_, ImGuiWindowFlags_NoBackground);
   if (ImGui::BeginMenuBar()) {
     if (ImGui::BeginMenu("File")) {
       if (ImGui::MenuItem("Open..", "Ctrl+O")) { /* Do stuff */
@@ -88,7 +104,7 @@ void RayWrapper::TesterApplication() {
       if (ImGui::MenuItem("Save", "Ctrl+S")) { /* Do stuff */
       }
       if (ImGui::MenuItem("Close", "Ctrl+W")) {
-        game_running_ = false;
+        tester_application_active_ = false;
       }
       ImGui::EndMenu();
     }
