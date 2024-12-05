@@ -23,17 +23,18 @@ public:
   void ImGuiDemo();
   void TesterApplication();
 
+  int screen_width_;
+  int screen_height_;
+  int target_fps_;
 
   DebugWindow debug_window_;
   KeyboardInput key_input_;
   ButtonComponent button;
-  bool game_running_;
-  bool glfw_ready_;
-  bool imgui_demo_active_;
-  bool tester_application_active_;
-  int screen_width_;
-  int screen_height_;
-  int target_fps_;
+
+  bool hard_stop_ = false;
+  bool glfw_ready_ = false;
+  bool imgui_demo_active_ = false;
+  bool tester_application_active_ = false;
 };
 
 #endif

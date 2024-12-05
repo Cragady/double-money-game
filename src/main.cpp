@@ -1,13 +1,13 @@
 #include <iostream>
 #include <terminal-colors.h>
 
+#include "Game.hpp"
 #include "RandomChance/RandomChance.hpp"
-#include "RayWrapper.hpp"
 #include "main.hpp"
 
 int main(int argc, char **argv) {
   // SanityPrint();
-  RayWrapper game;
+  Game game;
   return 0;
 }
 

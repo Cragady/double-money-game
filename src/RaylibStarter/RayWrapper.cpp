@@ -17,10 +17,7 @@ RayWrapper::RayWrapper(GameOptions game_options) {
   screen_width_ = game_options.width;
   screen_height_ = game_options.height;
   target_fps_ = game_options.fps;
-  imgui_demo_active_ = false;
-  tester_application_active_ = false;
-  // debug_window_.CopyBoolPtrs(&imgui_demo_active_,
-  // &tester_application_active_);
+
   debug_window_.CopyBoolPtrs(
       Dw_CbpArgs{.name = "ImGui Demo", .bool_ptr = &imgui_demo_active_},
       Dw_CbpArgs{.name = "Tester Application",
@@ -39,7 +36,6 @@ RayWrapper::RayWrapper(GameOptions game_options) {
 
   button.ClickEvent = events::TestEvent;
   rlImGuiSetup(true);
-  game_running_ = true;
   SetExitKey(KEY_NULL);
   GLFWwindow *window = (GLFWwindow *)GetWindowHandle();
   // glfwSetWindowAttrib(window, GLFW_DECORATED, GLFW_FALSE);
@@ -65,7 +61,8 @@ void RayWrapper::EndOfLoop() {
 }
 
 void RayWrapper::Loop() {
-  while (!WindowShouldClose() && game_running_) {
+  hard_stop_ |= WindowShouldClose();
+  if (!hard_stop_) {
     StartOfLoop();
 
     Update();
@@ -76,7 +73,7 @@ void RayWrapper::Loop() {
 
 void RayWrapper::Update() {
   if (key_input_.EscapeSequence()) {
-    game_running_ = false;
+    hard_stop_ = true;
   }
   // Update Portion
   button.Update();
