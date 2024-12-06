@@ -1,5 +1,5 @@
-#ifndef DEBUG_WINDOW_HPP
-#define DEBUG_WINDOW_HPP
+#ifndef DMG_GUI_DEBUG_WINDOW_HPP_
+#define DMG_GUI_DEBUG_WINDOW_HPP_
 
 #include <raylib.h>
 #include "IWindow.hpp"
