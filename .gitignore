@@ -21,6 +21,8 @@ _deps
 CMakeUserPresets.json
 
 # CPack
+CPackConfig.cmake
+CPackSourceConfig.cmake
 
 # Prerequisites
 *.d
