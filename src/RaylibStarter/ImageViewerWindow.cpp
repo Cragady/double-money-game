@@ -13,7 +13,7 @@ void ImageViewerWindow::Setup() {
   Camera.offset.y = GetScreenHeight() / 2.0f;
 
   ViewTexture = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
-  ImageTexture = LoadTexture("assets/rlImGui/resources/parrots.png");
+  ImageTexture = LoadTexture("assets/vendor/rlImGui/resources/parrots.png");
 
   UpdateRenderTexture();
 }

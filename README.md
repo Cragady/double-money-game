@@ -12,7 +12,7 @@ I'll be making this game open source, with an emphasis on an honor system. If th
 
 It likely won't go anywhere, and may end up abandonware, but I'm hopeful it will at least get to a finished state.
 
-The assets that I may or may not create are likely to be comparable to mush on the ground. I'm not so disillusioned to think differently. These assets, however, are mine.
+The assets that I may or may not create are likely to be comparable to mush on the ground. I'm not so disillusioned to think differently. These assets, however, are mine. They are free for personal use.
 
 Assets that are under any directory or sub-directory that has the name of `vendor` are not mine.
 
