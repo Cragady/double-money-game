@@ -5,7 +5,7 @@ set (DMG_SOURCES
   main.cpp
   Game.cpp
   Window/DebugWindow.cpp
-  RandomChance/RandomChance.cpp
+  core/RandomChance.cpp
   RaylibStarter/ImageViewerWindow.cpp
   RaylibStarter/SceneViewWindow.cpp
   RaylibStarter/Demo.cpp
@@ -20,7 +20,7 @@ set (DMG_HEADERS
   GameOptions.hpp
   Window/IWindow.hpp
   Window/DebugWindow.hpp
-  RandomChance/RandomChance.hpp
+  core/RandomChance.hpp
   RaylibStarter/DocumentWindow.hpp
   RaylibStarter/ImageViewerWindow.hpp
   RaylibStarter/SceneViewWindow.hpp

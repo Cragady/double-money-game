@@ -2,7 +2,7 @@
 #include <terminal-colors.h>
 
 #include "Game.hpp"
-#include "RandomChance/RandomChance.hpp"
+#include "RandomChance.hpp"
 
 void SanityPrint();
 

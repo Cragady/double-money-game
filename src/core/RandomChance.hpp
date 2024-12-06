@@ -1,5 +1,5 @@
-#ifndef RANDOM_CHANCE_HPP
-#define RANDOM_CHANCE_HPP
+#ifndef DMG_CORE_RANDOM_CHANCE_HPP_
+#define DMG_CORE_RANDOM_CHANCE_HPP_
 
 class RandomChance {
 public:
