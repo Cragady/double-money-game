@@ -12,7 +12,7 @@ if (NOT RLImGui_Loaded)
   target_include_directories(rlimgui PUBLIC ${CMAKE_SOURCE_DIR}/vendor/rlImGui)
   target_link_libraries(rlimgui PUBLIC imgui)
 
-  file(COPY "${RLIMGUI_VENDOR_DIR}/resources" DESTINATION "${CMAKE_SOURCE_DIR}/assets/rlImGui")
+  file(COPY "${RLIMGUI_VENDOR_DIR}/resources" DESTINATION "${CMAKE_SOURCE_DIR}/assets/vendor/rlImGui")
 
   set(RLImGui_Loaded true)
 endif ()
