@@ -2,15 +2,25 @@
 .playground/
 .idea/
 [Bb]uild/
-CMakeFiles/
-CMakeCache.txt
-Makefile
-cmake_install.cmake
-compile_commands.json
 .cache/
 imgui.ini
 gladsources/
 *.log
+
+# Cmake
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+_deps
+CMakeUserPresets.json
+
+# CPack
 
 # Prerequisites
 *.d
