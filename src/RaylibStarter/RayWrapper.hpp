@@ -4,7 +4,7 @@
 #include "KeyboardInput.hpp"
 #include "../GameOptions.hpp"
 #include "ButtonComponent.hpp"
-#include "../Window/DebugWindow.hpp"
+#include "DebugWindow.hpp"
 
 class RayWrapper {
 public:

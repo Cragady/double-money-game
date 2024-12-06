@@ -4,7 +4,7 @@
 set (DMG_SOURCES
   main.cpp
   Game.cpp
-  Window/DebugWindow.cpp
+  gui/DebugWindow.cpp
   core/RandomChance.cpp
   core/input/KeyboardInput.cpp
   RaylibStarter/ImageViewerWindow.cpp
@@ -18,8 +18,8 @@ set (DMG_SOURCES
 set (DMG_HEADERS
   Game.hpp
   GameOptions.hpp
-  Window/IWindow.hpp
-  Window/DebugWindow.hpp
+  gui/IWindow.hpp
+  gui/DebugWindow.hpp
   core/RandomChance.hpp
   core/input/KeyboardInput.hpp
   RaylibStarter/DocumentWindow.hpp
