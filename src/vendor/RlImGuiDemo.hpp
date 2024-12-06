@@ -1,5 +1,5 @@
-#ifndef DEMO_HPP
-#define DEMO_HPP
+#ifndef DMG_VENDOR_RL_IMGUI_DEMO_HPP_
+#define DMG_VENDOR_RL_IMGUI_DEMO_HPP_
 
 #include "ImageViewerWindow.hpp"
 #include "SceneViewWindow.hpp"
