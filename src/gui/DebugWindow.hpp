@@ -4,10 +4,10 @@
 #include <raylib.h>
 #include "IWindow.hpp"
 
-typedef struct Dw_CbpArgs {
+struct Dw_CbpArgs {
   std::string name;
   bool *bool_ptr;
-} DebugWindow_Control;
+};
 
 class DebugWindow : public IWindow {
 public:
