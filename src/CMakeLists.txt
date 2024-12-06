@@ -7,12 +7,12 @@ set (DMG_SOURCES
   gui/DebugWindow.cpp
   core/RandomChance.cpp
   core/input/KeyboardInput.cpp
+  core/events/event-functions.cpp
   RaylibStarter/ImageViewerWindow.cpp
   RaylibStarter/SceneViewWindow.cpp
   RaylibStarter/Demo.cpp
   RaylibStarter/RayWrapper.cpp
   Input/ButtonComponent.cpp
-  Events/event-functions.cpp
 )
 
 set (DMG_HEADERS
@@ -22,13 +22,13 @@ set (DMG_HEADERS
   gui/DebugWindow.hpp
   core/RandomChance.hpp
   core/input/KeyboardInput.hpp
+  core/events/event-functions.hpp
   RaylibStarter/DocumentWindow.hpp
   RaylibStarter/ImageViewerWindow.hpp
   RaylibStarter/SceneViewWindow.hpp
   RaylibStarter/Demo.hpp
   RaylibStarter/RayWrapper.hpp
   Input/ButtonComponent.hpp
-  Events/event-functions.hpp
 )
 
 set(DMG_INCLUDE_DIRS "${CMAKE_SOURCE_DIR}/include")

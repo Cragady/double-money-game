@@ -8,7 +8,7 @@
 #include <GLFW/glfw3.h>
 // clang-format on
 
-#include "../Events/event-functions.hpp"
+#include "events/event-functions.hpp"
 #include "RayWrapper.hpp"
 #include "imgui.h"
 #include "rlImGui.h"
