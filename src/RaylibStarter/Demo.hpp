@@ -3,10 +3,10 @@
 
 #include "ImageViewerWindow.hpp"
 #include "SceneViewWindow.hpp"
-class Demo {
+class RlImGuiDemo {
 public:
-  Demo();
-  ~Demo();
+  RlImGuiDemo();
+  ~RlImGuiDemo();
   void Prepare();
   void Update();
   void Render();
