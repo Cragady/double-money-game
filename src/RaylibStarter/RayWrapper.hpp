@@ -1,7 +1,7 @@
 #ifndef RAY_WRAPPER_HPP
 #define RAY_WRAPPER_HPP
 
-#include "../Input/KeyboardInput.hpp"
+#include "KeyboardInput.hpp"
 #include "../GameOptions.hpp"
 #include "ButtonComponent.hpp"
 #include "../Window/DebugWindow.hpp"

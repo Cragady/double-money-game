@@ -6,11 +6,11 @@ set (DMG_SOURCES
   Game.cpp
   Window/DebugWindow.cpp
   core/RandomChance.cpp
+  core/input/KeyboardInput.cpp
   RaylibStarter/ImageViewerWindow.cpp
   RaylibStarter/SceneViewWindow.cpp
   RaylibStarter/Demo.cpp
   RaylibStarter/RayWrapper.cpp
-  Input/KeyboardInput.cpp
   Input/ButtonComponent.cpp
   Events/event-functions.cpp
 )
@@ -21,12 +21,12 @@ set (DMG_HEADERS
   Window/IWindow.hpp
   Window/DebugWindow.hpp
   core/RandomChance.hpp
+  core/input/KeyboardInput.hpp
   RaylibStarter/DocumentWindow.hpp
   RaylibStarter/ImageViewerWindow.hpp
   RaylibStarter/SceneViewWindow.hpp
   RaylibStarter/Demo.hpp
   RaylibStarter/RayWrapper.hpp
-  Input/KeyboardInput.hpp
   Input/ButtonComponent.hpp
   Events/event-functions.hpp
 )
