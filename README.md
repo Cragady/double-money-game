@@ -18,6 +18,17 @@ Assets that are under any directory or sub-directory that has the name of `vendo
 
 I know my code and/or cmake setup may be disastrous, I am open to feedback. I am not open to being bullied unless it's funny and good natured.
 
+## Cloning / Running
+
+So far this has only been tested on Ubuntu.
+
+* `git clone --recurse-submodules -j8 git@github.com:Cragady/double-money-game.git`
+  * -j can be whatever you want, or even left out
+* `cd double-money-game`
+* `cmake .`
+* `make`
+* `make run`
+
 ## Game Loop
 
 There will be a dual-currency to a multi-currency system. The player will earn "Percentage Points" by waiting. You can use "Percentage Points" to buy one-time use to increase percentages associated with a risk in game.
