@@ -5,6 +5,8 @@
 
 class ImageViewerWindow : public IWindow {
 public:
+  ~ImageViewerWindow();
+
   void Setup() override;
   void Shutdown() override;
   void Update() override;

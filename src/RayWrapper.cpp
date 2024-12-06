@@ -38,6 +38,8 @@ RayWrapper::RayWrapper(GameOptions game_options) {
 
   button.ClickEvent = events::TestEvent;
   rlImGuiSetup(true);
+  // NOTE: The below will disable movement from click/dragging on imgui window
+  // ImGui::GetIO().ConfigWindowsMoveFromTitleBarOnly = true;
   SetExitKey(KEY_NULL);
   GLFWwindow *window = (GLFWwindow *)GetWindowHandle();
   // glfwSetWindowAttrib(window, GLFW_DECORATED, GLFW_FALSE);

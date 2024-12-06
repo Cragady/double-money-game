@@ -1,96 +1,58 @@
-#include <iostream>
 #include <terminal-colors.h>
 
 #include "Demo.hpp"
 #include "imgui.h"
-#include "rlImGui.h"
 #include <raylib.h>
 
 Demo::Demo() {
   Prepare();
-  GameLoop();
 }
 
-Demo::~Demo() {
-  Shutdown();
-}
+Demo::~Demo() {}
 
 void Demo::Prepare() {
 
-  SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
-  InitWindow(screenWidth, screenHeight,
-             "raylib-Extras [ImGui] example - ImGui Demo");
-  SetTargetFPS(144);
-  rlImGuiSetup(true);
-  ImGui::GetIO().ConfigWindowsMoveFromTitleBarOnly = true;
+  image_viewer_.Setup();
+  image_viewer_.open_ = true;
 
-  ImageViewer.Setup();
-  ImageViewer.open_ = true;
-
-  SceneView.Setup();
-  SceneView.open_ = true;
+  scene_view_.Setup();
+  scene_view_.open_ = true;
 }
 
 void Demo::Update() {
-  ImageViewer.Update();
-  SceneView.Update();
-
-  BeginDrawing();
-  ClearBackground(DARKGRAY);
-
-  rlImGuiBegin();
-  DoMainMenu();
-
-  if (ImGuiDemoOpen)
-    ImGui::ShowDemoWindow(&ImGuiDemoOpen);
-
-  if (ImageViewer.open_)
-    ImageViewer.FullRender();
-
-  if (SceneView.open_)
-    SceneView.FullRender();
-
-  rlImGuiEnd();
-
-  EndDrawing();
+  image_viewer_.Update();
+  scene_view_.Update();
 }
 
-void Demo::Shutdown() {
-  std::cout << TERM_RED "Shutting Down" TERM_CRESET << std::endl;
+void Demo::Render() {
+  DoMainMenu();
 
-  rlImGuiShutdown();
+  if (imgui_demo_open_)
+    ImGui::ShowDemoWindow(&imgui_demo_open_);
 
-  ImageViewer.Shutdown();
-  SceneView.Shutdown();
+  if (image_viewer_.open_)
+    image_viewer_.FullRender();
 
-  // De-Initialization
-  //--------------------------------------------------------------------------------------
-  CloseWindow(); // Close window and OpenGL context
-  //--------------------------------------------------------------------------------------
+  if (scene_view_.open_)
+    scene_view_.FullRender();
 }
 
 void Demo::DoMainMenu() {
   if (ImGui::BeginMainMenuBar()) {
     if (ImGui::BeginMenu("File")) {
       if (ImGui::MenuItem("Exit"))
-        Quit = true;
+        quit_ = true;
 
       ImGui::EndMenu();
     }
 
     if (ImGui::BeginMenu("Window")) {
-      ImGui::MenuItem("ImGui Demo", nullptr, &ImGuiDemoOpen);
-      ImGui::MenuItem("Image Viewer", nullptr, &ImageViewer.open_);
-      ImGui::MenuItem("3D View", nullptr, &SceneView.open_);
+      ImGui::MenuItem("ImGui Demo", nullptr, &imgui_demo_open_);
+      ImGui::MenuItem("Image Viewer", nullptr, &image_viewer_.open_);
+      ImGui::MenuItem("3D View", nullptr, &scene_view_.open_);
 
       ImGui::EndMenu();
     }
     ImGui::EndMainMenuBar();
   }
 }
-
-void Demo::GameLoop() {
-  while (!WindowShouldClose() && !Quit) {
-    Update();
-  }
-};

@@ -9,17 +9,13 @@ public:
   ~Demo();
   void Prepare();
   void Update();
-  void Shutdown();
+  void Render();
   void DoMainMenu();
-  void GameLoop();
 
-  bool Quit = false;
-  bool ImGuiDemoOpen = false;
-  ImageViewerWindow ImageViewer;
-  SceneViewWindow SceneView;
-  int screenWidth = 1900;
-  int screenHeight = 900;
-  int targetFramerate = 144;
+  bool quit_ = false;
+  bool imgui_demo_open_ = false;
+  ImageViewerWindow image_viewer_;
+  SceneViewWindow scene_view_;
 
 };
 

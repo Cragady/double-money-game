@@ -6,6 +6,8 @@
 
 class SceneViewWindow : public IWindow {
 public:
+  ~SceneViewWindow();
+
   void Setup() override;
   void Shutdown() override;
   void Update() override;
