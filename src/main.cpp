@@ -3,7 +3,8 @@
 
 #include "Game.hpp"
 #include "RandomChance/RandomChance.hpp"
-#include "main.hpp"
+
+void SanityPrint();
 
 int main(int argc, char **argv) {
   // SanityPrint();

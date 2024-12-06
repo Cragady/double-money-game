@@ -16,7 +16,6 @@ set (DMG_SOURCES
 )
 
 set (DMG_HEADERS
-  main.hpp
   Game.hpp
   GameOptions.hpp
   Window/IWindow.hpp
