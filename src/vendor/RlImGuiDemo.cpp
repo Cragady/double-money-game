@@ -1,6 +1,6 @@
 #include <terminal-colors.h>
 
-#include "Demo.hpp"
+#include "RlImGuiDemo.hpp"
 #include "imgui.h"
 #include <raylib.h>
 

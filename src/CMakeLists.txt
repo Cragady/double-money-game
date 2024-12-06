@@ -12,7 +12,7 @@ set (DMG_SOURCES
   core/events/event-functions.cpp
   vendor/ImageViewerWindow.cpp
   vendor/SceneViewWindow.cpp
-  RaylibStarter/Demo.cpp
+  vendor/RlImGuiDemo.cpp
 )
 
 set (DMG_HEADERS
@@ -27,7 +27,7 @@ set (DMG_HEADERS
   core/events/event-functions.hpp
   vendor/ImageViewerWindow.hpp
   vendor/SceneViewWindow.hpp
-  RaylibStarter/Demo.hpp
+  vendor/RlImGuiDemo.hpp
 )
 
 set(DMG_INCLUDE_DIRS "${CMAKE_SOURCE_DIR}/include")
