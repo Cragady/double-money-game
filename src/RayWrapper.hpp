@@ -2,8 +2,8 @@
 #define DMG_RAY_WRAPPER_HPP_
 
 #include "KeyboardInput.hpp"
-#include "../GameOptions.hpp"
-#include "ButtonComponent.hpp"
+#include "GameOptions.hpp"
+#include "Button.hpp"
 #include "DebugWindow.hpp"
 
 class RayWrapper {

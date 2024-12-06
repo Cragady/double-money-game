@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "ButtonComponent.hpp"
+#include "Button.hpp"
 #include "imgui.h"
 
 ButtonComponent::ButtonComponent(std::string name, std::string button_text,

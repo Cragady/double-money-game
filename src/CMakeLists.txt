@@ -6,13 +6,13 @@ set (DMG_SOURCES
   Game.cpp
   RayWrapper.cpp
   gui/DebugWindow.cpp
+  gui/element/Button.cpp
   core/RandomChance.cpp
   core/input/KeyboardInput.cpp
   core/events/event-functions.cpp
   vendor/ImageViewerWindow.cpp
   vendor/SceneViewWindow.cpp
   RaylibStarter/Demo.cpp
-  Input/ButtonComponent.cpp
 )
 
 set (DMG_HEADERS
@@ -21,13 +21,13 @@ set (DMG_HEADERS
   RayWrapper.hpp
   gui/IWindow.hpp
   gui/DebugWindow.hpp
+  gui/element/Button.hpp
   core/RandomChance.hpp
   core/input/KeyboardInput.hpp
   core/events/event-functions.hpp
   vendor/ImageViewerWindow.hpp
   vendor/SceneViewWindow.hpp
   RaylibStarter/Demo.hpp
-  Input/ButtonComponent.hpp
 )
 
 set(DMG_INCLUDE_DIRS "${CMAKE_SOURCE_DIR}/include")
