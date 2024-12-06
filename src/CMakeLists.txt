@@ -9,8 +9,8 @@ set (DMG_SOURCES
   core/RandomChance.cpp
   core/input/KeyboardInput.cpp
   core/events/event-functions.cpp
-  RaylibStarter/ImageViewerWindow.cpp
-  RaylibStarter/SceneViewWindow.cpp
+  vendor/ImageViewerWindow.cpp
+  vendor/SceneViewWindow.cpp
   RaylibStarter/Demo.cpp
   Input/ButtonComponent.cpp
 )
@@ -24,8 +24,8 @@ set (DMG_HEADERS
   core/RandomChance.hpp
   core/input/KeyboardInput.hpp
   core/events/event-functions.hpp
-  RaylibStarter/ImageViewerWindow.hpp
-  RaylibStarter/SceneViewWindow.hpp
+  vendor/ImageViewerWindow.hpp
+  vendor/SceneViewWindow.hpp
   RaylibStarter/Demo.hpp
   Input/ButtonComponent.hpp
 )
