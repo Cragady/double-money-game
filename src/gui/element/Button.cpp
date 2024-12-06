@@ -3,7 +3,7 @@
 #include "Button.hpp"
 #include "imgui.h"
 
-ButtonComponent::ButtonComponent(std::string name, std::string button_text,
+Button::Button(std::string name, std::string button_text,
                                  bool is_open, ImGuiWindowFlags flags,
                                  void (*clickEvent)()) {
   name_ = name;
@@ -13,9 +13,9 @@ ButtonComponent::ButtonComponent(std::string name, std::string button_text,
   ClickEvent = clickEvent;
 }
 
-ButtonComponent::~ButtonComponent() { component_open_ = false; }
+Button::~Button() { component_open_ = false; }
 
-void ButtonComponent::Update() {
+void Button::Update() {
 
   float hue = 1 * 0.05f;
   ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(hue, 0.6f, 0.6f));
@@ -34,6 +34,6 @@ void ButtonComponent::Update() {
   ImGui::PopStyleVar();
 }
 
-void ButtonComponent::DefaultEvent() {
+void Button::DefaultEvent() {
   std::cout << "Click Event!!!" << std::endl;
 }

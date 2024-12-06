@@ -1,13 +1,13 @@
-#ifndef BUTTON_COMPONENT_HPP
-#define BUTTON_COMPONENT_HPP
+#ifndef DMG_GUI_ELEMENT_BUTTON_HPP_
+#define DMG_GUI_ELEMENT_BUTTON_HPP_
 
 #include <string>
 
 #include "imgui.h"
 
-class ButtonComponent {
+class Button {
 public:
-  ButtonComponent(std::string name = "Debug Button",
+  Button(std::string name = "Debug Button",
                   std::string button_text = "Tester", bool is_open = true,
                   ImGuiWindowFlags flags = ImGuiWindowFlags_NoBackground |
                                            ImGuiWindowFlags_NoCollapse |
@@ -16,7 +16,7 @@ public:
                                            ImGuiWindowFlags_NoDecoration, // |
                                            // ImGuiWindowFlags_NoMove,
                   void (*clickEvent)() = &DefaultEvent);
-  ~ButtonComponent();
+  ~Button();
   void Update();
   void (*ClickEvent)();
   static void DefaultEvent();

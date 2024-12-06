@@ -29,7 +29,7 @@ public:
 
   DebugWindow debug_window_;
   KeyboardInput key_input_;
-  ButtonComponent button;
+  Button button;
 
   bool hard_stop_ = false;
   bool glfw_ready_ = false;
