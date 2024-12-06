@@ -1,14 +1,17 @@
 #ifndef IMAGE_VIEWER_WINDOW_HPP
 #define IMAGE_VIEWER_WINDOW_HPP
 
-#include "DocumentWindow.hpp"
+#include "IWindow.hpp"
 
-class ImageViewerWindow : public DocumentWindow {
+class ImageViewerWindow : public IWindow {
 public:
   void Setup() override;
-  void Show() override;
-  void Update() override;
   void Shutdown() override;
+  void Update() override;
+  void BeginRender() override;
+  void Render() override;
+  void EndRender() override;
+  void FullRender() override;
   void UpdateRenderTexture();
 
 

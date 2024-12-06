@@ -15,6 +15,7 @@ public:
   virtual void EndRender() = 0;
   virtual void FullRender() = 0;
 
+  RenderTexture view_texture_;
   bool render_ready_ = false;
   bool render_ended_ = false;
   bool open_ = false;

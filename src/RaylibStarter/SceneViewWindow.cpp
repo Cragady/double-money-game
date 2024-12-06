@@ -6,7 +6,7 @@
 #include "SceneViewWindow.hpp"
 
 void SceneViewWindow::Setup() {
-  ViewTexture = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
+  view_texture_ = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
 
   Camera.fovy = 45;
   Camera.up.y = 1;
@@ -22,32 +22,35 @@ void SceneViewWindow::Setup() {
 }
 
 void SceneViewWindow::Shutdown() {
-  UnloadRenderTexture(ViewTexture);
+  UnloadRenderTexture(view_texture_);
   UnloadTexture(GridTexture);
 }
 
-void SceneViewWindow::Show() {
+void SceneViewWindow::BeginRender() {}
+void SceneViewWindow::Render() {}
+void SceneViewWindow::EndRender() {}
+void SceneViewWindow::FullRender() {
   ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
   ImGui::SetNextWindowSizeConstraints(
       ImVec2(400, 400),
       ImVec2((float)GetScreenWidth(), (float)GetScreenHeight()));
 
-  if (ImGui::Begin("3D View", &Open, ImGuiWindowFlags_NoScrollbar)) {
-    Focused = ImGui::IsWindowFocused(ImGuiFocusedFlags_ChildWindows);
+  if (ImGui::Begin("3D View", &open_, ImGuiWindowFlags_NoScrollbar)) {
+    focused_ = ImGui::IsWindowFocused(ImGuiFocusedFlags_ChildWindows);
     // draw the view
-    rlImGuiImageRenderTextureFit(&ViewTexture, true);
+    rlImGuiImageRenderTextureFit(&view_texture_, true);
   }
   ImGui::End();
   ImGui::PopStyleVar();
 }
 
 void SceneViewWindow::Update() {
-  if (!Open)
+  if (!open_)
     return;
 
   if (IsWindowResized()) {
-    UnloadRenderTexture(ViewTexture);
-    ViewTexture = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
+    UnloadRenderTexture(view_texture_);
+    view_texture_ = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
   }
 
   float period = 10;
@@ -55,7 +58,7 @@ void SceneViewWindow::Update() {
 
   Camera.position.x = (float)(sinf((float)GetTime() / period) * magnitude);
 
-  BeginTextureMode(ViewTexture);
+  BeginTextureMode(view_texture_);
   ClearBackground(SKYBLUE);
 
   BeginMode3D(Camera);

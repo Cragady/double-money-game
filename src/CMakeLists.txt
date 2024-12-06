@@ -23,7 +23,6 @@ set (DMG_HEADERS
   core/RandomChance.hpp
   core/input/KeyboardInput.hpp
   core/events/event-functions.hpp
-  RaylibStarter/DocumentWindow.hpp
   RaylibStarter/ImageViewerWindow.hpp
   RaylibStarter/SceneViewWindow.hpp
   RaylibStarter/Demo.hpp

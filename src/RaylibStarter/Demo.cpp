@@ -25,10 +25,10 @@ void Demo::Prepare() {
   ImGui::GetIO().ConfigWindowsMoveFromTitleBarOnly = true;
 
   ImageViewer.Setup();
-  ImageViewer.Open = true;
+  ImageViewer.open_ = true;
 
   SceneView.Setup();
-  SceneView.Open = true;
+  SceneView.open_ = true;
 }
 
 void Demo::Update() {
@@ -44,11 +44,11 @@ void Demo::Update() {
   if (ImGuiDemoOpen)
     ImGui::ShowDemoWindow(&ImGuiDemoOpen);
 
-  if (ImageViewer.Open)
-    ImageViewer.Show();
+  if (ImageViewer.open_)
+    ImageViewer.FullRender();
 
-  if (SceneView.Open)
-    SceneView.Show();
+  if (SceneView.open_)
+    SceneView.FullRender();
 
   rlImGuiEnd();
 
@@ -80,8 +80,8 @@ void Demo::DoMainMenu() {
 
     if (ImGui::BeginMenu("Window")) {
       ImGui::MenuItem("ImGui Demo", nullptr, &ImGuiDemoOpen);
-      ImGui::MenuItem("Image Viewer", nullptr, &ImageViewer.Open);
-      ImGui::MenuItem("3D View", nullptr, &SceneView.Open);
+      ImGui::MenuItem("Image Viewer", nullptr, &ImageViewer.open_);
+      ImGui::MenuItem("3D View", nullptr, &SceneView.open_);
 
       ImGui::EndMenu();
     }
