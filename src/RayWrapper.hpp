@@ -1,5 +1,5 @@
-#ifndef RAY_WRAPPER_HPP
-#define RAY_WRAPPER_HPP
+#ifndef DMG_RAY_WRAPPER_HPP_
+#define DMG_RAY_WRAPPER_HPP_
 
 #include "KeyboardInput.hpp"
 #include "../GameOptions.hpp"

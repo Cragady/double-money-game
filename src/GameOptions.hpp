@@ -1,5 +1,5 @@
-#ifndef GAME_OPTIONS_HPP
-#define GAME_OPTIONS_HPP
+#ifndef DMG_GAME_OPTIONS_HPP_
+#define DMG_GAME_OPTIONS_HPP_
 
 #include <string>
 
