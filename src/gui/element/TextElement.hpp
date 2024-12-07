@@ -1,5 +1,5 @@
-#ifndef DMG_GUI_ELEMENT_TEXT_HPP_
-#define DMG_GUI_ELEMENT_TEXT_HPP_
+#ifndef DMG_GUI_ELEMENT_TEXT_ELEMENT_HPP_
+#define DMG_GUI_ELEMENT_TEXT_ELEMENT_HPP_
 
 #include "IWindow.hpp"
 #include "imgui.h"
