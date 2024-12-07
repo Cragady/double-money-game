@@ -29,6 +29,8 @@ So far this has only been tested on Ubuntu.
 * `make`
 * `make run`
 
+At this moment, this repo requires Raylib to be installed on the machine this is being built on. In the future, I plan on removing this requirement. There may be some dependencies that are neede so that this repo's dependencies can be built. I plan on giving more detail on how to make sure this builds, but for now, just follow the install process of Raylib, and install any dependencies that Raylib and the other repos will require.
+
 ## Game Loop
 
 There will be a dual-currency to a multi-currency system. The player will earn "Percentage Points" by waiting. You can use "Percentage Points" to buy one-time use to increase percentages associated with a risk in game.
@@ -60,6 +62,8 @@ Think on potentially having different "Levels"
 
 ## TODO
 
+* Spin up in a clean install and generate instructions on a build for such an environment (Ubuntu)
+* Change the build process so that a global install of Raylib is not necessary
 * Implement GUI & Game Loop
 * Implement compression on assets, even if compression doesn't save any space
 * Implement Physics if necessary
