@@ -4,6 +4,8 @@
 #include <raylib.h>
 #include "IWindow.hpp"
 
+// TODO: clean/dry this class up
+
 struct Dw_CbpArgs {
   std::string name;
   bool *bool_ptr;
@@ -31,6 +33,7 @@ public:
 
   void CopyBoolPtrOne(Dw_CbpArgs ctrl_one);
   void CopyBoolPtrTwo(Dw_CbpArgs ctrl_two);
+  void RlimguiCtrl(Dw_CbpArgs ctrl);
   void SetProgramFlag(Dw_CbpArgs ctrl);
 
 private:
@@ -41,6 +44,8 @@ private:
   std::string _control_1_ = "";
   bool *_control_show_2_ = nullptr;
   std::string _control_2_ = "";
+  bool *_rlimgui_show_ = nullptr;
+  std::string _rlimgui_name_ = "";
 };
 
 #endif

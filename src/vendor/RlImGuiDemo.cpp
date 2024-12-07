@@ -4,7 +4,9 @@
 #include "imgui.h"
 #include <raylib.h>
 
-RlImGuiDemo::RlImGuiDemo() {}
+RlImGuiDemo::RlImGuiDemo() {
+  name_ = "RlImGui Demo Windows";
+}
 
 RlImGuiDemo::~RlImGuiDemo() {}
 
@@ -28,6 +30,7 @@ void RlImGuiDemo::BeginRender() {};
 void RlImGuiDemo::Render() {};
 void RlImGuiDemo::EndRender() {};
 void RlImGuiDemo::FullRender() {
+  if (!open_) return;
   DoMainMenu();
 
   if (imgui_demo_open_)

@@ -4,6 +4,8 @@
 #include "DebugWindow.hpp"
 #include "imgui.h"
 
+// TODO: clean/dry this class up
+
 DebugWindow::DebugWindow() {
   open_ = true;
   name_ = "Debug Window";
@@ -35,6 +37,15 @@ void DebugWindow::Render() {
       if (_program_flag_ != nullptr) {
         if (ImGui::Button(_program_flag_show_.c_str())) {
           *_program_flag_ = !*_program_flag_;
+        }
+      }
+      ImGui::EndTabItem();
+    }
+
+    if (ImGui::BeginTabItem("RlImGui Examples")) {
+      if (_rlimgui_show_ != nullptr) {
+        if (ImGui::Button(_rlimgui_name_.c_str())) {
+          *_rlimgui_show_ = !*_rlimgui_show_;
         }
       }
       ImGui::EndTabItem();
@@ -88,6 +99,14 @@ void DebugWindow::CopyBoolPtrTwo(Dw_CbpArgs ctrl_two) {
             << std::endl;
   _control_show_2_ = ctrl_two.bool_ptr;
   _control_2_ = ctrl_two.name;
+}
+
+void DebugWindow::RlimguiCtrl(Dw_CbpArgs ctrl) {
+  std::cout << TERM_YEL "WARN: This class is now in control of boolean "
+                        "resources it does not have sole ownership over."
+            << std::endl;
+  _rlimgui_show_ = ctrl.bool_ptr;
+  _rlimgui_name_ = ctrl.name;
 }
 
 void DebugWindow::SetProgramFlag(Dw_CbpArgs ctrl) {

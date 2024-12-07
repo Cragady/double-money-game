@@ -2,8 +2,8 @@
 #include "Button.hpp"
 #include "DebugWindow.hpp"
 #include "RlImGuiDemo.hpp"
-#include "examples/ImGuiMyFirstTool.hpp"
 #include "events/event-functions.hpp"
+#include "examples/ImGuiMyFirstTool.hpp"
 #include <memory>
 
 WindowManager::WindowManager() {
@@ -20,13 +20,15 @@ WindowManager::WindowManager() {
       Dw_CbpArgs{.name = my_tool->name_, .bool_ptr = &(my_tool->open_)});
   windows.push_back(my_tool);
 
-  windows.push_back(std::make_shared<RlImGuiDemo>());
+  std::shared_ptr<RlImGuiDemo> rlimgui_demo = std::make_shared<RlImGuiDemo>();
+  debug_window_->RlimguiCtrl(Dw_CbpArgs{.name = rlimgui_demo->name_,
+                                        .bool_ptr = &(rlimgui_demo->open_)});
+  windows.push_back(rlimgui_demo);
 
   std::shared_ptr<Button> button = std::make_shared<Button>();
   button->ClickEvent = events::TestEvent;
   button->open_ = true;
   windows.push_back(button);
-
 }
 
 WindowManager::~WindowManager() {}
