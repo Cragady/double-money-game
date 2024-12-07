@@ -28,7 +28,6 @@ public:
 
   WindowManager window_manager_;
   KeyboardInput key_input_;
-  Button button;
 
   bool hard_stop_ = false;
   bool glfw_ready_ = false;

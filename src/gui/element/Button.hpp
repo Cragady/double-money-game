@@ -4,8 +4,9 @@
 #include <string>
 
 #include "imgui.h"
+#include "IWindow.hpp"
 
-class Button {
+class Button : public IWindow {
 public:
   Button(std::string name = "Debug Button",
                   std::string button_text = "Tester", bool is_open = true,
@@ -17,7 +18,16 @@ public:
                                            // ImGuiWindowFlags_NoMove,
                   void (*clickEvent)() = &DefaultEvent);
   ~Button();
-  void Update();
+
+
+  void Setup() override;
+  void Shutdown() override;
+  void Update() override;
+  void BeginRender() override;
+  void Render() override;
+  void EndRender() override;
+  void FullRender() override;
+
   void (*ClickEvent)();
   static void DefaultEvent();
 

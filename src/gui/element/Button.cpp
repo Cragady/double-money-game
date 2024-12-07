@@ -15,7 +15,14 @@ Button::Button(std::string name, std::string button_text,
 
 Button::~Button() { component_open_ = false; }
 
-void Button::Update() {
+void Button::Setup() {};
+void Button::Shutdown() {};
+void Button::Update() {};
+void Button::BeginRender() {};
+void Button::Render() {};
+void Button::EndRender() {};
+
+void Button::FullRender() {
 
   float hue = 1 * 0.05f;
   ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(hue, 0.6f, 0.6f));

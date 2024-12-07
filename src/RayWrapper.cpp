@@ -9,7 +9,6 @@
 // clang-format on
 
 #include "RayWrapper.hpp"
-#include "events/event-functions.hpp"
 #include "imgui.h"
 #include "rlImGui.h"
 
@@ -35,7 +34,6 @@ RayWrapper::RayWrapper(GameOptions game_options) {
   InitWindow(screen_width_, screen_height_, game_options.name.c_str());
   SetTargetFPS(target_fps_);
 
-  button.ClickEvent = events::TestEvent;
   rlImGuiSetup(true);
   // NOTE: The below will disable movement from click/dragging on imgui window
   // ImGui::GetIO().ConfigWindowsMoveFromTitleBarOnly = true;
@@ -80,9 +78,6 @@ void RayWrapper::Update() {
   if (key_input_.EscapeSequence()) {
     hard_stop_ = true;
   }
-  // Update Portion
-  button.Update();
-  // Render Portion
   window_manager_.Update();
   ImGuiDemo();
 }
