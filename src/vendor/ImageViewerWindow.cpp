@@ -4,9 +4,7 @@
 
 #include "rlImGui.h"
 
-ImageViewerWindow::~ImageViewerWindow() {
-  Shutdown();
-}
+ImageViewerWindow::~ImageViewerWindow() {}
 
 void ImageViewerWindow::Setup() {
   Camera.zoom = 1;

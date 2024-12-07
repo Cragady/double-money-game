@@ -5,9 +5,7 @@
 #include "rlImGui.h"
 #include "SceneViewWindow.hpp"
 
-SceneViewWindow::~SceneViewWindow() {
-  Shutdown();
-}
+SceneViewWindow::~SceneViewWindow() {}
 
 void SceneViewWindow::Setup() {
   view_texture_ = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());

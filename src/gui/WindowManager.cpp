@@ -18,7 +18,7 @@ WindowManager::WindowManager() {
       Dw_CbpArgs{.name = my_tool->name_, .bool_ptr = &(my_tool->open_)});
   windows.push_back(my_tool);
 
-  // windows.push_back(std::make_shared<RlImGuiDemo>());
+  windows.push_back(std::make_shared<RlImGuiDemo>());
 
 }
 

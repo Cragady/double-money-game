@@ -9,15 +9,14 @@ RlImGuiDemo::RlImGuiDemo() {}
 RlImGuiDemo::~RlImGuiDemo() {}
 
 void RlImGuiDemo::Setup() {
-
   image_viewer_.Setup();
-  image_viewer_.open_ = true;
-
   scene_view_.Setup();
-  scene_view_.open_ = true;
 }
 
-void RlImGuiDemo::Shutdown() {};
+void RlImGuiDemo::Shutdown() {
+  image_viewer_.Shutdown();
+  scene_view_.Shutdown();
+};
 
 void RlImGuiDemo::Update() {
   image_viewer_.Update();

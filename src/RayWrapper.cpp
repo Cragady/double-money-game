@@ -43,11 +43,13 @@ RayWrapper::RayWrapper(GameOptions game_options) {
   GLFWwindow *window = (GLFWwindow *)GetWindowHandle();
   // glfwSetWindowAttrib(window, GLFW_DECORATED, GLFW_FALSE);
   glfwSetWindowSize(window, screen_width_, screen_height_);
+  window_manager_.Setup();
   Loop();
 }
 
 RayWrapper::~RayWrapper() {
   std::cout << TERM_RED "Shutting Down" TERM_CRESET << std::endl;
+  window_manager_.Shutdown();
   rlImGuiShutdown();
   CloseWindow();
 }
