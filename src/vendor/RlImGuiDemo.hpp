@@ -3,13 +3,20 @@
 
 #include "ImageViewerWindow.hpp"
 #include "SceneViewWindow.hpp"
-class RlImGuiDemo {
+class RlImGuiDemo : public IWindow{
 public:
   RlImGuiDemo();
   ~RlImGuiDemo();
-  void Prepare();
-  void Update();
-  void Render();
+
+
+  void Setup() override;
+  void Shutdown() override;
+  void Update() override;
+  void BeginRender() override;
+  void Render() override;
+  void EndRender() override;
+  void FullRender() override;
+
   void DoMainMenu();
 
   bool quit_ = false;

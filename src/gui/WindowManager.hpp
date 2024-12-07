@@ -12,6 +12,7 @@ public:
 
   void Setup();
   void Update();
+  void Shutdown();
 
   bool include_debug_window_ = true;
   bool debug_window_attached_ = false;

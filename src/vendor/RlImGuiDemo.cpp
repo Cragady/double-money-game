@@ -4,13 +4,11 @@
 #include "imgui.h"
 #include <raylib.h>
 
-RlImGuiDemo::RlImGuiDemo() {
-  Prepare();
-}
+RlImGuiDemo::RlImGuiDemo() {}
 
 RlImGuiDemo::~RlImGuiDemo() {}
 
-void RlImGuiDemo::Prepare() {
+void RlImGuiDemo::Setup() {
 
   image_viewer_.Setup();
   image_viewer_.open_ = true;
@@ -19,12 +17,18 @@ void RlImGuiDemo::Prepare() {
   scene_view_.open_ = true;
 }
 
+void RlImGuiDemo::Shutdown() {};
+
 void RlImGuiDemo::Update() {
   image_viewer_.Update();
   scene_view_.Update();
 }
 
-void RlImGuiDemo::Render() {
+
+void RlImGuiDemo::BeginRender() {};
+void RlImGuiDemo::Render() {};
+void RlImGuiDemo::EndRender() {};
+void RlImGuiDemo::FullRender() {
   DoMainMenu();
 
   if (imgui_demo_open_)

@@ -1,5 +1,6 @@
 #include "WindowManager.hpp"
 #include "DebugWindow.hpp"
+#include "RlImGuiDemo.hpp"
 #include "examples/ImGuiMyFirstTool.hpp"
 #include <memory>
 
@@ -16,9 +17,14 @@ WindowManager::WindowManager() {
   debug_window_->CopyBoolPtrTwo(
       Dw_CbpArgs{.name = my_tool->name_, .bool_ptr = &(my_tool->open_)});
   windows.push_back(my_tool);
+
+  // windows.push_back(std::make_shared<RlImGuiDemo>());
+
 }
 
-WindowManager::~WindowManager() {
+WindowManager::~WindowManager() {}
+
+void WindowManager::Shutdown() {
   for (const std::shared_ptr<IWindow> &window : windows) {
     window->Shutdown();
   }
