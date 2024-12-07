@@ -73,12 +73,19 @@ void DebugWindow::FullRender() {
   EndRender();
 }
 
-void DebugWindow::CopyBoolPtrs(Dw_CbpArgs ctrl_one, Dw_CbpArgs ctrl_two) {
+void DebugWindow::CopyBoolPtrOne(Dw_CbpArgs ctrl_one) {
   std::cout << TERM_YEL "WARN: This class is now in control of boolean "
                         "resources it does not have sole ownership over."
             << std::endl;
   _control_show_1_ = ctrl_one.bool_ptr;
   _control_1_ = ctrl_one.name;
+}
+
+
+void DebugWindow::CopyBoolPtrTwo(Dw_CbpArgs ctrl_two) {
+  std::cout << TERM_YEL "WARN: This class is now in control of boolean "
+                        "resources it does not have sole ownership over."
+            << std::endl;
   _control_show_2_ = ctrl_two.bool_ptr;
   _control_2_ = ctrl_two.name;
 }

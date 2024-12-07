@@ -7,6 +7,7 @@
 
 class IWindow {
 public:
+  virtual ~IWindow() {};
   virtual void Setup() = 0;
   virtual void Shutdown() = 0;
   virtual void Update() = 0;

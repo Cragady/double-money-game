@@ -5,8 +5,10 @@ set (DMG_SOURCES
   main.cpp
   Game.cpp
   RayWrapper.cpp
+  gui/WindowManager.cpp
   gui/DebugWindow.cpp
   gui/element/Button.cpp
+  gui/examples/ImGuiMyFirstTool.cpp
   core/RandomChance.cpp
   core/input/KeyboardInput.cpp
   core/events/event-functions.cpp
@@ -19,9 +21,11 @@ set (DMG_HEADERS
   Game.hpp
   GameOptions.hpp
   RayWrapper.hpp
+  gui/WindowManager.hpp
   gui/IWindow.hpp
   gui/DebugWindow.hpp
   gui/element/Button.hpp
+  gui/examples/ImGuiMyFirstTool.hpp
   core/RandomChance.hpp
   core/input/KeyboardInput.hpp
   core/events/event-functions.hpp

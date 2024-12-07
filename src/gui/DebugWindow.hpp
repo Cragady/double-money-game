@@ -14,10 +14,10 @@ public:
   DebugWindow();
   DebugWindow(bool *, bool *);
   ~DebugWindow();
-  // Copy deletions
+  // Copy ctors
   DebugWindow (const DebugWindow &) = delete;
   DebugWindow &operator = (DebugWindow &) = delete;
-  // Move deletions
+  // Move ctors
   DebugWindow (DebugWindow &&) = delete;
   DebugWindow &operator = (DebugWindow &&) = delete;
 
@@ -29,7 +29,8 @@ public:
   void EndRender() override;
   void FullRender() override;
 
-  void CopyBoolPtrs(Dw_CbpArgs ctrl_one, Dw_CbpArgs ctrl_two);
+  void CopyBoolPtrOne(Dw_CbpArgs ctrl_one);
+  void CopyBoolPtrTwo(Dw_CbpArgs ctrl_two);
   void SetProgramFlag(Dw_CbpArgs ctrl);
 
 private:

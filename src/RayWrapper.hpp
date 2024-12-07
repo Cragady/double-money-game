@@ -4,7 +4,7 @@
 #include "KeyboardInput.hpp"
 #include "GameOptions.hpp"
 #include "Button.hpp"
-#include "DebugWindow.hpp"
+#include "WindowManager.hpp"
 
 class RayWrapper {
 public:
@@ -27,7 +27,7 @@ public:
   int screen_height_;
   int target_fps_;
 
-  DebugWindow debug_window_;
+  WindowManager window_manager_;
   KeyboardInput key_input_;
   Button button;
 
