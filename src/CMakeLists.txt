@@ -62,6 +62,15 @@ target_link_libraries(DMG raylib imgui rlimgui glad_gl_core_33 glfw)
 # target_link_libraries(DMG glfw3 cglm GL X11 pthread Xi dl)
 set_target_properties(DMG PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${BUILD_OUTPUT})
 
+project(rlimgui_editor_example)
+
+add_executable(rlimgui_editor_example vendor/editor.cpp)
+target_include_directories(rlimgui_editor_example PRIVATE ${DMG_INCLUDE_DIRS})
+target_link_libraries(rlimgui_editor_example raylib imgui rlimgui glad_gl_core_33 glfw)
+# target_link_libraries(rlimgui_editor_example Xrander)
+# target_link_libraries(rlimgui_editor_example glfw3 cglm GL X11 pthread Xi dl)
+set_target_properties(rlimgui_editor_example PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${BUILD_OUTPUT})
+
 # add_custom_command(
 #   TARGET DMG
 #   POST_BUILD
