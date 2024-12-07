@@ -21,7 +21,6 @@ public:
   void Loop();
   void Update();
   void ImGuiDemo();
-  void TesterApplication();
 
   int screen_width_;
   int screen_height_;
@@ -34,7 +33,6 @@ public:
   bool hard_stop_ = false;
   bool glfw_ready_ = false;
   bool imgui_demo_active_ = false;
-  bool tester_application_active_ = false;
   bool reset_gui_ = false;
 };
 

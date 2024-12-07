@@ -83,7 +83,6 @@ void RayWrapper::Update() {
   // Render Portion
   window_manager_.Update();
   ImGuiDemo();
-  TesterApplication();
 }
 
 void RayWrapper::ImGuiDemo() {
@@ -91,9 +90,3 @@ void RayWrapper::ImGuiDemo() {
     ImGui::ShowDemoWindow(&imgui_demo_active_);
 }
 
-void RayWrapper::TesterApplication() {
-  // TODO: remove/replace for actual implementation
-  if (!tester_application_active_)
-    return;
-  // myfirsttool.FullRender();
-}
