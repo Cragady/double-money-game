@@ -2,6 +2,7 @@
 #include "Button.hpp"
 #include "DebugWindow.hpp"
 #include "RlImGuiDemo.hpp"
+#include "TextElement.hpp"
 #include "events/event-functions.hpp"
 #include "examples/ImGuiMyFirstTool.hpp"
 #include <memory>
@@ -29,6 +30,10 @@ WindowManager::WindowManager() {
   button->ClickEvent = events::TestEvent;
   button->open_ = true;
   windows.push_back(button);
+
+  std::shared_ptr<TextElement> test_text = std::make_shared<TextElement>("Hello, World!");
+  test_text->open_ = true;
+  windows.push_back(test_text);
 }
 
 WindowManager::~WindowManager() {}

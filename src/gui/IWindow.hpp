@@ -23,7 +23,7 @@ public:
   RenderTexture texture_;
   bool focused_ = false;
   Rectangle content_rect_ = {0};
-  std::string name_ = "";
+  std::string name_ = "Debug";
   ImGuiWindowFlags flags_ = ImGuiWindowFlags_None;
 };
 

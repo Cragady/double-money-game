@@ -8,6 +8,7 @@ set (DMG_SOURCES
   gui/WindowManager.cpp
   gui/DebugWindow.cpp
   gui/element/Button.cpp
+  gui/element/TextElement.cpp
   gui/examples/ImGuiMyFirstTool.cpp
   core/RandomChance.cpp
   core/input/KeyboardInput.cpp
@@ -25,6 +26,7 @@ set (DMG_HEADERS
   gui/IWindow.hpp
   gui/DebugWindow.hpp
   gui/element/Button.hpp
+  gui/element/TextElement.hpp
   gui/examples/ImGuiMyFirstTool.hpp
   core/RandomChance.hpp
   core/input/KeyboardInput.hpp
