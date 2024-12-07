@@ -39,6 +39,8 @@ You are given $1 initially. You can risk to add a set amount e.g. $0.05, $0.10, 
 
 You are given a chance to double your money. There is a minimum amount and maximum amount for the percentage. The percentage is decreased slowly each time the button is pushed, but never going below the minimum. If you purchase percentage points, or wait for percentage points, any excess money spent is not returned as change. Failure to double will set the money pool back to minimum.
 
+Initial "Get Money" button does not have any money, but the "Add Set Amount" button has a 100% chance to add money on first click, then appropriate percentages for subsequent clicks.
+
 This gives us several purchasable upgrades right off the bat:
 
 * Percentage Points passive earning
@@ -52,6 +54,7 @@ Other items that could give even more purchasable upgrades:
 * Additive button press amount e.g. Not $1, but a min and max here too
 * Random change on additive button press amount
 * Button Health - this will allow for multiple fails and upgrades that are tied to button damage on fail, and button health
+* Potential button health/chance on the claim money button too
 
 * Mini-Games that will help with the main game
 
