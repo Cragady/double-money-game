@@ -13,7 +13,7 @@ set (DMG_SOURCES
   gui/WindowManager.cpp
   gui/DebugWindow.cpp
   gui/Page.cpp
-  gui/page_ns.cpp
+  gui/PageCreator.cpp
   gui/element/Button.cpp
   gui/element/TextElement.cpp
   gui/examples/ImGuiMyFirstTool.cpp
@@ -35,7 +35,7 @@ set (DMG_HEADERS
   gui/IWindow.hpp
   gui/DebugWindow.hpp
   gui/Page.hpp
-  gui/page_ns.hpp
+  gui/PageCreator.hpp
   gui/element/Button.hpp
   gui/element/TextElement.hpp
   gui/examples/ImGuiMyFirstTool.hpp

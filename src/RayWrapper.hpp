@@ -4,6 +4,7 @@
 #include "GameState.hpp"
 #include "KeyboardInput.hpp"
 #include "GameOptions.hpp"
+#include "PageCreator.hpp"
 #include "WindowManager.hpp"
 
 class RayWrapper {
@@ -27,6 +28,7 @@ public:
   int screen_height_;
   int target_fps_;
 
+  PageCreator page_creator_;
   WindowManagerSPtr window_manager_ = nullptr;
   KeyboardInput key_input_;
 

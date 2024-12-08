@@ -16,7 +16,7 @@ public:
                                            ImGuiWindowFlags_NoResize |
                                            ImGuiWindowFlags_NoDecoration, // |
                                            // ImGuiWindowFlags_NoMove,
-                  void (*clickEvent)() = &DefaultEvent);
+                  void (*clickEvent)(const GameStateUPtr &) = &DefaultEvent);
   ~Button();
 
 
@@ -29,8 +29,8 @@ public:
   void EndRender(const GameStateUPtr &) override;
   void FullRender(const GameStateUPtr &) override;
 
-  void (*ClickEvent)();
-  static void DefaultEvent();
+  void (*ClickEvent)(const GameStateUPtr &);
+  static void DefaultEvent(const GameStateUPtr &);
 
   std::string name_;
   std::string button_text_;

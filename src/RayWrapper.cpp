@@ -12,7 +12,6 @@
 #include "RayWrapper.hpp"
 #include "GameState.hpp"
 #include "imgui.h"
-#include "page_ns.hpp"
 #include "rlImGui.h"
 
 RayWrapper::RayWrapper(GameOptions game_options) {
@@ -21,6 +20,7 @@ RayWrapper::RayWrapper(GameOptions game_options) {
   target_fps_ = game_options.fps;
 
   window_manager_ = std::make_shared<WindowManager>();
+  page_creator_ = PageCreator(window_manager_);
   std::shared_ptr<DebugWindow> debug_window_ = window_manager_->debug_window_;
   debug_window_->CopyBoolPtrOne(
       Dw_CbpArgs{.name = "ImGui Demo", .bool_ptr = &imgui_demo_active_});
@@ -45,7 +45,6 @@ RayWrapper::RayWrapper(GameOptions game_options) {
   GLFWwindow *window = (GLFWwindow *)GetWindowHandle();
   // glfwSetWindowAttrib(window, GLFW_DECORATED, GLFW_FALSE);
   glfwSetWindowSize(window, screen_width_, screen_height_);
-  page::CreateDebugPage(window_manager_);
 }
 
 RayWrapper::~RayWrapper() {
@@ -56,6 +55,8 @@ RayWrapper::~RayWrapper() {
 }
 
 void RayWrapper::Setup(const GameStateUPtr &state) {
+  page_creator_.gui_setup_ = gui_setup_;
+  page_creator_.Setup(state);
   window_manager_->Setup(state, gui_setup_);
   gui_setup_ = true;
 }

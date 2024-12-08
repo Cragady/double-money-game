@@ -1,10 +1,11 @@
 #include <iostream>
 
 #include "Button.hpp"
+#include "GameState.hpp"
 #include "imgui.h"
 
 Button::Button(std::string name, std::string button_text, bool is_open,
-               ImGuiWindowFlags flags, void (*clickEvent)()) {
+               ImGuiWindowFlags flags, void (*clickEvent)(const GameStateUPtr &)) {
   name_ = name;
   open_ = is_open;
   render_flags_ = flags;
@@ -35,7 +36,7 @@ void Button::FullRender(const GameStateUPtr &state) {
   ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 5.0f);
   if (ImGui::Begin(name_.c_str(), &open_, render_flags_)) {
     if (ImGui::Button(button_text_.c_str())) {
-      ClickEvent();
+      ClickEvent(state);
     }
   }
   ImGui::End();
@@ -43,4 +44,4 @@ void Button::FullRender(const GameStateUPtr &state) {
   ImGui::PopStyleVar();
 }
 
-void Button::DefaultEvent() { std::cout << "Click Event!!!" << std::endl; }
+void Button::DefaultEvent(const GameStateUPtr &) { std::cout << "Click Event!!!" << std::endl; }

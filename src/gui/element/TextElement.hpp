@@ -5,15 +5,16 @@
 #include "imgui.h"
 #include <string>
 
-class TextElement : public IWindow {
+template <typename T = void> class TextElement : public IWindow {
 public:
   TextElement();
-  TextElement(const char *text,
+  TextElement(const char *text, const char *name = "Debug - TextElement",
               ImGuiWindowFlags flags = ImGuiWindowFlags_NoBackground |
                                        ImGuiWindowFlags_NoCollapse |
                                        ImGuiWindowFlags_NoNav |
                                        ImGuiWindowFlags_NoResize |
-                                       ImGuiWindowFlags_NoDecoration // |
+                                       ImGuiWindowFlags_NoDecoration |
+                                       ImGuiWindowFlags_NoTitleBar // |
               // ImGuiWindowFlags_NoMove,
   );
   ~TextElement();
@@ -28,6 +29,7 @@ public:
   void FullRender(const GameStateUPtr &) override;
 
   std::string text_;
+  T *data_ptr_ = nullptr;
 };
 
 #endif
