@@ -6,7 +6,9 @@
 
 ImageViewerWindow::~ImageViewerWindow() {}
 
-void ImageViewerWindow::Setup() {
+void ImageViewerWindow::GuiSetup() {}
+void ImageViewerWindow::DataSetup(const GameStateUPtr &state) {}
+void ImageViewerWindow::Setup(const GameStateUPtr &state) {
   Camera.zoom = 1;
   Camera.target.x = 0;
   Camera.target.y = 0;

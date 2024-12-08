@@ -10,6 +10,7 @@
 // clang-format on
 
 #include "RayWrapper.hpp"
+#include "GameState.hpp"
 #include "imgui.h"
 #include "page_ns.hpp"
 #include "rlImGui.h"
@@ -45,7 +46,6 @@ RayWrapper::RayWrapper(GameOptions game_options) {
   // glfwSetWindowAttrib(window, GLFW_DECORATED, GLFW_FALSE);
   glfwSetWindowSize(window, screen_width_, screen_height_);
   page::CreateDebugPage(window_manager_);
-  window_manager_->Setup();
 }
 
 RayWrapper::~RayWrapper() {
@@ -53,6 +53,11 @@ RayWrapper::~RayWrapper() {
   window_manager_->Shutdown();
   rlImGuiShutdown();
   CloseWindow();
+}
+
+void RayWrapper::Setup(const GameStateUPtr &state) {
+  window_manager_->Setup(state, gui_setup_);
+  gui_setup_ = true;
 }
 
 void RayWrapper::StartOfLoop() {

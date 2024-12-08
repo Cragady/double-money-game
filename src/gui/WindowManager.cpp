@@ -33,9 +33,12 @@ void WindowManager::Shutdown() {
   }
 }
 
-void WindowManager::Setup() {
+void WindowManager::Setup(const GameStateUPtr &state, bool gui_setup) {
   for (const IWindowPtr &window : windows_) {
-    window->Setup();
+    // TODO: split setup on IWindow into two parts
+    if (gui_setup)
+      continue;
+    window->Setup(state);
   }
 }
 

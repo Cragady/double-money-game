@@ -5,7 +5,9 @@ Page::Page(GamePageFlags page_flag, WindowManagerSPtr window_manager) {
   _page_ = page_flag;
 }
 
-void Page::Setup() {
+void Page::GuiSetup() {}
+void Page::DataSetup(const GameStateUPtr &state) {}
+void Page::Setup(const GameStateUPtr &state) {
   if (window_manager_ == nullptr) {
     _page_valid_ = false;
     return;

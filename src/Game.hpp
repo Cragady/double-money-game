@@ -16,6 +16,7 @@ public:
   // Move deletions
   Game(Game &&) = delete;
   Game &operator=(Game &&) = delete;
+  void Setup();
   void Loop();
   void HandleGameState();
   void HandleGui();
@@ -24,6 +25,7 @@ public:
   GameStateUPtr game_state_ptr_ = nullptr;
   GamePageFlags game_page_backup_ = GamePageFlags_Debug;
   bool game_running_ = true;
+  bool setup_ran_ = false;
 };
 
 #endif

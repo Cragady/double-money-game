@@ -18,6 +18,7 @@ public:
 
   void StartOfLoop();
   void EndOfLoop();
+  void Setup(const GameStateUPtr &);
   void Loop(const GameStateUPtr &);
   void Update(const GameStateUPtr &);
   void ImGuiDemo();
@@ -33,6 +34,7 @@ public:
   bool glfw_ready_ = false;
   bool imgui_demo_active_ = false;
   bool reset_gui_ = false;
+  bool gui_setup_ = false;
 };
 
 #endif

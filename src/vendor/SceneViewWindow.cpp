@@ -1,13 +1,16 @@
 #include <raylib.h>
 #include <raymath.h>
 
+#include "SceneViewWindow.hpp"
+#include "GameState.hpp"
 #include "imgui.h"
 #include "rlImGui.h"
-#include "SceneViewWindow.hpp"
 
 SceneViewWindow::~SceneViewWindow() {}
 
-void SceneViewWindow::Setup() {
+void SceneViewWindow::GuiSetup() {}
+void SceneViewWindow::DataSetup(const GameStateUPtr &state) {}
+void SceneViewWindow::Setup(const GameStateUPtr &state) {
   view_texture_ = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
 
   Camera.fovy = 45;
@@ -85,4 +88,3 @@ void SceneViewWindow::Update(const GameStateUPtr &state) {
   EndMode3D();
   EndTextureMode();
 }
-

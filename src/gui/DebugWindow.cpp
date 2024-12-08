@@ -11,7 +11,6 @@ DebugWindow::DebugWindow() {
   open_ = true;
   name_ = "Debug Window";
   // flags_ = ImGuiWindowFlags_NoBackground;
-  Setup();
 }
 
 DebugWindow::~DebugWindow() {
@@ -19,7 +18,9 @@ DebugWindow::~DebugWindow() {
   Shutdown();
 }
 
-void DebugWindow::Setup() {}
+void DebugWindow::GuiSetup() {}
+void DebugWindow::DataSetup(const GameStateUPtr &state) {}
+void DebugWindow::Setup(const GameStateUPtr &state) {}
 void DebugWindow::Shutdown() {}
 void DebugWindow::Update(const GameStateUPtr &state) {}
 void DebugWindow::BeginRender(const GameStateUPtr &state) {

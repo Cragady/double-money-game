@@ -1,8 +1,5 @@
 #include "TextElement.hpp"
 
-// Example:
-// ImGui::Text("");
-
 TextElement::TextElement() : TextElement("") {};
 TextElement::TextElement(const char *text, ImGuiWindowFlags flags) {
   text_ = text;
@@ -10,7 +7,9 @@ TextElement::TextElement(const char *text, ImGuiWindowFlags flags) {
 };
 TextElement::~TextElement(){};
 
-void TextElement::Setup() {};
+void TextElement::GuiSetup() {}
+void TextElement::DataSetup(const GameStateUPtr &state) {}
+void TextElement::Setup(const GameStateUPtr &state) {};
 void TextElement::Shutdown() {};
 void TextElement::Update(const GameStateUPtr &state) {};
 void TextElement::BeginRender(const GameStateUPtr &state) {};

@@ -12,7 +12,7 @@ public:
   WindowManager();
   ~WindowManager();
 
-  void Setup();
+  void Setup(const GameStateUPtr &, bool);
   void Update(const GameStateUPtr &);
   void Shutdown();
 

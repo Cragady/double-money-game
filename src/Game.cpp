@@ -13,9 +13,20 @@ Game::~Game() {}
 
 void Game::Loop() {
   while (game_running_) {
+    if (!setup_ran_) {
+      Setup();
+    }
     HandleGameState();
     HandleGui();
   }
+}
+
+void Game::Setup() {
+  if (!game_state_ptr_ || !gui_ptr_)
+    return;
+
+  gui_ptr_->Setup(game_state_ptr_);
+  setup_ran_ = true;
 }
 
 void Game::HandleGameState() {
@@ -31,6 +42,7 @@ void Game::HandleGameState() {
 
     game_state_ptr_ = std::make_unique<GameState>();
     game_state_ptr_->current_page_ = game_page_backup_;
+    if (gui_ptr_) gui_ptr_->Setup(game_state_ptr_);
   }
 }
 
@@ -43,5 +55,6 @@ void Game::HandleGui() {
     gui_ptr_.reset();
     gui_ptr_ = std::make_unique<RayWrapper>();
     gui_ptr_->reset_gui_ = false;
+    gui_ptr_->Setup(game_state_ptr_);
   }
 }

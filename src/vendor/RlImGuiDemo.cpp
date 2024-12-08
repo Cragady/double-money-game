@@ -4,16 +4,16 @@
 #include "imgui.h"
 #include <raylib.h>
 
-RlImGuiDemo::RlImGuiDemo() {
-  name_ = "RlImGui Demo Windows";
-}
+RlImGuiDemo::RlImGuiDemo() { name_ = "RlImGui Demo Windows"; }
 
 RlImGuiDemo::~RlImGuiDemo() {}
 
-void RlImGuiDemo::Setup() {
-  image_viewer_.Setup();
+void RlImGuiDemo::GuiSetup() {};
+void RlImGuiDemo::DataSetup(const GameStateUPtr &state) {};
+void RlImGuiDemo::Setup(const GameStateUPtr &state) {
+  image_viewer_.Setup(state);
   image_viewer_.open_ = true;
-  scene_view_.Setup();
+  scene_view_.Setup(state);
   scene_view_.open_ = true;
 }
 
@@ -27,12 +27,12 @@ void RlImGuiDemo::Update(const GameStateUPtr &state) {
   scene_view_.Update(state);
 }
 
-
 void RlImGuiDemo::BeginRender(const GameStateUPtr &state) {};
 void RlImGuiDemo::Render(const GameStateUPtr &state) {};
 void RlImGuiDemo::EndRender(const GameStateUPtr &state) {};
 void RlImGuiDemo::FullRender(const GameStateUPtr &state) {
-  if (!open_) return;
+  if (!open_)
+    return;
   DoMainMenu();
 
   if (imgui_demo_open_)

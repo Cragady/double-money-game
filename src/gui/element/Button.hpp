@@ -20,7 +20,9 @@ public:
   ~Button();
 
 
-  void Setup() override;
+  void GuiSetup() override;
+  void DataSetup(const GameStateUPtr &) override;
+  void Setup(const GameStateUPtr &) override;
   void Shutdown() override;
   void Update(const GameStateUPtr &) override;
   void BeginRender(const GameStateUPtr &) override;

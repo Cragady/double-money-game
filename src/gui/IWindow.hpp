@@ -10,7 +10,9 @@
 class IWindow {
 public:
   virtual ~IWindow(){};
-  virtual void Setup() = 0;
+  virtual void GuiSetup() = 0;
+  virtual void DataSetup(const GameStateUPtr &) = 0;
+  virtual void Setup(const GameStateUPtr &) = 0;
   virtual void Shutdown() = 0;
   virtual void Update(const GameStateUPtr &) = 0;
   virtual void BeginRender(const GameStateUPtr &) = 0;
