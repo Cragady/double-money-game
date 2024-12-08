@@ -31,7 +31,6 @@ void PageCreator::CreateDebugPage(const GameStateUPtr &state) {
     button->ClickEvent = events::TestEvent;
     AddWindowToCollections(button, debug_page_);
   };
-  // 1
   AddAndCreate(lambda, &current_element);
 
   lambda = [this]() {
@@ -39,7 +38,6 @@ void PageCreator::CreateDebugPage(const GameStateUPtr &state) {
         std::make_shared<TextElement<void>>("Hello, World!");
     AddWindowToCollections(test_text, debug_page_);
   };
-  // 2
   AddAndCreate(lambda, &current_element);
 
   lambda = [this]() {
@@ -48,7 +46,6 @@ void PageCreator::CreateDebugPage(const GameStateUPtr &state) {
                                                    "Debug - Current Money");
     AddWindowToCollections(current_money, debug_page_);
   };
-  // 3
   AddAndCreate(lambda, &current_element);
   TextElement<long double> *current_money =
       (TextElement<long double> *)debug_page_group_[current_element].get();
@@ -60,7 +57,6 @@ void PageCreator::CreateDebugPage(const GameStateUPtr &state) {
         std::make_shared<Button>("Debug - Add Money", "Add Money");
     AddWindowToCollections(add_money, debug_page_);
   };
-  // 4
   AddAndCreate(lambda, &current_element);
   Button *add_money = (Button *)debug_page_group_[current_element].get();
   add_money->ClickEvent = events::AddMoneyEvent;
