@@ -29,7 +29,7 @@ So far this has only been tested on Ubuntu.
 * `make`
 * `make run`
 
-At this moment, this repo requires Raylib to be installed on the machine this is being built on. In the future, I plan on removing this requirement. There may be some dependencies that are neede so that this repo's dependencies can be built. I plan on giving more detail on how to make sure this builds, but for now, just follow the install process of Raylib, and install any dependencies that Raylib and the other repos will require.
+At this moment, this repo requires Raylib to be installed on the machine this is being built on. In the future, I plan on removing this requirement. There may be some dependencies that are needed so that this repo's dependencies can be built. I plan on giving more detail on how to make sure this builds, but for now, just follow the install process of Raylib, and install any dependencies that Raylib and the other repos will require.
 
 ## Game Loop
 
