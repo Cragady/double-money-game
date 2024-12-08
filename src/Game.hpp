@@ -21,8 +21,8 @@ public:
   void HandleGui();
 
   std::unique_ptr<RayWrapper> gui_ptr_ = nullptr;
-  std::shared_ptr<GameState> game_state_ptr_ = nullptr;
-  GamePage game_page_backup_ = GamePage_Debug;
+  GameStateUPtr game_state_ptr_ = nullptr;
+  GamePageFlags game_page_backup_ = GamePageFlags_Debug;
   bool game_running_ = true;
 };
 

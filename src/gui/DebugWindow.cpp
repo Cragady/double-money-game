@@ -2,6 +2,7 @@
 #include <terminal-colors.h>
 
 #include "DebugWindow.hpp"
+#include "GameState.hpp"
 #include "imgui.h"
 
 // TODO: clean/dry this class up
@@ -20,25 +21,55 @@ DebugWindow::~DebugWindow() {
 
 void DebugWindow::Setup() {}
 void DebugWindow::Shutdown() {}
-void DebugWindow::Update() {}
-void DebugWindow::BeginRender() {
+void DebugWindow::Update(const GameStateUPtr &state) {}
+void DebugWindow::BeginRender(const GameStateUPtr &state) {
   render_ready_ = ImGui::Begin(name_.c_str(), &open_, flags_);
   render_ended_ = false;
 }
-void DebugWindow::Render() {
+void DebugWindow::Render(const GameStateUPtr &state) {
   render_ended_ = true;
   if (!render_ready_) {
-    EndRender();
+    EndRender(state);
     return;
   }
 
-  if (ImGui::BeginTabBar("Debugg Tabs", ImGuiTabBarFlags_FittingPolicyScroll)) {
+  if (ImGui::BeginTabBar("Debug Tabs", ImGuiTabBarFlags_FittingPolicyScroll)) {
     if (ImGui::BeginTabItem("Program Control")) {
       if (_program_flag_ != nullptr) {
         if (ImGui::Button(_program_flag_show_.c_str())) {
           *_program_flag_ = !*_program_flag_;
         }
       }
+      ImGui::EndTabItem();
+    }
+
+    if (ImGui::BeginTabItem("Switch Game Page")) {
+      bool debug = state->GetGamePageFlag(GamePageFlags_Debug);
+      bool title = state->GetGamePageFlag(GamePageFlags_Title);
+      bool game = state->GetGamePageFlag(GamePageFlags_Game);
+      bool pause = state->GetGamePageFlag(GamePageFlags_Pause);
+      bool options = state->GetGamePageFlag(GamePageFlags_Options);
+      ImGui::Text("Game Page Flags Active: %i", state->current_page_);
+      ImGui::SeparatorText("Controls");
+      if (ImGui::Button("None")) {
+        debug = false;
+        title = false;
+        game = false;
+        pause = false;
+        options = false;
+      }
+      ImGui::Checkbox("Debug Page", &debug);
+      ImGui::Checkbox("Title Page", &title);
+      ImGui::Checkbox("Game Page", &game);
+      ImGui::Checkbox("Pause Page", &pause);
+      ImGui::Checkbox("Options Page", &options);
+
+      state->ManageGamePageFlag(GamePageFlags_Debug, debug);
+      state->ManageGamePageFlag(GamePageFlags_Title, title);
+      state->ManageGamePageFlag(GamePageFlags_Game, game);
+      state->ManageGamePageFlag(GamePageFlags_Pause, pause);
+      state->ManageGamePageFlag(GamePageFlags_Options, options);
+
       ImGui::EndTabItem();
     }
 
@@ -68,50 +99,53 @@ void DebugWindow::Render() {
     ImGui::EndTabBar();
   }
 
-  EndRender();
+  EndRender(state);
 }
 
-void DebugWindow::EndRender() {
+void DebugWindow::EndRender(const GameStateUPtr &state) {
   if (!render_ended_)
     return;
   ImGui::End();
   render_ended_ = false;
 }
 
-void DebugWindow::FullRender() {
-  BeginRender();
-  Render();
-  EndRender();
+void DebugWindow::FullRender(const GameStateUPtr &state) {
+  BeginRender(state);
+  Render(state);
+  EndRender(state);
 }
 
 void DebugWindow::CopyBoolPtrOne(Dw_CbpArgs ctrl_one) {
-  std::cout << TERM_YEL "WARN: This class is now in control of boolean "
-                        "resources it does not have sole ownership over."
+  std::cout << TERM_YEL
+      "WARN: This class is now in control of boolean "
+      "resources it does not have sole ownership over." TERM_CRESET
             << std::endl;
   _control_show_1_ = ctrl_one.bool_ptr;
   _control_1_ = ctrl_one.name;
 }
 
-
 void DebugWindow::CopyBoolPtrTwo(Dw_CbpArgs ctrl_two) {
-  std::cout << TERM_YEL "WARN: This class is now in control of boolean "
-                        "resources it does not have sole ownership over."
+  std::cout << TERM_YEL
+      "WARN: This class is now in control of boolean "
+      "resources it does not have sole ownership over." TERM_CRESET
             << std::endl;
   _control_show_2_ = ctrl_two.bool_ptr;
   _control_2_ = ctrl_two.name;
 }
 
 void DebugWindow::RlimguiCtrl(Dw_CbpArgs ctrl) {
-  std::cout << TERM_YEL "WARN: This class is now in control of boolean "
-                        "resources it does not have sole ownership over."
+  std::cout << TERM_YEL
+      "WARN: This class is now in control of boolean "
+      "resources it does not have sole ownership over." TERM_CRESET
             << std::endl;
   _rlimgui_show_ = ctrl.bool_ptr;
   _rlimgui_name_ = ctrl.name;
 }
 
 void DebugWindow::SetProgramFlag(Dw_CbpArgs ctrl) {
-  std::cout << TERM_YEL "WARN: This class is now in control of boolean "
-                        "resources it does not have sole ownership over."
+  std::cout << TERM_YEL
+      "WARN: This class is now in control of boolean "
+      "resources it does not have sole ownership over." TERM_CRESET
             << std::endl;
   _program_flag_ = ctrl.bool_ptr;
   _program_flag_show_ = ctrl.name;

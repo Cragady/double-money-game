@@ -4,8 +4,8 @@
 
 Game::Game() {
   gui_ptr_ = std::make_unique<RayWrapper>();
-  game_state_ptr_ = std::make_shared<GameState>();
-  game_page_backup_ = GamePage_Debug;
+  game_state_ptr_ = std::make_unique<GameState>();
+  game_page_backup_ = GamePageFlags_Debug;
   Loop();
 }
 
@@ -29,7 +29,7 @@ void Game::HandleGameState() {
 
     game_state_ptr_.reset();
 
-    game_state_ptr_ = std::make_shared<GameState>();
+    game_state_ptr_ = std::make_unique<GameState>();
     game_state_ptr_->current_page_ = game_page_backup_;
   }
 }
@@ -37,7 +37,7 @@ void Game::HandleGameState() {
 void Game::HandleGui() {
   if (!gui_ptr_ || !game_state_ptr_)
     return;
-  gui_ptr_->Loop();
+  gui_ptr_->Loop(game_state_ptr_);
   game_running_ = !gui_ptr_->hard_stop_;
   if (gui_ptr_->reset_gui_) {
     gui_ptr_.reset();

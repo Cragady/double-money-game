@@ -9,7 +9,7 @@
 class Button : public IWindow {
 public:
   Button(std::string name = "Debug Button",
-                  std::string button_text = "Tester", bool is_open = true,
+                  std::string button_text = "Tester", bool is_open = false,
                   ImGuiWindowFlags flags = ImGuiWindowFlags_NoBackground |
                                            ImGuiWindowFlags_NoCollapse |
                                            ImGuiWindowFlags_NoNav |
@@ -22,18 +22,17 @@ public:
 
   void Setup() override;
   void Shutdown() override;
-  void Update() override;
-  void BeginRender() override;
-  void Render() override;
-  void EndRender() override;
-  void FullRender() override;
+  void Update(const GameStateUPtr &) override;
+  void BeginRender(const GameStateUPtr &) override;
+  void Render(const GameStateUPtr &) override;
+  void EndRender(const GameStateUPtr &) override;
+  void FullRender(const GameStateUPtr &) override;
 
   void (*ClickEvent)();
   static void DefaultEvent();
 
   std::string name_;
   std::string button_text_;
-  bool component_open_;
   ImGuiWindowFlags render_flags_;
 };
 

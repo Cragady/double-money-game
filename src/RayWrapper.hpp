@@ -1,9 +1,9 @@
 #ifndef DMG_RAY_WRAPPER_HPP_
 #define DMG_RAY_WRAPPER_HPP_
 
+#include "GameState.hpp"
 #include "KeyboardInput.hpp"
 #include "GameOptions.hpp"
-#include "Button.hpp"
 #include "WindowManager.hpp"
 
 class RayWrapper {
@@ -18,15 +18,15 @@ public:
 
   void StartOfLoop();
   void EndOfLoop();
-  void Loop();
-  void Update();
+  void Loop(const GameStateUPtr &);
+  void Update(const GameStateUPtr &);
   void ImGuiDemo();
 
   int screen_width_;
   int screen_height_;
   int target_fps_;
 
-  WindowManager window_manager_;
+  WindowManagerSPtr window_manager_ = nullptr;
   KeyboardInput key_input_;
 
   bool hard_stop_ = false;

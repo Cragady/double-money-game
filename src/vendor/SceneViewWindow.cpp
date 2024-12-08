@@ -28,10 +28,10 @@ void SceneViewWindow::Shutdown() {
   UnloadTexture(GridTexture);
 }
 
-void SceneViewWindow::BeginRender() {}
-void SceneViewWindow::Render() {}
-void SceneViewWindow::EndRender() {}
-void SceneViewWindow::FullRender() {
+void SceneViewWindow::BeginRender(const GameStateUPtr &state) {}
+void SceneViewWindow::Render(const GameStateUPtr &state) {}
+void SceneViewWindow::EndRender(const GameStateUPtr &state) {}
+void SceneViewWindow::FullRender(const GameStateUPtr &state) {
   ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
   ImGui::SetNextWindowSizeConstraints(
       ImVec2(400, 400),
@@ -46,7 +46,7 @@ void SceneViewWindow::FullRender() {
   ImGui::PopStyleVar();
 }
 
-void SceneViewWindow::Update() {
+void SceneViewWindow::Update(const GameStateUPtr &state) {
   if (!open_)
     return;
 

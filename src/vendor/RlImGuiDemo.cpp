@@ -12,7 +12,9 @@ RlImGuiDemo::~RlImGuiDemo() {}
 
 void RlImGuiDemo::Setup() {
   image_viewer_.Setup();
+  image_viewer_.open_ = true;
   scene_view_.Setup();
+  scene_view_.open_ = true;
 }
 
 void RlImGuiDemo::Shutdown() {
@@ -20,16 +22,16 @@ void RlImGuiDemo::Shutdown() {
   scene_view_.Shutdown();
 };
 
-void RlImGuiDemo::Update() {
-  image_viewer_.Update();
-  scene_view_.Update();
+void RlImGuiDemo::Update(const GameStateUPtr &state) {
+  image_viewer_.Update(state);
+  scene_view_.Update(state);
 }
 
 
-void RlImGuiDemo::BeginRender() {};
-void RlImGuiDemo::Render() {};
-void RlImGuiDemo::EndRender() {};
-void RlImGuiDemo::FullRender() {
+void RlImGuiDemo::BeginRender(const GameStateUPtr &state) {};
+void RlImGuiDemo::Render(const GameStateUPtr &state) {};
+void RlImGuiDemo::EndRender(const GameStateUPtr &state) {};
+void RlImGuiDemo::FullRender(const GameStateUPtr &state) {
   if (!open_) return;
   DoMainMenu();
 
@@ -37,10 +39,10 @@ void RlImGuiDemo::FullRender() {
     ImGui::ShowDemoWindow(&imgui_demo_open_);
 
   if (image_viewer_.open_)
-    image_viewer_.FullRender();
+    image_viewer_.FullRender(state);
 
   if (scene_view_.open_)
-    scene_view_.FullRender();
+    scene_view_.FullRender(state);
 }
 
 void RlImGuiDemo::DoMainMenu() {

@@ -12,11 +12,11 @@ TextElement::~TextElement(){};
 
 void TextElement::Setup() {};
 void TextElement::Shutdown() {};
-void TextElement::Update() {};
-void TextElement::BeginRender() {};
-void TextElement::Render() {};
-void TextElement::EndRender() {};
-void TextElement::FullRender() {
+void TextElement::Update(const GameStateUPtr &state) {};
+void TextElement::BeginRender(const GameStateUPtr &state) {};
+void TextElement::Render(const GameStateUPtr &state) {};
+void TextElement::EndRender(const GameStateUPtr &state) {};
+void TextElement::FullRender(const GameStateUPtr &state) {
   if (!open_) return;
   if (ImGui::Begin(name_.c_str(), &open_, flags_)) {
     ImGui::Text("%s", text_.c_str());

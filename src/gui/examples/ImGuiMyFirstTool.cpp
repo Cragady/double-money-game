@@ -7,11 +7,11 @@ ImGuiMyFirstTool::ImGuiMyFirstTool() {
 
 void ImGuiMyFirstTool::Setup() {};
 void ImGuiMyFirstTool::Shutdown() {};
-void ImGuiMyFirstTool::Update() {};
-void ImGuiMyFirstTool::BeginRender() {};
-void ImGuiMyFirstTool::Render() {};
-void ImGuiMyFirstTool::EndRender() {};
-void ImGuiMyFirstTool::FullRender() {
+void ImGuiMyFirstTool::Update(const GameStateUPtr &state) {};
+void ImGuiMyFirstTool::BeginRender(const GameStateUPtr &state) {};
+void ImGuiMyFirstTool::Render(const GameStateUPtr &state) {};
+void ImGuiMyFirstTool::EndRender(const GameStateUPtr &state) {};
+void ImGuiMyFirstTool::FullRender(const GameStateUPtr &state) {
   if (!open_) return;
 
 

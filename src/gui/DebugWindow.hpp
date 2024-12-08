@@ -1,8 +1,8 @@
 #ifndef DMG_GUI_DEBUG_WINDOW_HPP_
 #define DMG_GUI_DEBUG_WINDOW_HPP_
 
-#include <raylib.h>
 #include "IWindow.hpp"
+#include <raylib.h>
 
 // TODO: clean/dry this class up
 
@@ -17,19 +17,19 @@ public:
   DebugWindow(bool *, bool *);
   ~DebugWindow();
   // Copy ctors
-  DebugWindow (const DebugWindow &) = delete;
-  DebugWindow &operator = (DebugWindow &) = delete;
+  DebugWindow(const DebugWindow &) = delete;
+  DebugWindow &operator=(DebugWindow &) = delete;
   // Move ctors
-  DebugWindow (DebugWindow &&) = delete;
-  DebugWindow &operator = (DebugWindow &&) = delete;
+  DebugWindow(DebugWindow &&) = delete;
+  DebugWindow &operator=(DebugWindow &&) = delete;
 
   void Setup() override;
   void Shutdown() override;
-  void Update() override;
-  void BeginRender() override;
-  void Render() override;
-  void EndRender() override;
-  void FullRender() override;
+  void Update(const GameStateUPtr &) override;
+  void BeginRender(const GameStateUPtr &) override;
+  void Render(const GameStateUPtr &) override;
+  void EndRender(const GameStateUPtr &) override;
+  void FullRender(const GameStateUPtr &) override;
 
   void CopyBoolPtrOne(Dw_CbpArgs ctrl_one);
   void CopyBoolPtrTwo(Dw_CbpArgs ctrl_two);

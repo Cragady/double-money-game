@@ -20,10 +20,10 @@ void ImageViewerWindow::Setup() {
   UpdateRenderTexture();
 }
 
-void ImageViewerWindow::BeginRender() {}
-void ImageViewerWindow::Render() {}
-void ImageViewerWindow::EndRender() {}
-void ImageViewerWindow::FullRender() {
+void ImageViewerWindow::BeginRender(const GameStateUPtr &state) {}
+void ImageViewerWindow::Render(const GameStateUPtr &state) {}
+void ImageViewerWindow::EndRender(const GameStateUPtr &state) {}
+void ImageViewerWindow::FullRender(const GameStateUPtr &state) {
   ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
   ImGui::SetNextWindowSizeConstraints(
       ImVec2(400, 400),
@@ -88,7 +88,7 @@ void ImageViewerWindow::FullRender() {
   ImGui::PopStyleVar();
 }
 
-void ImageViewerWindow::Update() {
+void ImageViewerWindow::Update(const GameStateUPtr &state) {
   if (!open_)
     return;
 

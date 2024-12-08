@@ -3,19 +3,19 @@
 
 #include "ImageViewerWindow.hpp"
 #include "SceneViewWindow.hpp"
-class RlImGuiDemo : public IWindow{
+
+class RlImGuiDemo : public IWindow {
 public:
   RlImGuiDemo();
   ~RlImGuiDemo();
 
-
   void Setup() override;
   void Shutdown() override;
-  void Update() override;
-  void BeginRender() override;
-  void Render() override;
-  void EndRender() override;
-  void FullRender() override;
+  void Update(const GameStateUPtr &) override;
+  void BeginRender(const GameStateUPtr &) override;
+  void Render(const GameStateUPtr &) override;
+  void EndRender(const GameStateUPtr &) override;
+  void FullRender(const GameStateUPtr &) override;
 
   void DoMainMenu();
 
@@ -23,7 +23,6 @@ public:
   bool imgui_demo_open_ = false;
   ImageViewerWindow image_viewer_;
   SceneViewWindow scene_view_;
-
 };
 
 #endif

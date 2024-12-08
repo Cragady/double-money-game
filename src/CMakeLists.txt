@@ -12,6 +12,8 @@ set (DMG_SOURCES
   core/events/event-functions.cpp
   gui/WindowManager.cpp
   gui/DebugWindow.cpp
+  gui/Page.cpp
+  gui/page_ns.cpp
   gui/element/Button.cpp
   gui/element/TextElement.cpp
   gui/examples/ImGuiMyFirstTool.cpp
@@ -32,6 +34,8 @@ set (DMG_HEADERS
   gui/WindowManager.hpp
   gui/IWindow.hpp
   gui/DebugWindow.hpp
+  gui/Page.hpp
+  gui/page_ns.hpp
   gui/element/Button.hpp
   gui/element/TextElement.hpp
   gui/examples/ImGuiMyFirstTool.hpp

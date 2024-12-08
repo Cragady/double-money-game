@@ -4,13 +4,16 @@
 #include "RandomTracker.hpp"
 #include <memory>
 
-enum GamePage {
-  GamePage_Debug,
-  GamePage_Title,
-  GamePage_Options,
-  GamePage_Game,
-  GamePage_Pause,
+enum GamePageFlags_ {
+  GamePageFlags_None = 1 << 0,
+  GamePageFlags_Debug = 1 << 1,
+  GamePageFlags_Title = 1 << 2,
+  GamePageFlags_Options = 1 << 3,
+  GamePageFlags_Game = 1 << 4,
+  GamePageFlags_Pause = 1 << 5,
 };
+
+using GamePageFlags = int;
 
 class GameState {
 public:
@@ -19,7 +22,7 @@ public:
   double total_elapsed_time_ = 0.0f;
   int fps_ = 0;
 
-  GamePage current_page_ = GamePage_Title;
+  GamePageFlags current_page_ = GamePageFlags_Title;
   bool reset_game_state_ = false;
   long double current_money_ = 0;
   long double current_percentage_currency_ = 0;
@@ -29,6 +32,10 @@ public:
   RandomTracker add_chance_ = RandomTracker(RandomTrackerType_Add, 5000, true);
 
   void Update();
+  void ManageGamePageFlag(GamePageFlags, bool);
+  bool GetGamePageFlag(GamePageFlags);
 };
+
+using GameStateUPtr = std::unique_ptr<GameState>;
 
 #endif
