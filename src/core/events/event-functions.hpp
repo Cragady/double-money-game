@@ -6,6 +6,7 @@
 namespace events {
   void TestEvent();
   void TestEvent(const GameStateUPtr &);
+  void TestRandom(const GameStateUPtr &);
   void AddMoneyEvent(const GameStateUPtr &);
 }
 

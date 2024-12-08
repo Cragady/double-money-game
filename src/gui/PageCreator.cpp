@@ -28,7 +28,7 @@ void PageCreator::CreateDebugPage(const GameStateUPtr &state) {
 
   lambda = [this]() {
     std::shared_ptr<Button> button = std::make_shared<Button>();
-    button->ClickEvent = events::TestEvent;
+    button->ClickEvent = events::TestRandom;
     AddWindowToCollections(button, debug_page_);
   };
   AddAndCreate(lambda, &current_element);
