@@ -10,8 +10,8 @@
 
 RandomChance::RandomChance(int min, int max, int chance) {
   ReSeed();
-  _min_ = min;
-  _max_ = max;
+  min_ = min;
+  max_ = max;
   _chance_ = chance;
 }
 
@@ -24,7 +24,7 @@ void RandomChance::SetNewChance(float new_chance) {
   if (new_chance < 0.0f) {
     new_chance = 0.0f;
   }
-  _chance_ = new_chance * _max_;
+  _chance_ = new_chance * max_;
 }
 
 void RandomChance::ReSeed() {
@@ -36,8 +36,13 @@ void RandomChance::ReSeed() {
 }
 
 bool RandomChance::TakeChance() {
-  int rolled_amount = GetRandomValue(_min_, _max_);
+  int rolled_amount = GetRandomValue(min_, max_);
   return rolled_amount <= _chance_;
+}
+
+int RandomChance::GetRandom() {
+  int rolled_amount = GetRandomValue(min_, max_);
+  return rolled_amount;
 }
 
 void RandomChance::TestRandom() {

@@ -3,6 +3,7 @@
 
 #include <memory>
 
+#include "GameState.hpp"
 #include "RayWrapper.hpp"
 
 class Game {
@@ -16,9 +17,12 @@ public:
   Game(Game &&) = delete;
   Game &operator=(Game &&) = delete;
   void Loop();
+  void HandleGameState();
   void HandleGui();
 
-  std::unique_ptr<RayWrapper> gui_ptr = nullptr;
+  std::unique_ptr<RayWrapper> gui_ptr_ = nullptr;
+  std::shared_ptr<GameState> game_state_ptr_ = nullptr;
+  GamePage game_page_backup_ = GamePage_Debug;
   bool game_running_ = true;
 };
 

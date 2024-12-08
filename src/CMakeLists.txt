@@ -5,14 +5,16 @@ set (DMG_SOURCES
   main.cpp
   Game.cpp
   RayWrapper.cpp
+  core/GameState.cpp
+  core/RandomTracker.cpp
+  core/RandomChance.cpp
+  core/input/KeyboardInput.cpp
+  core/events/event-functions.cpp
   gui/WindowManager.cpp
   gui/DebugWindow.cpp
   gui/element/Button.cpp
   gui/element/TextElement.cpp
   gui/examples/ImGuiMyFirstTool.cpp
-  core/RandomChance.cpp
-  core/input/KeyboardInput.cpp
-  core/events/event-functions.cpp
   vendor/ImageViewerWindow.cpp
   vendor/SceneViewWindow.cpp
   vendor/RlImGuiDemo.cpp
@@ -22,15 +24,17 @@ set (DMG_HEADERS
   Game.hpp
   GameOptions.hpp
   RayWrapper.hpp
+  core/GameState.hpp
+  core/RandomTracker.hpp
+  core/RandomChance.hpp
+  core/input/KeyboardInput.hpp
+  core/events/event-functions.hpp
   gui/WindowManager.hpp
   gui/IWindow.hpp
   gui/DebugWindow.hpp
   gui/element/Button.hpp
   gui/element/TextElement.hpp
   gui/examples/ImGuiMyFirstTool.hpp
-  core/RandomChance.hpp
-  core/input/KeyboardInput.hpp
-  core/events/event-functions.hpp
   vendor/ImageViewerWindow.hpp
   vendor/SceneViewWindow.hpp
   vendor/RlImGuiDemo.hpp
