@@ -34,6 +34,7 @@ public:
   void Update();
   void ManageGamePageFlag(GamePageFlags, bool);
   bool GetGamePageFlag(GamePageFlags);
+  int GetTotalButtonClicks();
 };
 
 using GameStateUPtr = std::unique_ptr<GameState>;

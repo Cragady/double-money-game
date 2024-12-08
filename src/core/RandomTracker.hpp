@@ -22,7 +22,8 @@ public:
       RANDOM_CHANCE_ROLL_DEFAULT_PERCENTAGE_AS_INT);
   RandomTrackerType type_ = RandomTrackerType_None;
   int current_hits_ = 0;
-  int max_hits_ = 0;
+  int max_concurrent_hits_ = 0;
+  int total_hits_ = 0;
   int chance_percentage_ = RANDOM_CHANCE_ROLL_DEFAULT_PERCENTAGE_AS_INT;
   int low_percentage_;
   int high_percentage_;

@@ -40,6 +40,9 @@ void DebugWindow::Render(const GameStateUPtr &state) {
           *_program_flag_ = !*_program_flag_;
         }
       }
+      if (ImGui::Button("Reset Game State")) {
+        state->reset_game_state_ = true;
+      }
       ImGui::EndTabItem();
     }
 
@@ -49,7 +52,7 @@ void DebugWindow::Render(const GameStateUPtr &state) {
       bool game = state->GetGamePageFlag(GamePageFlags_Game);
       bool pause = state->GetGamePageFlag(GamePageFlags_Pause);
       bool options = state->GetGamePageFlag(GamePageFlags_Options);
-      ImGui::Text("Game Page Flags Active: %i", state->current_page_);
+      ImGui::Text("current_page_ bitmask value: %i", state->current_page_);
       ImGui::SeparatorText("Controls");
       if (ImGui::Button("None")) {
         debug = false;
