@@ -51,7 +51,7 @@ void PageCreator::CreateDebugPage(const GameStateUPtr &state) {
   // 3
   AddAndCreate(lambda, &current_element);
   TextElement<long double> *current_money =
-      (TextElement<long double> *)debug_page_group_[3].get();
+      (TextElement<long double> *)debug_page_group_[current_element].get();
 
   current_money->data_ptr_ = &(state->current_money_);
 
@@ -62,7 +62,7 @@ void PageCreator::CreateDebugPage(const GameStateUPtr &state) {
   };
   // 4
   AddAndCreate(lambda, &current_element);
-  Button *add_money = (Button *)debug_page_group_[4].get();
+  Button *add_money = (Button *)debug_page_group_[current_element].get();
   add_money->ClickEvent = events::AddMoneyEvent;
 };
 
