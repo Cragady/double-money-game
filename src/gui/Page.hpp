@@ -11,7 +11,6 @@ public:
 
   void GuiSetup() override;
   void DataSetup(const GameStateUPtr &) override;
-  void Setup(const GameStateUPtr &) override;
   void Shutdown() override;
   void Update(const GameStateUPtr &) override;
   void BeginRender(const GameStateUPtr &) override;
@@ -20,7 +19,6 @@ public:
   void FullRender(const GameStateUPtr &) override;
 
   bool CheckCurrentPage(const GameStateUPtr &);
-  void SendElementsToManager();
 
   WindowManagerSPtr window_manager_ = nullptr;
   std::vector<IWindowPtr> elements_;

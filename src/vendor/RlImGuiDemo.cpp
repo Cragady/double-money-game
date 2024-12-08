@@ -8,12 +8,11 @@ RlImGuiDemo::RlImGuiDemo() { name_ = "RlImGui Demo Windows"; }
 
 RlImGuiDemo::~RlImGuiDemo() {}
 
-void RlImGuiDemo::GuiSetup() {};
 void RlImGuiDemo::DataSetup(const GameStateUPtr &state) {};
-void RlImGuiDemo::Setup(const GameStateUPtr &state) {
-  image_viewer_.Setup(state);
+void RlImGuiDemo::GuiSetup() {
+  image_viewer_.GuiSetup();
   image_viewer_.open_ = true;
-  scene_view_.Setup(state);
+  scene_view_.GuiSetup();
   scene_view_.open_ = true;
 }
 

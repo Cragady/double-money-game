@@ -3,16 +3,15 @@
 Page::Page(GamePageFlags page_flag, WindowManagerSPtr window_manager) {
   window_manager_ = window_manager;
   _page_ = page_flag;
+  name_ = "Debug - Page";
 }
 
-void Page::GuiSetup() {}
 void Page::DataSetup(const GameStateUPtr &state) {}
-void Page::Setup(const GameStateUPtr &state) {
+void Page::GuiSetup() {
   if (window_manager_ == nullptr) {
     _page_valid_ = false;
     return;
   }
-  SendElementsToManager();
 };
 
 void Page::Shutdown() {
@@ -42,13 +41,4 @@ void Page::FullRender(const GameStateUPtr &state) {
 bool Page::CheckCurrentPage(const GameStateUPtr &state) {
   is_page_present_ = state->GetGamePageFlag(_page_);
   return is_page_present_;
-}
-
-void Page::SendElementsToManager() {
-  if (_elements_sent_)
-    return;
-
-  for (const IWindowPtr &element : elements_) {
-    window_manager_->windows_.push_back(element);
-  }
 }

@@ -4,11 +4,14 @@
 
 #include "rlImGui.h"
 
+ImageViewerWindow::ImageViewerWindow() {
+  name_ = "Debug - ImageViewerWindow";
+}
+
 ImageViewerWindow::~ImageViewerWindow() {}
 
-void ImageViewerWindow::GuiSetup() {}
 void ImageViewerWindow::DataSetup(const GameStateUPtr &state) {}
-void ImageViewerWindow::Setup(const GameStateUPtr &state) {
+void ImageViewerWindow::GuiSetup() {
   Camera.zoom = 1;
   Camera.target.x = 0;
   Camera.target.y = 0;

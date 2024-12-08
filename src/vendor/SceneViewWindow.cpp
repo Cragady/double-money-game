@@ -6,11 +6,14 @@
 #include "imgui.h"
 #include "rlImGui.h"
 
+SceneViewWindow::SceneViewWindow() {
+  name_ = "Debug - SceneViewWindow";
+}
+
 SceneViewWindow::~SceneViewWindow() {}
 
-void SceneViewWindow::GuiSetup() {}
 void SceneViewWindow::DataSetup(const GameStateUPtr &state) {}
-void SceneViewWindow::Setup(const GameStateUPtr &state) {
+void SceneViewWindow::GuiSetup() {
   view_texture_ = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
 
   Camera.fovy = 45;

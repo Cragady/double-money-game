@@ -1,6 +1,7 @@
 #include "WindowManager.hpp"
 #include "DebugWindow.hpp"
 #include "GameState.hpp"
+#include "IWindow.hpp"
 #include "ImGuiMyFirstTool.hpp"
 #include "RlImGuiDemo.hpp"
 #include <memory>
@@ -35,10 +36,8 @@ void WindowManager::Shutdown() {
 
 void WindowManager::Setup(const GameStateUPtr &state, bool gui_setup) {
   for (const IWindowPtr &window : windows_) {
-    // TODO: split setup on IWindow into two parts
-    if (gui_setup)
-      continue;
-    window->Setup(state);
+    if (!gui_setup) window->GuiSetup();
+    window->DataSetup(state);
   }
 }
 

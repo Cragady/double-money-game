@@ -18,9 +18,8 @@ DebugWindow::~DebugWindow() {
   Shutdown();
 }
 
-void DebugWindow::GuiSetup() {}
 void DebugWindow::DataSetup(const GameStateUPtr &state) {}
-void DebugWindow::Setup(const GameStateUPtr &state) {}
+void DebugWindow::GuiSetup() {}
 void DebugWindow::Shutdown() {}
 void DebugWindow::Update(const GameStateUPtr &state) {}
 void DebugWindow::BeginRender(const GameStateUPtr &state) {

@@ -4,12 +4,12 @@ TextElement::TextElement() : TextElement("") {};
 TextElement::TextElement(const char *text, ImGuiWindowFlags flags) {
   text_ = text;
   flags_ = flags;
+  name_ = "Debug - TextElement";
 };
 TextElement::~TextElement(){};
 
 void TextElement::GuiSetup() {}
 void TextElement::DataSetup(const GameStateUPtr &state) {}
-void TextElement::Setup(const GameStateUPtr &state) {};
 void TextElement::Shutdown() {};
 void TextElement::Update(const GameStateUPtr &state) {};
 void TextElement::BeginRender(const GameStateUPtr &state) {};
