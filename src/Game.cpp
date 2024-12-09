@@ -2,7 +2,12 @@
 #include "GameState.hpp"
 #include <memory>
 
-Game::Game() {
+Game::Game(bool *game_ctrl, bool run_at_least_once) {
+  game_running_ptr_ = &game_running_;
+  if (game_ctrl) {
+    game_running_ptr_ = game_ctrl;
+  }
+  run_at_least_once_ = run_at_least_once;
   gui_ptr_ = std::make_unique<RayWrapper>();
   game_state_ptr_ = std::make_unique<GameState>();
   game_page_backup_ = GamePageFlags_Debug;
@@ -12,12 +17,14 @@ Game::Game() {
 Game::~Game() {}
 
 void Game::Loop() {
+  game_running_ = *game_running_ptr_ || run_at_least_once_;
   while (game_running_) {
     if (!setup_ran_) {
       Setup();
     }
     HandleGameState();
     HandleGui();
+    game_running_ = *game_running_ptr_ && game_running_;
   }
 }
 

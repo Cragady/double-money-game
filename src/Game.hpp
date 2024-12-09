@@ -8,7 +8,7 @@
 
 class Game {
 public:
-  Game();
+  Game(bool *game_ctrl = nullptr, bool run_at_least_once = false);
   ~Game();
   // Copy deletions
   Game(const Game &) = delete;
@@ -24,8 +24,10 @@ public:
   std::unique_ptr<RayWrapper> gui_ptr_ = nullptr;
   GameStateUPtr game_state_ptr_ = nullptr;
   GamePageFlags game_page_backup_ = GamePageFlags_Debug;
+  bool *game_running_ptr_ = nullptr;
   bool game_running_ = true;
   bool setup_ran_ = false;
+  bool run_at_least_once_ = false;
 };
 
 #endif
