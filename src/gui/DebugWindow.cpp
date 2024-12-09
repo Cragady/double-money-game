@@ -47,6 +47,7 @@ void DebugWindow::Render(const GameStateUPtr &state) {
     }
 
     if (ImGui::BeginTabItem("Switch Game Page")) {
+      bool none = state->GetGamePageFlag(GamePageFlags_None);
       bool debug = state->GetGamePageFlag(GamePageFlags_Debug);
       bool title = state->GetGamePageFlag(GamePageFlags_Title);
       bool game = state->GetGamePageFlag(GamePageFlags_Game);
@@ -55,18 +56,21 @@ void DebugWindow::Render(const GameStateUPtr &state) {
       ImGui::Text("current_page_ bitmask value: %i", state->current_page_);
       ImGui::SeparatorText("Controls");
       if (ImGui::Button("None")) {
+        none = false;
         debug = false;
         title = false;
         game = false;
         pause = false;
         options = false;
       }
+      ImGui::Checkbox("None (For bitmask fun only(currently))", &none);
       ImGui::Checkbox("Debug Page", &debug);
       ImGui::Checkbox("Title Page", &title);
       ImGui::Checkbox("Game Page", &game);
       ImGui::Checkbox("Pause Page", &pause);
       ImGui::Checkbox("Options Page", &options);
 
+      state->ManageGamePageFlag(GamePageFlags_None, none);
       state->ManageGamePageFlag(GamePageFlags_Debug, debug);
       state->ManageGamePageFlag(GamePageFlags_Title, title);
       state->ManageGamePageFlag(GamePageFlags_Game, game);
