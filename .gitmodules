@@ -14,3 +14,6 @@
 [submodule "vendor/glad"]
 	path = vendor/glad
 	url = git@github.com:Cragady/glad.git
+[submodule "vendor/Catch2"]
+	path = vendor/Catch2
+	url = git@github.com:catchorg/Catch2.git
