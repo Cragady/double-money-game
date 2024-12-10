@@ -2,9 +2,16 @@
 # Get all project files
 file(GLOB_RECURSE
      ALL_CXX_SOURCE_FILES
-     src/*.[chi]pp src/*.[chi]xx src/*.cc src/*.hh src/*.ii src/*.[CHI]
-     test/*.[chi]pp test/*.[chi]xx test/*.cc test/*.hh test/*.ii test/*.[CHI]
-     )
+     *.[chi]pp *.[chi]xx *.cc *.hh *.ii *.[CHI]
+ )
+
+ set (EXCLUDE_DIR "/vendor/")
+ foreach(TMP_PATH ${ALL_CXX_SOURCE_FILES})
+   string(FIND ${TMP_PATH} ${EXCLUDE_DIR} EXCLUDE_DIR_FOUND)
+   if(EXCLUDE_DIR_FOUND GREATER -1)
+     list(REMOVE_ITEM ALL_CXX_SOURCE_FILES ${TMP_PATH})
+   endif()
+ endforeach()
 
 # Adding clang-format target if executable is found
 find_program(CLANG_FORMAT "clang-format")
