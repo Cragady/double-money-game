@@ -17,7 +17,6 @@ DebugWindow::DebugWindow() {
 
 DebugWindow::~DebugWindow() {
   open_ = false;
-  Shutdown();
 }
 
 void DebugWindow::DataSetup(const GameStateUPtr &state) {}
