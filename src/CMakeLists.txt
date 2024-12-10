@@ -11,6 +11,7 @@ set (DMG_SOURCES
   ${DMG_SOURCES_DIR}/core/events/event-functions.cpp
   ${DMG_SOURCES_DIR}/gui/WindowManager.cpp
   ${DMG_SOURCES_DIR}/gui/DebugWindow.cpp
+  ${DMG_SOURCES_DIR}/gui/StatsWindow.cpp
   ${DMG_SOURCES_DIR}/gui/Page.cpp
   ${DMG_SOURCES_DIR}/gui/PageCreator.cpp
   ${DMG_SOURCES_DIR}/gui/element/Button.cpp
@@ -33,6 +34,7 @@ set (DMG_HEADERS
   ${DMG_SOURCES_DIR}/gui/WindowManager.hpp
   ${DMG_SOURCES_DIR}/gui/IWindow.hpp
   ${DMG_SOURCES_DIR}/gui/DebugWindow.hpp
+  ${DMG_SOURCES_DIR}/gui/StatsWindow.hpp
   ${DMG_SOURCES_DIR}/gui/Page.hpp
   ${DMG_SOURCES_DIR}/gui/PageCreator.hpp
   ${DMG_SOURCES_DIR}/gui/element/Button.hpp

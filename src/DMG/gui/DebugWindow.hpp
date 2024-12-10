@@ -38,11 +38,14 @@ class DebugWindow : public IWindow {
   void CopyBoolPtrTwo(Dw_CbpArgs ctrl_two);
   void RlimguiCtrl(Dw_CbpArgs ctrl);
   void SetProgramFlag(Dw_CbpArgs ctrl);
+  void SetProgramFlag2(Dw_CbpArgs ctrl);
 
  private:
   bool _default_false_ = false;
   bool *_program_flag_ = nullptr;
   std::string _program_flag_show_ = "";
+  bool *_program_flag_2_ = nullptr;
+  std::string _program_flag_show_2_ = "";
   bool *_control_show_1_ = nullptr;
   std::string _control_1_ = "";
   bool *_control_show_2_ = nullptr;

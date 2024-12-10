@@ -42,6 +42,11 @@ void DebugWindow::Render(const GameStateUPtr &state) {
       if (ImGui::Button("Reset Game State")) {
         state->reset_game_state_ = true;
       }
+      if (_program_flag_2_ != nullptr) {
+        if (ImGui::Button(_program_flag_show_2_.c_str())) {
+          *_program_flag_2_ = !*_program_flag_2_;
+        }
+      }
       ImGui::EndTabItem();
     }
 
@@ -155,3 +160,13 @@ void DebugWindow::SetProgramFlag(Dw_CbpArgs ctrl) {
   _program_flag_ = ctrl.bool_ptr;
   _program_flag_show_ = ctrl.name;
 }
+
+
+void DebugWindow::SetProgramFlag2(Dw_CbpArgs ctrl) {
+  std::cout << TERM_YEL
+      "WARN: This class is now in control of boolean "
+      "resources it does not have sole ownership over." TERM_CRESET
+            << std::endl;
+  _program_flag_2_ = ctrl.bool_ptr;
+  _program_flag_show_2_ = ctrl.name;
+};
