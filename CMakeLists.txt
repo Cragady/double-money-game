@@ -33,6 +33,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${BUILD_OUTPUT}/lib)
 # Anywhere you see include(...) you can check <root>/cmake for that file
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
+include(clang-cxx-dev-tools)
 include(RayLibImport)
 include(ImGuiImport)
 include(RLImGuiImport)
