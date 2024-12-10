@@ -12,10 +12,11 @@ enum RandomTrackerType {
 };
 
 class RandomTracker {
-public:
-  RandomTracker(RandomTrackerType type = RandomTrackerType_None,
-                int chance_percentage = RANDOM_CHANCE_ROLL_DEFAULT_PERCENTAGE_AS_INT,
-                bool first_guaranteed = false);
+ public:
+  RandomTracker(
+      RandomTrackerType type = RandomTrackerType_None,
+      int chance_percentage = RANDOM_CHANCE_ROLL_DEFAULT_PERCENTAGE_AS_INT,
+      bool first_guaranteed = false);
 
   RandomChance random_engine_ = RandomChance(
       RANDOM_CHANCE_ROLL_MIN_DEFAULT, RANDOM_CHANCE_ROLL_MAX_DEFAULT,
@@ -36,7 +37,7 @@ public:
   void SetNewChance(float = RANDOM_CHANCE_ROLL_DEFAULT_PERCENTAGE_AS_FLOAT);
   void ResetRandomRange();
 
-private:
+ private:
   int _roll_min_ = RANDOM_CHANCE_ROLL_MIN_DEFAULT;
   int _roll_max_ = RANDOM_CHANCE_ROLL_MAX_DEFAULT;
 };

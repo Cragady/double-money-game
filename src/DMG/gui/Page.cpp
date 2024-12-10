@@ -15,12 +15,10 @@ void Page::GuiSetup() {
 };
 
 void Page::Shutdown() {
-  if (!_page_valid_)
-    return;
+  if (!_page_valid_) return;
 };
 void Page::Update(const GameStateUPtr &state) {
-  if (!_page_valid_)
-    return;
+  if (!_page_valid_) return;
   CheckCurrentPage(state);
   for (const IWindowPtr &element : elements_) {
     element->open_ = is_page_present_;
@@ -30,8 +28,7 @@ void Page::BeginRender(const GameStateUPtr &state) {};
 void Page::Render(const GameStateUPtr &state) {};
 void Page::EndRender(const GameStateUPtr &state) {};
 void Page::FullRender(const GameStateUPtr &state) {
-  if (!is_page_present_ || !_page_valid_)
-    return;
+  if (!is_page_present_ || !_page_valid_) return;
 
   BeginRender(state);
   Render(state);

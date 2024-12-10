@@ -1,8 +1,9 @@
 #ifndef DMG_CORE_GAME_STATE_HPP_
 #define DMG_CORE_GAME_STATE_HPP_
 
-#include "DMG/core/RandomTracker.hpp"
 #include <memory>
+
+#include "DMG/core/RandomTracker.hpp"
 
 enum GamePageFlags_ {
   GamePageFlags_None = 1 << 0,
@@ -16,8 +17,7 @@ enum GamePageFlags_ {
 using GamePageFlags = int;
 
 class GameState {
-public:
-
+ public:
   float delta_time_ = 0.0f;
   double total_elapsed_time_ = 0.0f;
   int fps_ = 0;
@@ -27,7 +27,8 @@ public:
   long double current_money_ = 0;
   long double current_percentage_currency_ = 0;
 
-  RandomTracker multiply_chance_ = RandomTracker(RandomTrackerType_Multiply, 5000);
+  RandomTracker multiply_chance_ =
+      RandomTracker(RandomTrackerType_Multiply, 5000);
   RandomTracker get_chance_ = RandomTracker(RandomTrackerType_Get, 5000);
   RandomTracker add_chance_ = RandomTracker(RandomTrackerType_Add, 5000, true);
 

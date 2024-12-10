@@ -1,14 +1,15 @@
 #ifndef DMG_GUI_WINDOW_MANAGER_HPP_
 #define DMG_GUI_WINDOW_MANAGER_HPP_
 
-#include "DMG/gui/DebugWindow.hpp"
-#include "DMG/core/GameState.hpp"
-#include "DMG/gui/IWindow.hpp"
 #include <memory>
 #include <vector>
 
+#include "DMG/core/GameState.hpp"
+#include "DMG/gui/DebugWindow.hpp"
+#include "DMG/gui/IWindow.hpp"
+
 class WindowManager {
-public:
+ public:
   WindowManager();
   ~WindowManager();
 

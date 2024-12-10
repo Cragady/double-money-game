@@ -7,12 +7,13 @@
 #define RANDOM_CHANCE_ROLL_DEFAULT_PERCENTAGE_AS_FLOAT 0.5f
 
 class RandomChance {
-public:
+ public:
   RandomChance(int min = RANDOM_CHANCE_ROLL_MIN_DEFAULT,
                int max = RANDOM_CHANCE_ROLL_MAX_DEFAULT,
                int chance = RANDOM_CHANCE_ROLL_DEFAULT_PERCENTAGE_AS_INT);
   ~RandomChance();
-  void SetNewChance(float new_chance = RANDOM_CHANCE_ROLL_DEFAULT_PERCENTAGE_AS_FLOAT);
+  void SetNewChance(
+      float new_chance = RANDOM_CHANCE_ROLL_DEFAULT_PERCENTAGE_AS_FLOAT);
   void ReSeed();
   bool TakeChance();
   int GetRandom();
@@ -20,7 +21,7 @@ public:
   int max_;
   int min_;
 
-private:
+ private:
   unsigned long _seed_;
   int _chance_;
 };

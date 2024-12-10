@@ -1,6 +1,8 @@
-#include "DMG/core/GameState.hpp"
-#include <iostream>
 #include <terminal-colors.h>
+
+#include <iostream>
+
+#include "DMG/core/GameState.hpp"
 
 namespace events {
 void TestEvent() { std::cout << "This is a test event." << std::endl; }

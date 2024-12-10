@@ -1,7 +1,8 @@
-#include <iostream>
+#include "DMG/core/input/KeyboardInput.hpp"
+
 #include <raylib.h>
 
-#include "DMG/core/input/KeyboardInput.hpp"
+#include <iostream>
 
 bool KeyboardInput::EscapeSequence() {
   bool control_pressed =

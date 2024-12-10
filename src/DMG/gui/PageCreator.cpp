@@ -1,18 +1,19 @@
 #include "DMG/gui/PageCreator.hpp"
-#include "DMG/gui/element/Button.hpp"
-#include "DMG/gui/Page.hpp"
-#include "DMG/gui/element/TextElement.hpp"
-#include "DMG/gui/WindowManager.hpp"
-#include "DMG/core/events/event-functions.hpp"
+
 #include <functional>
+
+#include "DMG/core/events/event-functions.hpp"
+#include "DMG/gui/Page.hpp"
+#include "DMG/gui/WindowManager.hpp"
+#include "DMG/gui/element/Button.hpp"
+#include "DMG/gui/element/TextElement.hpp"
 
 PageCreator::PageCreator(WindowManagerSPtr window_manager) {
   window_manager_ = window_manager;
 };
 
 void PageCreator::Setup(const GameStateUPtr &state) {
-  if (window_manager_ == nullptr)
-    return;
+  if (window_manager_ == nullptr) return;
 
   CreateDebugPage(state);
 };
@@ -65,8 +66,7 @@ void PageCreator::CreateDebugPage(const GameStateUPtr &state) {
 void PageCreator::AddWindowToCollections(IWindowPtr window, PageSPtr page,
                                          bool add_to_page) {
   debug_page_group_.push_back(window);
-  if (add_to_page)
-    page->elements_.push_back(window);
+  if (add_to_page) page->elements_.push_back(window);
   window_manager_->windows_.push_back(window);
 };
 
@@ -76,7 +76,6 @@ void PageCreator::AddAndCreate(std::function<void()> &func,
   if (!first_element) {
     (*current_element)++;
   }
-  if (gui_setup_)
-    return;
+  if (gui_setup_) return;
   func();
 }

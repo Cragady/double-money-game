@@ -3,22 +3,20 @@
 
 #include <string>
 
-#include "imgui.h"
 #include "DMG/gui/IWindow.hpp"
+#include "imgui.h"
 
 class Button : public IWindow {
-public:
-  Button(std::string name = "Debug Button",
-                  std::string button_text = "Tester", bool is_open = false,
-                  ImGuiWindowFlags flags = ImGuiWindowFlags_NoBackground |
-                                           ImGuiWindowFlags_NoCollapse |
-                                           ImGuiWindowFlags_NoNav |
-                                           ImGuiWindowFlags_NoResize |
-                                           ImGuiWindowFlags_NoDecoration, // |
-                                           // ImGuiWindowFlags_NoMove,
-                  void (*clickEvent)(const GameStateUPtr &) = &DefaultEvent);
+ public:
+  Button(std::string name = "Debug Button", std::string button_text = "Tester",
+         bool is_open = false,
+         ImGuiWindowFlags flags =
+             ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoCollapse |
+             ImGuiWindowFlags_NoNav | ImGuiWindowFlags_NoResize |
+             ImGuiWindowFlags_NoDecoration, // |
+                                            // ImGuiWindowFlags_NoMove,
+         void (*clickEvent)(const GameStateUPtr &) = &DefaultEvent);
   ~Button();
-
 
   void GuiSetup() override;
   void DataSetup(const GameStateUPtr &) override;

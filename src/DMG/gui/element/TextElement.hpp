@@ -1,21 +1,22 @@
 #ifndef DMG_GUI_ELEMENT_TEXT_ELEMENT_HPP_
 #define DMG_GUI_ELEMENT_TEXT_ELEMENT_HPP_
 
-#include "DMG/gui/IWindow.hpp"
-#include "imgui.h"
 #include <string>
 
-template <typename T = void> class TextElement : public IWindow {
-public:
+#include "DMG/gui/IWindow.hpp"
+#include "imgui.h"
+
+template <typename T = void>
+class TextElement : public IWindow {
+ public:
   TextElement();
   TextElement(const char *text, const char *name = "Debug - TextElement",
-              ImGuiWindowFlags flags = ImGuiWindowFlags_NoBackground |
-                                       ImGuiWindowFlags_NoCollapse |
-                                       ImGuiWindowFlags_NoNav |
-                                       ImGuiWindowFlags_NoResize |
-                                       ImGuiWindowFlags_NoDecoration |
-                                       ImGuiWindowFlags_NoTitleBar // |
-              // ImGuiWindowFlags_NoMove,
+              ImGuiWindowFlags flags =
+                  ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoCollapse |
+                  ImGuiWindowFlags_NoNav | ImGuiWindowFlags_NoResize |
+                  ImGuiWindowFlags_NoDecoration |
+                  ImGuiWindowFlags_NoTitleBar // |
+                                              // ImGuiWindowFlags_NoMove,
   );
   ~TextElement();
 

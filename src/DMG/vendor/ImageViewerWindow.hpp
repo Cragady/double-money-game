@@ -4,7 +4,7 @@
 #include "DMG/gui/IWindow.hpp"
 
 class ImageViewerWindow : public IWindow {
-public:
+ public:
   ImageViewerWindow();
   ~ImageViewerWindow();
 
@@ -18,23 +18,21 @@ public:
   void FullRender(const GameStateUPtr &) override;
   void UpdateRenderTexture();
 
+  Texture ImageTexture;
+  Camera2D Camera = {0};
 
-	Texture ImageTexture;
-	Camera2D Camera = { 0 };
+  Vector2 LastMousePos = {0};
+  Vector2 LastTarget = {0};
+  bool Dragging = false;
 
-	Vector2 LastMousePos = { 0 };
-	Vector2 LastTarget = { 0 };
-	bool Dragging = false;
+  bool DirtyScene = false;
 
-	bool DirtyScene = false;
+  enum class ToolMode {
+    None,
+    Move,
+  };
 
-	enum class ToolMode
-	{
-		None,
-		Move,
-	};
-
-	ToolMode CurrentToolMode = ToolMode::None;
+  ToolMode CurrentToolMode = ToolMode::None;
 };
 
 #endif

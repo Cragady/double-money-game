@@ -1,7 +1,9 @@
-#include <iostream>
+#include "DMG/gui/DebugWindow.hpp"
+
 #include <terminal-colors.h>
 
-#include "DMG/gui/DebugWindow.hpp"
+#include <iostream>
+
 #include "DMG/core/GameState.hpp"
 #include "imgui.h"
 
@@ -110,8 +112,7 @@ void DebugWindow::Render(const GameStateUPtr &state) {
 }
 
 void DebugWindow::EndRender(const GameStateUPtr &state) {
-  if (!render_ended_)
-    return;
+  if (!render_ended_) return;
   ImGui::End();
   render_ended_ = false;
 }

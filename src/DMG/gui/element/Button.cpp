@@ -1,11 +1,13 @@
+#include "DMG/gui/element/Button.hpp"
+
 #include <iostream>
 
-#include "DMG/gui/element/Button.hpp"
 #include "DMG/core/GameState.hpp"
 #include "imgui.h"
 
 Button::Button(std::string name, std::string button_text, bool is_open,
-               ImGuiWindowFlags flags, void (*clickEvent)(const GameStateUPtr &)) {
+               ImGuiWindowFlags flags,
+               void (*clickEvent)(const GameStateUPtr &)) {
   name_ = name;
   open_ = is_open;
   render_flags_ = flags;
@@ -24,8 +26,7 @@ void Button::Render(const GameStateUPtr &state) {};
 void Button::EndRender(const GameStateUPtr &state) {};
 
 void Button::FullRender(const GameStateUPtr &state) {
-  if (!open_)
-    return;
+  if (!open_) return;
 
   float hue = 1 * 0.05f;
   ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(hue, 0.6f, 0.6f));
@@ -44,4 +45,6 @@ void Button::FullRender(const GameStateUPtr &state) {
   ImGui::PopStyleVar();
 }
 
-void Button::DefaultEvent(const GameStateUPtr &) { std::cout << "Click Event!!!" << std::endl; }
+void Button::DefaultEvent(const GameStateUPtr &) {
+  std::cout << "Click Event!!!" << std::endl;
+}

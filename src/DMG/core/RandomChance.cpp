@@ -1,12 +1,12 @@
+#include "DMG/core/RandomChance.hpp"
+
+#include <common.h>
+#include <raylib.h>
+#include <terminal-colors.h>
+
 #include <chrono>
 #include <cstring>
 #include <iostream>
-
-#include <raylib.h>
-#include <common.h>
-#include <terminal-colors.h>
-
-#include "DMG/core/RandomChance.hpp"
 
 RandomChance::RandomChance(int min, int max, int chance) {
   ReSeed();
@@ -29,7 +29,8 @@ void RandomChance::SetNewChance(float new_chance) {
 
 void RandomChance::ReSeed() {
   using namespace std::chrono;
-  milliseconds ms = duration_cast<milliseconds>(system_clock::now().time_since_epoch());
+  milliseconds ms =
+      duration_cast<milliseconds>(system_clock::now().time_since_epoch());
 
   _seed_ = ms.count();
   SetRandomSeed(_seed_);

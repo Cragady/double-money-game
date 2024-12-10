@@ -1,12 +1,11 @@
 #include "DMG/vendor/ImageViewerWindow.hpp"
+
 #include <imgui.h>
 #include <raymath.h>
 
 #include "rlImGui.h"
 
-ImageViewerWindow::ImageViewerWindow() {
-  name_ = "Debug - ImageViewerWindow";
-}
+ImageViewerWindow::ImageViewerWindow() { name_ = "Debug - ImageViewerWindow"; }
 
 ImageViewerWindow::~ImageViewerWindow() {}
 
@@ -70,14 +69,14 @@ void ImageViewerWindow::FullRender(const GameStateUPtr &state) {
 
       ImGui::SameLine();
       switch (CurrentToolMode) {
-      case ToolMode::None:
-        ImGui::TextUnformatted("No Tool");
-        break;
-      case ToolMode::Move:
-        ImGui::TextUnformatted("Move Tool");
-        break;
-      default:
-        break;
+        case ToolMode::None:
+          ImGui::TextUnformatted("No Tool");
+          break;
+        case ToolMode::Move:
+          ImGui::TextUnformatted("Move Tool");
+          break;
+        default:
+          break;
       }
 
       ImGui::SameLine();
@@ -94,8 +93,7 @@ void ImageViewerWindow::FullRender(const GameStateUPtr &state) {
 }
 
 void ImageViewerWindow::Update(const GameStateUPtr &state) {
-  if (!open_)
-    return;
+  if (!open_) return;
 
   if (IsWindowResized()) {
     UnloadRenderTexture(view_texture_);

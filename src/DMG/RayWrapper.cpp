@@ -1,9 +1,9 @@
-#include <iostream>
-
-#include <memory>
 #include <raylib.h>
 #include <raymath.h>
 #include <terminal-colors.h>
+
+#include <iostream>
+#include <memory>
 // clang-format off
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
@@ -23,9 +23,9 @@ RayWrapper::RayWrapper(GameOptions game_options) {
   page_creator_ = PageCreator(window_manager_);
   std::shared_ptr<DebugWindow> debug_window_ = window_manager_->debug_window_;
   debug_window_->CopyBoolPtrOne(
-      Dw_CbpArgs{.name = "ImGui Demo", .bool_ptr = &imgui_demo_active_});
+      Dw_CbpArgs {.name = "ImGui Demo", .bool_ptr = &imgui_demo_active_});
   debug_window_->SetProgramFlag(
-      Dw_CbpArgs{.name = "Reset GUI", .bool_ptr = &reset_gui_});
+      Dw_CbpArgs {.name = "Reset GUI", .bool_ptr = &reset_gui_});
 
   glfw_ready_ = glfwInit();
   if (!glfw_ready_) {
@@ -92,6 +92,5 @@ void RayWrapper::Update(const GameStateUPtr &state) {
 }
 
 void RayWrapper::ImGuiDemo() {
-  if (imgui_demo_active_)
-    ImGui::ShowDemoWindow(&imgui_demo_active_);
+  if (imgui_demo_active_) ImGui::ShowDemoWindow(&imgui_demo_active_);
 }

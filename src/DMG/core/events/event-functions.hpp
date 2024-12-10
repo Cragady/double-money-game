@@ -4,10 +4,10 @@
 #include "DMG/core/GameState.hpp"
 
 namespace events {
-  void TestEvent();
-  void TestEvent(const GameStateUPtr &);
-  void TestRandom(const GameStateUPtr &);
-  void AddMoneyEvent(const GameStateUPtr &);
-}
+void TestEvent();
+void TestEvent(const GameStateUPtr &);
+void TestRandom(const GameStateUPtr &);
+void AddMoneyEvent(const GameStateUPtr &);
+} // namespace events
 
 #endif

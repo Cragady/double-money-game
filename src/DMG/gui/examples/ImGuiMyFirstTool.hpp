@@ -4,7 +4,7 @@
 #include "DMG/gui/IWindow.hpp"
 
 class ImGuiMyFirstTool : public IWindow {
-public:
+ public:
   ImGuiMyFirstTool();
 
   void GuiSetup() override;

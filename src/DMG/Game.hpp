@@ -3,11 +3,11 @@
 
 #include <memory>
 
-#include "DMG/core/GameState.hpp"
 #include "DMG/RayWrapper.hpp"
+#include "DMG/core/GameState.hpp"
 
 class Game {
-public:
+ public:
   Game(bool *game_ctrl = nullptr, bool run_at_least_once = false);
   ~Game();
   // Copy deletions

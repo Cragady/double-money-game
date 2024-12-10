@@ -1,17 +1,18 @@
 #ifndef DMG_GUI_PAGE_CREATOR_HPP_
 #define DMG_GUI_PAGE_CREATOR_HPP_
 
+#include <functional>
+#include <vector>
+
 #include "DMG/core/GameState.hpp"
 #include "DMG/gui/IWindow.hpp"
 #include "DMG/gui/Page.hpp"
 #include "DMG/gui/WindowManager.hpp"
-#include <vector>
-#include <functional>
 
 using PageSPtr = std::shared_ptr<Page>;
 
 class PageCreator {
-public:
+ public:
   PageCreator(WindowManagerSPtr = nullptr);
 
   bool gui_setup_ = false;

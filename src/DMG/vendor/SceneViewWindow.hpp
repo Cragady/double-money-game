@@ -1,11 +1,12 @@
 #ifndef SCENE_VIEW_WINDOW
 #define SCENE_VIEW_WINDOW
 
-#include "DMG/gui/IWindow.hpp"
 #include <raylib.h>
 
+#include "DMG/gui/IWindow.hpp"
+
 class SceneViewWindow : public IWindow {
-public:
+ public:
   SceneViewWindow();
   ~SceneViewWindow();
 
@@ -18,8 +19,8 @@ public:
   void EndRender(const GameStateUPtr &) override;
   void FullRender(const GameStateUPtr &) override;
 
-  Camera3D Camera = { 0 };
-  Texture2D GridTexture = { 0 };
+  Camera3D Camera = {0};
+  Texture2D GridTexture = {0};
 };
 
 #endif

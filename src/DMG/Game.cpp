@@ -1,6 +1,8 @@
 #include "DMG/Game.hpp"
-#include "DMG/core/GameState.hpp"
+
 #include <memory>
+
+#include "DMG/core/GameState.hpp"
 
 Game::Game(bool *game_ctrl, bool run_at_least_once) {
   game_running_ptr_ = &game_running_;
@@ -29,16 +31,14 @@ void Game::Loop() {
 }
 
 void Game::Setup() {
-  if (!game_state_ptr_ || !gui_ptr_)
-    return;
+  if (!game_state_ptr_ || !gui_ptr_) return;
 
   gui_ptr_->Setup(game_state_ptr_);
   setup_ran_ = true;
 }
 
 void Game::HandleGameState() {
-  if (!game_state_ptr_)
-    return;
+  if (!game_state_ptr_) return;
 
   game_state_ptr_->Update();
 
@@ -54,8 +54,7 @@ void Game::HandleGameState() {
 }
 
 void Game::HandleGui() {
-  if (!gui_ptr_ || !game_state_ptr_)
-    return;
+  if (!gui_ptr_ || !game_state_ptr_) return;
   gui_ptr_->Loop(game_state_ptr_);
   game_running_ = !gui_ptr_->hard_stop_;
   if (gui_ptr_->reset_gui_) {

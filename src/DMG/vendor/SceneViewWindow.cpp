@@ -1,14 +1,13 @@
+#include "DMG/vendor/SceneViewWindow.hpp"
+
 #include <raylib.h>
 #include <raymath.h>
 
-#include "DMG/vendor/SceneViewWindow.hpp"
 #include "DMG/core/GameState.hpp"
 #include "imgui.h"
 #include "rlImGui.h"
 
-SceneViewWindow::SceneViewWindow() {
-  name_ = "Debug - SceneViewWindow";
-}
+SceneViewWindow::SceneViewWindow() { name_ = "Debug - SceneViewWindow"; }
 
 SceneViewWindow::~SceneViewWindow() {}
 
@@ -53,8 +52,7 @@ void SceneViewWindow::FullRender(const GameStateUPtr &state) {
 }
 
 void SceneViewWindow::Update(const GameStateUPtr &state) {
-  if (!open_)
-    return;
+  if (!open_) return;
 
   if (IsWindowResized()) {
     UnloadRenderTexture(view_texture_);
@@ -72,7 +70,7 @@ void SceneViewWindow::Update(const GameStateUPtr &state) {
   BeginMode3D(Camera);
 
   // grid of cube trees on a plane to make a "world"
-  DrawPlane(Vector3{0, 0, 0}, Vector2{50, 50}, BEIGE); // simple world plane
+  DrawPlane(Vector3 {0, 0, 0}, Vector2 {50, 50}, BEIGE); // simple world plane
   float spacing = 4;
   int count = 5;
 
@@ -83,8 +81,8 @@ void SceneViewWindow::Update(const GameStateUPtr &state) {
       Vector3 min = {x - 0.5f, 0, z - 0.5f};
       Vector3 max = {x + 0.5f, 1, z + 0.5f};
 
-      DrawCube(Vector3{x, 1.5f, z}, 1, 1, 1, GREEN);
-      DrawCube(Vector3{x, 0.5f, z}, 0.25f, 1, 0.25f, BROWN);
+      DrawCube(Vector3 {x, 1.5f, z}, 1, 1, 1, GREEN);
+      DrawCube(Vector3 {x, 0.5f, z}, 0.25f, 1, 0.25f, BROWN);
     }
   }
 

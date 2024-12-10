@@ -1,15 +1,17 @@
 #ifndef DMG_GUI_I_WINDOW_HPP_
 #define DMG_GUI_I_WINDOW_HPP_
 
-#include "DMG/core/GameState.hpp"
-#include "imgui.h"
-#include <memory>
 #include <raylib.h>
+
+#include <memory>
 #include <string>
 
+#include "DMG/core/GameState.hpp"
+#include "imgui.h"
+
 class IWindow {
-public:
-  virtual ~IWindow(){};
+ public:
+  virtual ~IWindow() {};
   virtual void GuiSetup() = 0;
   virtual void DataSetup(const GameStateUPtr &) = 0;
   virtual void Shutdown() = 0;

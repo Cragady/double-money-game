@@ -1,9 +1,10 @@
 #ifndef DMG_GUI_DEBUG_WINDOW_HPP_
 #define DMG_GUI_DEBUG_WINDOW_HPP_
 
+#include <raylib.h>
+
 #include "DMG/core/GameState.hpp"
 #include "DMG/gui/IWindow.hpp"
-#include <raylib.h>
 
 // TODO: clean/dry this class up
 
@@ -13,7 +14,7 @@ struct Dw_CbpArgs {
 };
 
 class DebugWindow : public IWindow {
-public:
+ public:
   DebugWindow();
   DebugWindow(bool *, bool *);
   ~DebugWindow();
@@ -38,7 +39,7 @@ public:
   void RlimguiCtrl(Dw_CbpArgs ctrl);
   void SetProgramFlag(Dw_CbpArgs ctrl);
 
-private:
+ private:
   bool _default_false_ = false;
   bool *_program_flag_ = nullptr;
   std::string _program_flag_show_ = "";

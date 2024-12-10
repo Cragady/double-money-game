@@ -1,20 +1,19 @@
 #ifndef DMG_RAY_WRAPPER_HPP_
 #define DMG_RAY_WRAPPER_HPP_
 
+#include "DMG/GameOptions.hpp"
 #include "DMG/core/GameState.hpp"
 #include "DMG/core/input/KeyboardInput.hpp"
-#include "DMG/GameOptions.hpp"
 #include "DMG/gui/PageCreator.hpp"
 #include "DMG/gui/WindowManager.hpp"
 
 class RayWrapper {
-public:
+ public:
   RayWrapper(GameOptions game_options = GameOptions {
-    .width = 1200,
-    .height = 900,
-    .fps = 144,
-    .name = "Econ Wrecker: DMG"
-  });
+                 .width = 1200,
+                 .height = 900,
+                 .fps = 144,
+                 .name = "Econ Wrecker: DMG"});
   ~RayWrapper();
 
   void StartOfLoop();

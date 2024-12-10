@@ -22,5 +22,6 @@ bool GameState::GetGamePageFlag(GamePageFlags flag) {
 };
 
 int GameState::GetTotalButtonClicks() {
-  return multiply_chance_.total_hits_ + get_chance_.total_hits_ + add_chance_.total_hits_;
+  return multiply_chance_.total_hits_ + get_chance_.total_hits_ +
+         add_chance_.total_hits_;
 }

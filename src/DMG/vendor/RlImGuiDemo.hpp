@@ -5,7 +5,7 @@
 #include "DMG/vendor/SceneViewWindow.hpp"
 
 class RlImGuiDemo : public IWindow {
-public:
+ public:
   RlImGuiDemo();
   ~RlImGuiDemo();
 

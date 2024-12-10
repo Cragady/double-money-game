@@ -1,8 +1,9 @@
+#include "DMG/vendor/RlImGuiDemo.hpp"
+
+#include <raylib.h>
 #include <terminal-colors.h>
 
-#include "DMG/vendor/RlImGuiDemo.hpp"
 #include "imgui.h"
-#include <raylib.h>
 
 RlImGuiDemo::RlImGuiDemo() { name_ = "RlImGui Demo Windows"; }
 
@@ -30,25 +31,20 @@ void RlImGuiDemo::BeginRender(const GameStateUPtr &state) {};
 void RlImGuiDemo::Render(const GameStateUPtr &state) {};
 void RlImGuiDemo::EndRender(const GameStateUPtr &state) {};
 void RlImGuiDemo::FullRender(const GameStateUPtr &state) {
-  if (!open_)
-    return;
+  if (!open_) return;
   DoMainMenu();
 
-  if (imgui_demo_open_)
-    ImGui::ShowDemoWindow(&imgui_demo_open_);
+  if (imgui_demo_open_) ImGui::ShowDemoWindow(&imgui_demo_open_);
 
-  if (image_viewer_.open_)
-    image_viewer_.FullRender(state);
+  if (image_viewer_.open_) image_viewer_.FullRender(state);
 
-  if (scene_view_.open_)
-    scene_view_.FullRender(state);
+  if (scene_view_.open_) scene_view_.FullRender(state);
 }
 
 void RlImGuiDemo::DoMainMenu() {
   if (ImGui::BeginMainMenuBar()) {
     if (ImGui::BeginMenu("File")) {
-      if (ImGui::MenuItem("Exit"))
-        quit_ = true;
+      if (ImGui::MenuItem("Exit")) quit_ = true;
 
       ImGui::EndMenu();
     }

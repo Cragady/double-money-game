@@ -6,7 +6,7 @@
 #include "DMG/gui/WindowManager.hpp"
 
 class Page : public IWindow {
-public:
+ public:
   Page(GamePageFlags, WindowManagerSPtr = nullptr);
 
   void GuiSetup() override;
@@ -24,7 +24,7 @@ public:
   std::vector<IWindowPtr> elements_;
   bool is_page_present_ = false;
 
-private:
+ private:
   bool _page_valid_ = true;
   bool _elements_sent_ = false;
   GamePageFlags _page_ = GamePageFlags_Debug;
