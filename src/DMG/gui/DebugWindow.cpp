@@ -161,7 +161,6 @@ void DebugWindow::SetProgramFlag(Dw_CbpArgs ctrl) {
   _program_flag_show_ = ctrl.name;
 }
 
-
 void DebugWindow::SetProgramFlag2(Dw_CbpArgs ctrl) {
   std::cout << TERM_YEL
       "WARN: This class is now in control of boolean "

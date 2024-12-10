@@ -1,6 +1,7 @@
 #include "DMG/gui/StatsWindow.hpp"
 
 #include <cmath>
+
 #include "imgui.h"
 
 StatsWindow::StatsWindow() { name_ = "Stats Window"; }
@@ -27,9 +28,8 @@ void StatsWindow::Render(const GameStateUPtr &state) {
   ImGui::Text("Delta Time: %f", delta_time_);
   ImGui::Text("Total Elapsed Time: %lf", total_elapsed_time_);
 };
-void StatsWindow::EndRender(const GameStateUPtr &state) {
-  ImGui::End();
-};
+void StatsWindow::EndRender(const GameStateUPtr &state) { ImGui::End(); };
+
 void StatsWindow::FullRender(const GameStateUPtr &state) {
   if (!open_) return;
   BeginRender(state);
