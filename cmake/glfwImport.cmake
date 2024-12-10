@@ -9,5 +9,5 @@ if (NOT TARGET glfw)
     set(GLFW_BUILD_WAYLAND OFF)
   endif()
 
-  add_subdirectory("${CMAKE_SOURCE_DIR}/vendor/glfw")
+  add_subdirectory("${CMAKE_SOURCE_DIR}/vendor/glfw" ${BUILD_OUTPUT}/glfw)
 endif()

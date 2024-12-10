@@ -7,7 +7,6 @@
 [submodule "vendor/raylib"]
 	path = vendor/raylib
 	url = git@github.com:raysan5/raylib.git
-  ignore = dirty
 [submodule "vendor/glfw"]
 	path = vendor/glfw
 	url = git@github.com:glfw/glfw.git

@@ -45,11 +45,23 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-add_subdirectory(src)
+add_subdirectory(src ${BUILD_OUTPUT}/DMG_SRC)
+
+add_subdirectory(test ${BUILD_OUTPUT}/test)
+
+add_custom_target(
+  test
+  COMMAND tests
+)
+
+add_custom_target(
+  verbose-test
+  COMMAND tests -s
+)
 
 add_custom_target(
   run
-  COMMAND ${CMAKE_SOURCE_DIR}/build/DMG
+  COMMAND DMG
 )
 
 add_custom_target(
@@ -86,5 +98,11 @@ add_custom_target(
 add_custom_target(
   ultra-clean
   COMMAND rm -rf ${CMAKE_SOURCE_DIR}/build/*
+)
+
+add_custom_target(
+  git-clean
+  COMMAND git clean -ndfX
+  COMMAND echo "run \\\"git clean -dfX\\\" if you are OK with deleting the listed files"
 )
 # target_link_libraries(DMG PRIVATE ncurses)
