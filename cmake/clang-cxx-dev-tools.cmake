@@ -5,13 +5,14 @@ file(GLOB_RECURSE
      *.[chi]pp *.[chi]xx *.cc *.hh *.ii *.[CHI]
  )
 
- set (EXCLUDE_DIR "/vendor/")
+ set (DMG_EXCLUDE_DIR "/vendor/")
  foreach(TMP_PATH ${ALL_CXX_SOURCE_FILES})
-   string(FIND ${TMP_PATH} ${EXCLUDE_DIR} EXCLUDE_DIR_FOUND)
-   if(EXCLUDE_DIR_FOUND GREATER -1)
+   string(FIND ${TMP_PATH} ${DMG_EXCLUDE_DIR} DMG_EXCLUDE_DIR_FOUND)
+   if(DMG_EXCLUDE_DIR_FOUND GREATER -1)
      list(REMOVE_ITEM ALL_CXX_SOURCE_FILES ${TMP_PATH})
    endif()
  endforeach()
+ unset(DMG_EXCLUDE_DIR)
 
 # Adding clang-format target if executable is found
 find_program(CLANG_FORMAT "clang-format")

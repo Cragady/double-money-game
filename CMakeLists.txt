@@ -41,6 +41,7 @@ include(glfwImport)
 include(gladImport)
 
 include(CompilerFlags)
+include(PlatformFlags)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
