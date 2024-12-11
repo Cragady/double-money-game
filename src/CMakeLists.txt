@@ -9,12 +9,17 @@ set (DMG_SOURCES
   ${DMG_SOURCES_DIR}/core/RandomChance.cpp
   ${DMG_SOURCES_DIR}/core/input/KeyboardInput.cpp
   ${DMG_SOURCES_DIR}/core/events/event-functions.cpp
+  ${DMG_SOURCES_DIR}/core/util/color-conversion.cpp
+  ${DMG_SOURCES_DIR}/core/util/ColorShifting.cpp
+  ${DMG_SOURCES_DIR}/raygui/GuiManager.cpp
+  ${DMG_SOURCES_DIR}/raygui/RayButton.cpp
   ${DMG_SOURCES_DIR}/gui/WindowManager.cpp
   ${DMG_SOURCES_DIR}/gui/DebugWindow.cpp
   ${DMG_SOURCES_DIR}/gui/StatsWindow.cpp
   ${DMG_SOURCES_DIR}/gui/Page.cpp
   ${DMG_SOURCES_DIR}/gui/PageCreator.cpp
   ${DMG_SOURCES_DIR}/gui/element/Button.cpp
+  # ${DMG_SOURCES_DIR}/gui/element/ShaderButton.cpp
   ${DMG_SOURCES_DIR}/gui/element/TextElement.cpp
   ${DMG_SOURCES_DIR}/gui/examples/ImGuiMyFirstTool.cpp
   ${DMG_SOURCES_DIR}/vendor/ImageViewerWindow.cpp
@@ -29,8 +34,13 @@ set (DMG_HEADERS
   ${DMG_SOURCES_DIR}/core/GameState.hpp
   ${DMG_SOURCES_DIR}/core/RandomTracker.hpp
   ${DMG_SOURCES_DIR}/core/RandomChance.hpp
+  ${DMG_SOURCES_DIR}/core/IGui.hpp
   ${DMG_SOURCES_DIR}/core/input/KeyboardInput.hpp
   ${DMG_SOURCES_DIR}/core/events/event-functions.hpp
+  ${DMG_SOURCES_DIR}/core/util/color-conversion.hpp
+  ${DMG_SOURCES_DIR}/core/util/ColorShifting.hpp
+  ${DMG_SOURCES_DIR}/raygui/GuiManager.hpp
+  ${DMG_SOURCES_DIR}/raygui/RayButton.hpp
   ${DMG_SOURCES_DIR}/gui/WindowManager.hpp
   ${DMG_SOURCES_DIR}/gui/IWindow.hpp
   ${DMG_SOURCES_DIR}/gui/DebugWindow.hpp
@@ -38,6 +48,7 @@ set (DMG_HEADERS
   ${DMG_SOURCES_DIR}/gui/Page.hpp
   ${DMG_SOURCES_DIR}/gui/PageCreator.hpp
   ${DMG_SOURCES_DIR}/gui/element/Button.hpp
+  # ${DMG_SOURCES_DIR}/gui/element/ShaderButton.hpp
   ${DMG_SOURCES_DIR}/gui/element/TextElement.hpp
   ${DMG_SOURCES_DIR}/gui/examples/ImGuiMyFirstTool.hpp
   ${DMG_SOURCES_DIR}/vendor/ImageViewerWindow.hpp

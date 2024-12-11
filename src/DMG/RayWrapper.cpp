@@ -11,6 +11,7 @@
 
 #include "DMG/RayWrapper.hpp"
 #include "DMG/core/GameState.hpp"
+#include "DMG/raygui/GuiManager.hpp"
 #include "imgui.h"
 #include "rlImGui.h"
 
@@ -19,6 +20,7 @@ RayWrapper::RayWrapper(GameOptions game_options) {
   screen_height_ = game_options.height;
   target_fps_ = game_options.fps;
 
+  gui_manager_ = std::make_shared<GuiManager>();
   window_manager_ = std::make_shared<WindowManager>();
   page_creator_ = PageCreator(window_manager_);
   std::shared_ptr<DebugWindow> debug_window_ = window_manager_->debug_window_;
@@ -36,6 +38,7 @@ RayWrapper::RayWrapper(GameOptions game_options) {
   }
   SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
   InitWindow(screen_width_, screen_height_, game_options.name.c_str());
+  // InitAudioDevice();
   SetTargetFPS(target_fps_);
 
   rlImGuiSetup(true);
@@ -49,6 +52,7 @@ RayWrapper::RayWrapper(GameOptions game_options) {
 
 RayWrapper::~RayWrapper() {
   std::cout << TERM_RED "Shutting Down" TERM_CRESET << std::endl;
+  gui_manager_->Shutdown();
   window_manager_->Shutdown();
   rlImGuiShutdown();
   CloseWindow();
@@ -57,6 +61,7 @@ RayWrapper::~RayWrapper() {
 void RayWrapper::Setup(const GameStateUPtr &state) {
   page_creator_.gui_setup_ = gui_setup_;
   page_creator_.Setup(state);
+  gui_manager_->Setup(state, gui_setup_);
   window_manager_->Setup(state, gui_setup_);
   gui_setup_ = true;
 }
@@ -87,7 +92,12 @@ void RayWrapper::Update(const GameStateUPtr &state) {
   if (key_input_.EscapeSequence()) {
     hard_stop_ = true;
   }
+  draw_fps_ = state->draw_fps_;
+  gui_manager_->Update(state);
   window_manager_->Update(state);
+  if (draw_fps_) {
+    DrawFPS(10, 10);
+  }
   ImGuiDemo();
 }
 

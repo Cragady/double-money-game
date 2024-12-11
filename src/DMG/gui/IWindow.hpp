@@ -4,31 +4,14 @@
 #include <raylib.h>
 
 #include <memory>
-#include <string>
 
-#include "DMG/core/GameState.hpp"
+#include "DMG/core/IGui.hpp"
 #include "imgui.h"
 
-class IWindow {
+class IWindow : public IGui {
  public:
   virtual ~IWindow() {};
-  virtual void GuiSetup() = 0;
-  virtual void DataSetup(const GameStateUPtr &) = 0;
-  virtual void Shutdown() = 0;
-  virtual void Update(const GameStateUPtr &) = 0;
-  virtual void BeginRender(const GameStateUPtr &) = 0;
-  virtual void Render(const GameStateUPtr &) = 0;
-  virtual void EndRender(const GameStateUPtr &) = 0;
-  virtual void FullRender(const GameStateUPtr &) = 0;
 
-  RenderTexture view_texture_;
-  bool render_ready_ = false;
-  bool render_ended_ = false;
-  bool open_ = false;
-  RenderTexture texture_;
-  bool focused_ = false;
-  Rectangle content_rect_ = {0};
-  std::string name_ = "Debug";
   ImGuiWindowFlags flags_ = ImGuiWindowFlags_None;
 };
 

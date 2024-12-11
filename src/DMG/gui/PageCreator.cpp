@@ -7,6 +7,7 @@
 #include "DMG/gui/StatsWindow.hpp"
 #include "DMG/gui/WindowManager.hpp"
 #include "DMG/gui/element/Button.hpp"
+// #include "DMG/gui/element/ShaderButton.hpp"
 #include "DMG/gui/element/TextElement.hpp"
 
 PageCreator::PageCreator(WindowManagerSPtr window_manager) {
@@ -78,6 +79,13 @@ void PageCreator::CreateDebugPage(const GameStateUPtr &state) {
   AddAndCreate(lambda, &current_element);
   Button *add_money = (Button *)debug_page_group_[current_element].get();
   add_money->ClickEvent = events::AddMoneyEvent;
+
+  // lambda = [this]() {
+  //   std::shared_ptr<ShaderButton> shader_button =
+  //       std::make_shared<ShaderButton>();
+  //   AddWindowToCollections(debug_page_group_, shader_button, debug_page_);
+  // };
+  // AddAndCreate(lambda, &current_element);
 };
 
 void PageCreator::AddWindowToCollections(IWindowPtrVector &page_group,

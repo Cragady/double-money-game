@@ -7,6 +7,7 @@ typedef struct GameOptions {
   int width;
   int height;
   int fps;
+  bool draw_fps;
   std::string name;
 } GameOptions;
 

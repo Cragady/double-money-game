@@ -18,9 +18,15 @@ using GamePageFlags = int;
 
 class GameState {
  public:
+  void Update();
+  void ManageGamePageFlag(GamePageFlags, bool);
+  bool GetGamePageFlag(GamePageFlags);
+  int GetTotalButtonClicks();
+
   float delta_time_ = 0.0f;
   double total_elapsed_time_ = 0.0f;
   int fps_ = 0;
+  bool draw_fps_ = true;
 
   GamePageFlags current_page_ = GamePageFlags_Title;
   bool reset_game_state_ = false;
@@ -31,11 +37,6 @@ class GameState {
       RandomTracker(RandomTrackerType_Multiply, 5000);
   RandomTracker get_chance_ = RandomTracker(RandomTrackerType_Get, 5000);
   RandomTracker add_chance_ = RandomTracker(RandomTrackerType_Add, 5000, true);
-
-  void Update();
-  void ManageGamePageFlag(GamePageFlags, bool);
-  bool GetGamePageFlag(GamePageFlags);
-  int GetTotalButtonClicks();
 };
 
 using GameStateUPtr = std::unique_ptr<GameState>;

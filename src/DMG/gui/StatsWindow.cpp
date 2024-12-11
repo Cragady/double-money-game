@@ -1,4 +1,5 @@
 #include "DMG/gui/StatsWindow.hpp"
+#include <raylib.h>
 
 #include <cmath>
 
@@ -27,6 +28,10 @@ void StatsWindow::Render(const GameStateUPtr &state) {
   ImGui::Text("FPS: %i", fps_);
   ImGui::Text("Delta Time: %f", delta_time_);
   ImGui::Text("Total Elapsed Time: %lf", total_elapsed_time_);
+  Vector2 mouse_pos = GetMousePosition();
+  ImVec2 im_mouse_pos = ImGui::GetMousePos();
+  ImGui::Text("Raylib Mouse Pos: x:%f y:%f", mouse_pos.x, mouse_pos.y);
+  ImGui::Text("ImGui Mouse Pos: x:%f y:%f", im_mouse_pos.x, im_mouse_pos.y);
 };
 void StatsWindow::EndRender(const GameStateUPtr &state) { ImGui::End(); };
 

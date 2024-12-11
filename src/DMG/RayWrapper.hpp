@@ -6,6 +6,7 @@
 #include "DMG/core/input/KeyboardInput.hpp"
 #include "DMG/gui/PageCreator.hpp"
 #include "DMG/gui/WindowManager.hpp"
+#include "DMG/raygui/GuiManager.hpp"
 
 class RayWrapper {
  public:
@@ -26,9 +27,11 @@ class RayWrapper {
   int screen_width_;
   int screen_height_;
   int target_fps_;
+  bool draw_fps_ = false;
 
   PageCreator page_creator_;
   WindowManagerSPtr window_manager_ = nullptr;
+  GuiManagerSPtr gui_manager_ = nullptr;
   KeyboardInput key_input_;
 
   bool hard_stop_ = false;
