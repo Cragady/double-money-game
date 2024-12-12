@@ -4,6 +4,7 @@
 #include <rlgl.h>
 
 #include "DMG/core/GameState.hpp"
+#include "DMG/core/events/event-functions.hpp"
 #include "DMG/core/util/color-conversion.hpp"
 
 MainCamera::MainCamera() {
@@ -30,11 +31,20 @@ void MainCamera::GuiSetup() {
       TextFormat("%s%s", shader_path_.c_str(), fs_file_name_.c_str());
   // shader_ = LoadShader(vertex_shader, fragment_shader);
   shader_ = LoadShader(0, fragment_shader);
+  button_.open_ = true;
+  button_.color_shifting_.shift_speed_ = 40;
+  button_.ClickEvent = events::TestEvent;
+  button_.GuiSetup();
 }
 void MainCamera::DataSetup(const GameStateUPtr &) {}
-void MainCamera::Shutdown() { UnloadShader(shader_); }
+void MainCamera::Shutdown() {
+  button_.Shutdown();
+  UnloadShader(shader_);
+}
 void MainCamera::Update(const GameStateUPtr &state) {
+  state->mouse_ray_ = GetScreenToWorldRay(GetMousePosition(), camera_);
   capture_cursor_ = IsMouseButtonDown(MOUSE_BUTTON_RIGHT);
+  button_.Update(state);
   color_shifting_.ShiftColor(state->delta_time_);
   Hsv color_to_convert = Hsv {
       .h = color_shifting_.colors_[0],
@@ -46,10 +56,29 @@ void MainCamera::Update(const GameStateUPtr &state) {
   render_color_[1] = (float)color_h.g;
   render_color_[2] = (float)color_h.b;
 
+  float mouse_sensitivity = 0.0f;
   if (capture_cursor_) {
-    UpdateCamera(&camera_, CAMERA_FIRST_PERSON);
+    // UpdateCamera(&camera_, CAMERA_FREE);
+    mouse_sensitivity = 0.05f;
     MouseCapture(state);
   }
+  float move_speed = 0.01f;
+  Vector3 movement =
+      Vector3 {(IsKeyDown(KEY_W) || IsKeyDown(KEY_UP)) *
+                       move_speed - // Move forward-backward
+                   (IsKeyDown(KEY_S) || IsKeyDown(KEY_DOWN)) * move_speed,
+               (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT)) *
+                       move_speed - // Move right-left
+                   (IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT)) * move_speed,
+               (IsKeyDown(KEY_SPACE)) * move_speed -
+                   (IsKeyDown(KEY_LEFT_CONTROL)) * move_speed};
+  UpdateCameraPro(&camera_, movement,
+                  (Vector3) {
+                      GetMouseDelta().x * mouse_sensitivity, // Rotation: yaw
+                      GetMouseDelta().y * mouse_sensitivity, // Rotation: pitch
+                      0.0f                                   // Rotation: roll
+                  },
+                  GetMouseWheelMove() * 2.0f);
 }
 void MainCamera::BeginRender(const GameStateUPtr &) {}
 void MainCamera::Render(const GameStateUPtr &) {}
@@ -66,6 +95,7 @@ void MainCamera::RenderCamera(const GameStateUPtr &state) {
   SetShaderValue(shader_, color_loc, &render_color_[0], RL_SHADER_UNIFORM_VEC3);
   DrawGrid(200, 10.0f);
   EndShaderMode();
+  button_.FullRender(state);
 }
 void MainCamera::EndCamera(const GameStateUPtr &state) { EndMode3D(); }
 

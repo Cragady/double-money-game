@@ -4,6 +4,7 @@
 #include <memory>
 
 #include "DMG/core/RandomTracker.hpp"
+#include "raylib.h"
 
 enum GamePageFlags_ {
   GamePageFlags_None = 1 << 0,
@@ -28,6 +29,10 @@ class GameState {
   int fps_ = 0;
   bool draw_fps_ = true;
 
+  Ray mouse_ray_ = {
+      .position = {0, 0, 0},
+      .direction = {0, 0, 0},
+  };
   GamePageFlags current_page_ = GamePageFlags_Title;
   bool reset_game_state_ = false;
   long double current_money_ = 0;

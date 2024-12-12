@@ -23,6 +23,7 @@ set (DMG_SOURCES
   # ${DMG_SOURCES_DIR}/gui/element/ShaderButton.cpp
   ${DMG_SOURCES_DIR}/gui/element/TextElement.cpp
   ${DMG_SOURCES_DIR}/gui/examples/ImGuiMyFirstTool.cpp
+  ${DMG_SOURCES_DIR}/vendor/util/raylib-text-draw-3d.cpp
   ${DMG_SOURCES_DIR}/vendor/ImageViewerWindow.cpp
   ${DMG_SOURCES_DIR}/vendor/SceneViewWindow.cpp
   ${DMG_SOURCES_DIR}/vendor/RlImGuiDemo.cpp
@@ -53,6 +54,7 @@ set (DMG_HEADERS
   # ${DMG_SOURCES_DIR}/gui/element/ShaderButton.hpp
   ${DMG_SOURCES_DIR}/gui/element/TextElement.hpp
   ${DMG_SOURCES_DIR}/gui/examples/ImGuiMyFirstTool.hpp
+  ${DMG_SOURCES_DIR}/vendor/util/raylib-text-draw-3d.cpp
   ${DMG_SOURCES_DIR}/vendor/ImageViewerWindow.hpp
   ${DMG_SOURCES_DIR}/vendor/SceneViewWindow.hpp
   ${DMG_SOURCES_DIR}/vendor/RlImGuiDemo.hpp
@@ -85,7 +87,7 @@ target_include_directories(DMGlib
   $<BUILD_INTERFACE:${DMG_SOURCES_DIR}/..>
   $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
 )
-target_link_libraries(DMGlib raylib imgui rlimgui glad_gl_core_33 glfw)
+target_link_libraries(DMGlib raylib imgui rlimgui glad_gl_core_33 glfw glm::glm)
 
 add_executable(DMG main.cpp)
 target_link_libraries(DMG DMGlib)

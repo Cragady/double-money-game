@@ -6,6 +6,7 @@
 #include "DMG/core/GameState.hpp"
 #include "DMG/core/IGui.hpp"
 #include "DMG/core/util/ColorShifting.hpp"
+#include "DMG/raygui/RayButton.hpp"
 
 class MainCamera : public IGui {
  public:
@@ -28,6 +29,7 @@ class MainCamera : public IGui {
   void MouseCapture(const GameStateUPtr &);
   void CorrectMouse(const GameStateUPtr &, Vector2, Vector2);
 
+  RayButton button_;
   Shader shader_;
   ColorShifting color_shifting_;
   Camera camera_ = {0};

@@ -4,10 +4,13 @@
 #include <rlgl.h>
 #include <terminal-colors.h>
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 #include <iostream>
 
 #include "DMG/core/GameState.hpp"
 #include "DMG/core/util/color-conversion.hpp"
+#include "DMG/vendor/util/raylib-text-draw-3d.hpp"
 
 RayButton::RayButton() { name_ = "Test Button"; }
 
@@ -39,7 +42,15 @@ void RayButton::Update(const GameStateUPtr &state) {
       .v = 1,
   };
 
-  if (CheckCollisionPointRec(GetMousePosition(), rect_)) {
+  RayCollision collision = GetRayCollisionBox(
+      state->mouse_ray_,
+      (BoundingBox) {
+          (Vector3) {position_.x - size_.x / 2, position_.y - size_.y / 2,
+                     position_.z - size_.z / 2},
+          (Vector3) {position_.x + size_.x / 2, position_.y + size_.y / 2,
+                     position_.z + size_.z / 2}});
+
+  if (collision.hit) {
     color_to_convert.s = 0.5f;
     color_to_convert.v = 0.5f;
 
@@ -72,7 +83,8 @@ void RayButton::BeginRender(const GameStateUPtr &state) {
 void RayButton::Render(const GameStateUPtr &state) {
   if (!open_) return;
 
-  DrawRectangleRec(rect_, WHITE);
+  DrawCubeV(position_, size_, WHITE);
+  // DrawRectangleRec(rect_, WHITE);
   // DrawTexture(texture_2d_, 0, 0, WHITE);
   RenderText(state);
 };
@@ -89,30 +101,76 @@ void RayButton::FullRender(const GameStateUPtr &state) {
 void RayButton::RenderText(const GameStateUPtr &state) {
   EndShaderMode();
   int test_font_size = 16;
-  const char *name = name_.c_str();
   float font_spacing = 2.0f;
-  Vector2 text_size = MeasureTextEx(font_, name, test_font_size, font_spacing);
-  bool resize_rect = false;
-  if (text_size.x > rect_.width) {
-    rect_.width = text_size.x + 16;
-    resize_rect = true;
+  float line_spacing = 1.2f;
+  std::string display_text = name_;
+  // std::string display_text = "Heeyooo ~~<3~~";
+  // std::string display_text = "Heeyooo <3 asdfjdsakl aksdljfdsalk; lkasdjfkl
+  // l;asdkf;j";
+  Vector3 text_size = vutil::MeasureText3D(
+      font_, display_text.c_str(), test_font_size, font_spacing, line_spacing);
+  bool resize_cube = false;
+  if (text_size.x > size_.x) {
+    size_.x = text_size.x + 0.5f;
+    resize_cube = true;
   }
-  if (text_size.y > rect_.height) {
-    rect_.height = text_size.y + 16;
-    resize_rect = true;
+  if (text_size.y > size_.y) {
+    size_.y = text_size.y + 0.5f;
+    resize_cube = true;
   }
-  if (resize_rect) {
+  if (resize_cube) {
     BeginShaderMode(shader_);
-    DrawRectangleRec(rect_, WHITE);
+    DrawCubeV(position_, size_, WHITE);
     EndShaderMode();
   }
 
-  Vector2 text_pos = {
-      .x = (rect_.width / 2 + rect_.x) - text_size.x / 2,
-      .y = (rect_.height / 2 + rect_.y) - text_size.y / 2,
+  rlPushMatrix();
+  const int ROTS = 3;
+  float angles[ROTS] = {90.0f, 180.0f, 180.0f};
+  glm::vec3 rotations[ROTS] {
+      {1.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 1.0f}, {0.0f, 1.0f, 0.0f}};
+  glm::mat4 rotation_matrix;
+
+  glm::vec3 og_text_pos = glm::vec3(
+      // .x = (rect_.width / 2 + rect_.x) - text_size.x / 2,
+      // .y = (rect_.height / 2 + rect_.y) - text_size.y / 2,
+      // (position_.x + size_.x / 2) - text_size.x / 2,
+      // (position_.y + size_.y / 2) - text_size.y / 2,
+      (position_.x) - text_size.x / 2,
+      // We use .z here because the text is originally rotated!
+      (position_.y) + text_size.z / 2, (position_.z + size_.z / 2) + 0.1);
+
+  for (int i = 0; i < ROTS; i++) {
+    glm::vec3 rotation = rotations[i];
+    float angle = angles[i];
+    // We only pay attention to the first rotation for `rlRotatef`, because we
+    // are fixing the damage done by this rotation and "undoing" the y and z
+    // rotations
+    if (i == 0) rlRotatef(angle, rotation.x, rotation.y, rotation.z);
+
+    // Handling position w/rotation is a bit weird
+
+    if (i == 0) rotation_matrix = glm::mat4(1.0);
+    rotation_matrix =
+        glm::rotate(rotation_matrix, glm::radians(angle), rotation);
+  }
+  glm::vec3 rotated_text_pos = rotation_matrix * glm::vec4(og_text_pos, 1);
+  Vector3 text_pos = {
+      .x = rotated_text_pos.x,
+      .y = rotated_text_pos.y,
+      .z = rotated_text_pos.z,
   };
 
-  DrawTextEx(font_, name, text_pos, test_font_size, font_spacing, WHITE);
+  vutil::WaveTextConfig wcfg;
+  wcfg.waveSpeed.x = wcfg.waveSpeed.y = 3.0f;
+  wcfg.waveSpeed.z = 0.5f;
+  wcfg.waveOffset.x = wcfg.waveOffset.y = wcfg.waveOffset.z = 0.35f;
+  wcfg.waveRange.x = wcfg.waveRange.y = wcfg.waveRange.z = 0.45f;
+
+  vutil::DrawTextWave3D(font_, display_text.c_str(), text_pos, test_font_size,
+                        font_spacing, line_spacing, true, &wcfg,
+                        state->total_elapsed_time_, WHITE);
+  rlPopMatrix();
 };
 
 void RayButton::DefaultEvent(const GameStateUPtr &) {

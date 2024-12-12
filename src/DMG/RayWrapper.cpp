@@ -11,7 +11,7 @@
 
 #include "DMG/RayWrapper.hpp"
 #include "DMG/core/GameState.hpp"
-#include "DMG/raygui/GuiManager.hpp"
+// #include "DMG/raygui/GuiManager.hpp"
 #include "imgui.h"
 #include "rlImGui.h"
 
@@ -20,7 +20,7 @@ RayWrapper::RayWrapper(GameOptions game_options) {
   screen_height_ = game_options.height;
   target_fps_ = game_options.fps;
 
-  gui_manager_ = std::make_shared<GuiManager>();
+  // gui_manager_ = std::make_shared<GuiManager>();
   window_manager_ = std::make_shared<WindowManager>();
   page_creator_ = PageCreator(window_manager_);
   std::shared_ptr<DebugWindow> debug_window_ = window_manager_->debug_window_;
@@ -54,7 +54,7 @@ RayWrapper::RayWrapper(GameOptions game_options) {
 
 RayWrapper::~RayWrapper() {
   std::cout << TERM_RED "Shutting Down" TERM_CRESET << std::endl;
-  gui_manager_->Shutdown();
+  // gui_manager_->Shutdown();
   window_manager_->Shutdown();
   camera_.Shutdown();
   rlImGuiShutdown();
@@ -64,7 +64,7 @@ RayWrapper::~RayWrapper() {
 void RayWrapper::Setup(const GameStateUPtr &state) {
   page_creator_.gui_setup_ = gui_setup_;
   page_creator_.Setup(state);
-  gui_manager_->Setup(state, gui_setup_);
+  // gui_manager_->Setup(state, gui_setup_);
   window_manager_->Setup(state, gui_setup_);
   if (!gui_setup_) camera_.GuiSetup();
   gui_setup_ = true;
@@ -101,7 +101,7 @@ void RayWrapper::Update(const GameStateUPtr &state) {
   camera_.RenderCamera(state);
   camera_.EndCamera(state);
   draw_fps_ = state->draw_fps_;
-  gui_manager_->Update(state);
+  // gui_manager_->Update(state);
   window_manager_->Update(state);
   if (draw_fps_) {
     DrawFPS(10, 10);

@@ -7,7 +7,7 @@
 bool KeyboardInput::EscapeSequence() {
   bool control_pressed =
       IsKeyDown(KEY_LEFT_CONTROL) || IsKeyDown(KEY_RIGHT_CONTROL);
-  bool w_pressed = IsKeyDown(KEY_W);
+  bool w_pressed = IsKeyDown(KEY_ESCAPE);
   return control_pressed && w_pressed;
 }
 

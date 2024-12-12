@@ -39,6 +39,7 @@ include(ImGuiImport)
 include(RLImGuiImport)
 include(glfwImport)
 include(gladImport)
+include(glmImport)
 
 include(CompilerFlags)
 include(PlatformFlags)
