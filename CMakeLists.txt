@@ -116,6 +116,10 @@ add_custom_target(
   COMMAND git clean -dfX --exclude="\!.idea/" --exclude="\!.idea/*" --exclude="\!.playground/" --exclude="\!.playground/*" --exclude="\!log/*" --exclude="\!imgui.ini"
 )
 
-
+add_custom_target(
+  raylib-box-collision-example
+  DEPENDS raylib
+  COMMAND gcc ${CMAKE_SOURCE_DIR}/src/DMG/vendor/raylib-box-collisions.c -o ${CMAKE_SOURCE_DIR}/build/raylib-box-collision-example.out -Iinclude -Wall -Wpedantic -Werror -L./build/lib/ -lraylib -lGL -lX11 -lXrandr -lXinerama -lXi -lXxf86vm -lXcursor -lm -lpthread -ldl -lrt
+)
 
 # target_link_libraries(DMG PRIVATE ncurses)
