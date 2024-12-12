@@ -36,10 +36,12 @@ RayWrapper::RayWrapper(GameOptions game_options) {
   } else {
     std::cout << TERM_GRN "\nGLFW is now ready!\n" TERM_CRESET << std::endl;
   }
-  SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
+  // TODO: implement when wanted
+  // SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
   InitWindow(screen_width_, screen_height_, game_options.name.c_str());
   // InitAudioDevice();
-  SetTargetFPS(target_fps_);
+  // TODO: implement when wanted
+  // SetTargetFPS(target_fps_);
 
   rlImGuiSetup(true);
   // NOTE: The below will disable movement from click/dragging on imgui window
