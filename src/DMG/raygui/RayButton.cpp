@@ -19,10 +19,11 @@ RayButton::RayButton(char *fs_name, char *vs_name, std::string shader_path) {
 }
 
 void RayButton::GuiSetup() {
-  const char *vertex_shader =
-      TextFormat("%s%s", shader_path_.c_str(), vs_file_name_.c_str());
+  // const char *vertex_shader =
+  //     TextFormat("%s%s", shader_path_.c_str(), vs_file_name_.c_str());
   const char *fragment_shader =
       TextFormat("%s%s", shader_path_.c_str(), fs_file_name_.c_str());
+  // shader_ = LoadShader(vertex_shader, fragment_shader);
   shader_ = LoadShader(0, fragment_shader);
   font_ = GetFontDefault();
 };
