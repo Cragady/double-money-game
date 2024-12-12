@@ -104,8 +104,18 @@ add_custom_target(
 )
 
 add_custom_target(
-  git-clean
-  COMMAND git clean -ndfX
-  COMMAND echo "run \\\"git clean -dfX\\\" if you are OK with deleting the listed files"
+  git-clean-see
+  COMMAND git clean -ndfX --exclude="\!.idea/" --exclude="\!.idea/*" --exclude="\!.playground/" --exclude="\!.playground/*" --exclude="\!log/*" --exclude="\!imgui.ini"
+
+  # COMMAND echo "run \\\"make git-clean\\\" or \\\'git clean -dfX --exclude=\\\"\\\\!.idea/\\\" --exclude=\\\"\\\\!.idea/*\\\" --exclude=\\\"\\\\!.playground/\\\" --exclude=\\\"\\\\!.playground/*\\\" --exclude=\\\"\\\\!log/*\\\" --exclude=\\\"\\\\!imgui.ini\\\"\\\' if you are OK with deleting the listed files"
+  COMMAND echo "run \\\"make git-clean\\\" if you are OK with deleting the listed files"
 )
+
+add_custom_target(
+  git-clean
+  COMMAND git clean -dfX --exclude="\!.idea/" --exclude="\!.idea/*" --exclude="\!.playground/" --exclude="\!.playground/*" --exclude="\!log/*" --exclude="\!imgui.ini"
+)
+
+
+
 # target_link_libraries(DMG PRIVATE ncurses)
