@@ -47,6 +47,12 @@ Rgb hsv2rgb(Hsv in) {
   long i;
   Rgb out;
 
+  in.h = fmod(in.h, 360.0);
+  if (in.h < 0) in.h += 360.0;
+
+  in.s = std::max(0.0, std::min(1.0, in.s));
+  in.v = std::max(0.0, std::min(1.0, in.v));
+
   if (in.s <= 0.0) { // < is bogus, just shuts up warnings
     out.r = in.v;
     out.g = in.v;

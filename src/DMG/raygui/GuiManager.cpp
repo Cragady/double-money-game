@@ -14,6 +14,7 @@ void GuiManager::Setup(const GameStateUPtr &state, bool gui_setup) {
   if (!gui_setup) {
     std::shared_ptr<RayButton> button = std::make_shared<RayButton>();
     button->open_ = true;
+    button->color_shifting_.shift_speed_ = 40;
     button->ClickEvent = events::TestEvent;
     guis_.push_back(button);
   }
