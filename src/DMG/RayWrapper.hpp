@@ -7,6 +7,7 @@
 #include "DMG/gui/PageCreator.hpp"
 #include "DMG/gui/WindowManager.hpp"
 #include "DMG/raygui/GuiManager.hpp"
+#include "DMG/raygui/MainCamera.hpp"
 
 class RayWrapper {
  public:
@@ -34,6 +35,7 @@ class RayWrapper {
   GuiManagerSPtr gui_manager_ = nullptr;
   KeyboardInput key_input_;
 
+  MainCamera camera_;
   bool hard_stop_ = false;
   bool glfw_ready_ = false;
   bool imgui_demo_active_ = false;

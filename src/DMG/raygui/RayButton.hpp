@@ -21,11 +21,14 @@ class RayButton : public IGui {
   void EndRender(const GameStateUPtr &) override;
   void FullRender(const GameStateUPtr &) override;
 
+  void RenderText(const GameStateUPtr &);
+
   void (*ClickEvent)(const GameStateUPtr &) = nullptr;
   static void DefaultEvent(const GameStateUPtr &);
 
+  Font font_;
   Shader shader_;
-  Rectangle rect_ = {10, 10, 200, 50};
+  Rectangle rect_ = {10, 200, 200, 50};
   bool button_pressed_ = false;
   ColorShifting color_shifting_;
   float render_color_[3];

@@ -6,11 +6,15 @@
 
 #include <iostream>
 
+#include "DMG/core/GameState.hpp"
 #include "DMG/core/util/color-conversion.hpp"
 
-RayButton::RayButton() {}
+RayButton::RayButton() {
+  name_ = "Test Button";
+}
 
 RayButton::RayButton(char *fs_name, char *vs_name, std::string shader_path) {
+  name_ = "Test Button";
   fs_file_name_ = fs_name;
   vs_file_name_ = vs_name;
   shader_path_ = shader_path;
@@ -22,6 +26,7 @@ void RayButton::GuiSetup() {
   const char *fragment_shader =
       TextFormat("%s%s", shader_path_.c_str(), fs_file_name_.c_str());
   shader_ = LoadShader(0, fragment_shader);
+  font_ = GetFontDefault();
 };
 void RayButton::DataSetup(const GameStateUPtr &state) {};
 void RayButton::Shutdown() { UnloadShader(shader_); };
@@ -70,6 +75,7 @@ void RayButton::Render(const GameStateUPtr &state) {
 
   DrawRectangleRec(rect_, WHITE);
   // DrawTexture(texture_2d_, 0, 0, WHITE);
+  RenderText(state);
 };
 void RayButton::EndRender(const GameStateUPtr &state) {
   if (!open_) return;
@@ -79,6 +85,35 @@ void RayButton::FullRender(const GameStateUPtr &state) {
   BeginRender(state);
   Render(state);
   EndRender(state);
+};
+
+void RayButton::RenderText(const GameStateUPtr &state) {
+  EndShaderMode();
+  int test_font_size = 16;
+  const char *name = name_.c_str();
+  float font_spacing = 2.0f;
+  Vector2 text_size = MeasureTextEx(font_, name, test_font_size, font_spacing);
+  bool resize_rect = false;
+  if (text_size.x > rect_.width) {
+    rect_.width = text_size.x + 16;
+    resize_rect = true;
+  }
+  if (text_size.y > rect_.height) {
+    rect_.height = text_size.y + 16;
+    resize_rect = true;
+  }
+  if (resize_rect) {
+    BeginShaderMode(shader_);
+    DrawRectangleRec(rect_, WHITE);
+    EndShaderMode();
+  }
+
+  Vector2 text_pos = {
+    .x = (rect_.width / 2 + rect_.x) - text_size.x / 2,
+    .y = (rect_.height / 2 + rect_.y) - text_size.y / 2,
+  };
+
+  DrawTextEx(font_, name, text_pos, test_font_size, font_spacing, WHITE);
 };
 
 void RayButton::DefaultEvent(const GameStateUPtr &) {

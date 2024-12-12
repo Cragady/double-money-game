@@ -63,6 +63,7 @@ void RayWrapper::Setup(const GameStateUPtr &state) {
   page_creator_.Setup(state);
   gui_manager_->Setup(state, gui_setup_);
   window_manager_->Setup(state, gui_setup_);
+  camera_.GuiSetup();
   gui_setup_ = true;
 }
 
@@ -92,6 +93,10 @@ void RayWrapper::Update(const GameStateUPtr &state) {
   if (key_input_.EscapeSequence()) {
     hard_stop_ = true;
   }
+  camera_.Update(state);
+  camera_.BeginCamera(state);
+  camera_.RenderCamera(state);
+  camera_.EndCamera(state);
   draw_fps_ = state->draw_fps_;
   gui_manager_->Update(state);
   window_manager_->Update(state);
