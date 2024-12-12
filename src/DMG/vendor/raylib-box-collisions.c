@@ -41,7 +41,7 @@ int main(void)
 
     bool collision = false;
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    // SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
@@ -49,12 +49,14 @@ int main(void)
     {
         // Update
         //----------------------------------------------------------------------------------
-
+        float delta_time = GetFrameTime();
+        // player_speed was magic numbered to be 0.2f
+        float player_speed = 12.0f;
         // Move player
-        if (IsKeyDown(KEY_RIGHT)) playerPosition.x += 0.2f;
-        else if (IsKeyDown(KEY_LEFT)) playerPosition.x -= 0.2f;
-        else if (IsKeyDown(KEY_DOWN)) playerPosition.z += 0.2f;
-        else if (IsKeyDown(KEY_UP)) playerPosition.z -= 0.2f;
+        if (IsKeyDown(KEY_RIGHT)) playerPosition.x += player_speed * delta_time;
+        else if (IsKeyDown(KEY_LEFT)) playerPosition.x -= player_speed * delta_time;
+        else if (IsKeyDown(KEY_DOWN)) playerPosition.z += player_speed * delta_time;
+        else if (IsKeyDown(KEY_UP)) playerPosition.z -= player_speed * delta_time;
 
         collision = false;
 
