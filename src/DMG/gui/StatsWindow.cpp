@@ -1,4 +1,5 @@
 #include "DMG/gui/StatsWindow.hpp"
+
 #include <raylib.h>
 
 #include <cmath>

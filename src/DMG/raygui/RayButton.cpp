@@ -9,9 +9,7 @@
 #include "DMG/core/GameState.hpp"
 #include "DMG/core/util/color-conversion.hpp"
 
-RayButton::RayButton() {
-  name_ = "Test Button";
-}
+RayButton::RayButton() { name_ = "Test Button"; }
 
 RayButton::RayButton(char *fs_name, char *vs_name, std::string shader_path) {
   name_ = "Test Button";
@@ -109,8 +107,8 @@ void RayButton::RenderText(const GameStateUPtr &state) {
   }
 
   Vector2 text_pos = {
-    .x = (rect_.width / 2 + rect_.x) - text_size.x / 2,
-    .y = (rect_.height / 2 + rect_.y) - text_size.y / 2,
+      .x = (rect_.width / 2 + rect_.x) - text_size.x / 2,
+      .y = (rect_.height / 2 + rect_.y) - text_size.y / 2,
   };
 
   DrawTextEx(font_, name, text_pos, test_font_size, font_spacing, WHITE);
