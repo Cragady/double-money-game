@@ -1,12 +1,16 @@
 #ifndef DMG_RAYGUI_MAIN_CAMERA_HPP_
 #define DMG_RAYGUI_MAIN_CAMERA_HPP_
 
+#include <common.h>
+
 #include "DMG/core/GameState.hpp"
 #include "DMG/core/IGui.hpp"
+#include "DMG/core/util/ColorShifting.hpp"
 
 class MainCamera : public IGui {
  public:
   MainCamera();
+  MainCamera(char *, char *, std::string = DMG_SHADER_PATH);
 
   void GuiSetup() override;
   void DataSetup(const GameStateUPtr &) override;
@@ -24,8 +28,14 @@ class MainCamera : public IGui {
   void MouseCapture(const GameStateUPtr &);
   void CorrectMouse(const GameStateUPtr &, Vector2, Vector2);
 
+  Shader shader_;
+  ColorShifting color_shifting_;
   Camera camera_ = {0};
   bool capture_cursor_ = false;
+  float render_color_[3];
+  std::string fs_file_name_ = "fs-basic-color.glsl";
+  std::string vs_file_name_ = "vs-basic-color.glsl";
+  std::string shader_path_ = DMG_SHADER_PATH;
 };
 
 #endif
