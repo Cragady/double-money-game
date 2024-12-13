@@ -9,7 +9,7 @@
 #include "DMG/raygui/RayButton.hpp"
 
 struct RaymarchLocs {
-  unsigned int cam_pos, cam_dir, screen_center;
+  unsigned int cam_pos, cam_dir, screen_center, check_1, check_2;
 };
 
 class MainCamera : public IGui {

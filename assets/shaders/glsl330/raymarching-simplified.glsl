@@ -19,6 +19,13 @@ uniform vec3 lightDir = vec3(0.5, 0.5, -1.0);
 // Brightness control uniform
 uniform float brightness = 1.0;
 
+// New uniform to control the colors of the checkerboard squares
+uniform vec4 checkerColor1 = vec4(0.0, 0.0, 0.0, 1.0); // Black
+uniform vec4 checkerColor2 = vec4(1.0, 1.0, 1.0, 1.0); // White
+
+// New uniform to control diffuse lighting intensity
+uniform float diffuseIntensity = 1.0; // Default value for diffuse lighting intensity
+
 // Checkerboard function
 float checkersGradBox(in vec2 p) {
     // Filter kernel
@@ -49,15 +56,22 @@ vec4 render(in vec3 ro, in vec3 rd) {
 
         // Apply checkerboard pattern based on the position on the floor
         float check = checkersGradBox(3.0 * pos.xz);
-        col = 0.15 + check * vec3(0.05);  // Checkerboard color
 
-        // Lighting: using the user-defined light direction
-        float diff = max(dot(vec3(0.0, 1.0, 0.0), normalize(lightDir)), 0.0);  // Diffuse lighting
-        col *= diff;
+        // Choose the color for the square
+        vec3 squareColor = mix(checkerColor1.rgb, checkerColor2.rgb, check);
+
+        // Lighting: calculate diffuse lighting
+        float diff = max(dot(normalize(vec3(0.0, 1.0, 0.0)), normalize(lightDir)), 0.0);
+
+        // Apply the diffuseIntensity to control the amount of light contribution
+        vec3 finalColor = squareColor * diff * diffuseIntensity;
+
+        // Set the base color with brightness and apply lighting
+        col = 0.15 + finalColor * 0.05;
+
+        // Apply brightness control
+        col *= brightness;
     }
-
-    // Apply brightness control
-    col *= brightness;
 
     // Final color
     return vec4(col, 1.0);

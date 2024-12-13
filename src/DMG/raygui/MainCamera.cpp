@@ -44,10 +44,17 @@ void MainCamera::DataSetup(const GameStateUPtr &state) {
       0, TextFormat("assets/shaders/glsl%i/raymarching-simplified.glsl",
                     GLSL_VERSION));
 
+  int diffuse_loc = GetShaderLocation(shader_raymarch_, "diffuseIntensity");
+  float new_diffuse = 10.0f;
+  SetShaderValue(shader_raymarch_, diffuse_loc, &new_diffuse,
+                 RL_SHADER_UNIFORM_FLOAT);
+
   march_locs_.cam_pos = GetShaderLocation(shader_raymarch_, "camPos");
   march_locs_.cam_dir = GetShaderLocation(shader_raymarch_, "camDir");
   march_locs_.screen_center =
       GetShaderLocation(shader_raymarch_, "screenCenter");
+  march_locs_.check_1 = GetShaderLocation(shader_raymarch_, "checkerColor1");
+  march_locs_.check_2 = GetShaderLocation(shader_raymarch_, "checkerColor2");
 
   Vector2 screenCenter = {.x = state->screen_width_ / 2.0f,
                           .y = state->screen_height_ / 2.0f};
@@ -55,6 +62,8 @@ void MainCamera::DataSetup(const GameStateUPtr &state) {
                  SHADER_UNIFORM_VEC2);
   // Camera FOV is pre-calculated in the camera Distance.
   cam_dist_ = 1.0f / (tanf(main_camera_->fovy * 0.5f * DEG2RAD));
+
+  color_shifting_.shift_speed_ = 20;
 
   button_.open_ = true;
   button_.color_shifting_.shift_speed_ = 40;
@@ -112,6 +121,21 @@ void MainCamera::Update(const GameStateUPtr &state) {
   // Update Camera Postion in the ray march shader.
   SetShaderValue(shader_raymarch_, march_locs_.cam_pos,
                  &(main_camera_->position), RL_SHADER_UNIFORM_VEC3);
+
+  color_to_convert.h += 180;
+  color_to_convert.v = 1.0f;
+  Rgb color_checks_1 = hsv2rgb(color_to_convert);
+  color_to_convert.v = 0.5f;
+  Rgb color_checks_2 = hsv2rgb(color_to_convert);
+  float checks_1[4] = {(float)color_checks_1.r, (float)color_checks_1.g,
+                       (float)color_checks_1.b, 1.0f};
+  float checks_2[4] = {(float)color_checks_2.r, (float)color_checks_2.g,
+                       (float)color_checks_2.b, 1.0f};
+
+  SetShaderValue(shader_raymarch_, march_locs_.check_1, &checks_1[0],
+                 RL_SHADER_UNIFORM_VEC4);
+  SetShaderValue(shader_raymarch_, march_locs_.check_2, &checks_2[0],
+                 RL_SHADER_UNIFORM_VEC4);
 
   // Update Camera Looking Vector. Vector length determines FOV.
   Vector3 camDir =
