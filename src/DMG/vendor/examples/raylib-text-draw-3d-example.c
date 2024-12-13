@@ -129,7 +129,7 @@ int main(void)
     Color dark = RED;
 
     // Load the alpha discard shader
-    Shader alphaDiscard = LoadShader(NULL, "resources/shaders/glsl330/alpha_discard.fs");
+    Shader alphaDiscard = LoadShader(NULL, "assets/vendor/raylib/shaders/glsl330/alpha_discard.fs");
 
     // Array filled with multiple random colors (when multicolor mode is set)
     Color multi[TEXT_MAX_LAYERS] = {0};

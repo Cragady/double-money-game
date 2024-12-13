@@ -17,6 +17,8 @@ enum GamePageFlags_ {
 
 using GamePageFlags = int;
 
+using CameraSPtr = std::shared_ptr<Camera>;
+
 class GameState {
  public:
   void Update();
@@ -28,6 +30,9 @@ class GameState {
   double total_elapsed_time_ = 0.0f;
   int fps_ = 0;
   bool draw_fps_ = true;
+  int screen_width_ = 0;
+  int screen_height_ = 0;
+  CameraSPtr main_camera_ = nullptr;
 
   Ray mouse_ray_ = {
       .position = {0, 0, 0},

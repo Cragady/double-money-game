@@ -33,6 +33,11 @@ void StatsWindow::Render(const GameStateUPtr &state) {
   ImVec2 im_mouse_pos = ImGui::GetMousePos();
   ImGui::Text("Raylib Mouse Pos: x:%f y:%f", mouse_pos.x, mouse_pos.y);
   ImGui::Text("ImGui Mouse Pos: x:%f y:%f", im_mouse_pos.x, im_mouse_pos.y);
+  if (state->main_camera_) {
+    ImGui::Text(
+        "Camera Pos: (x: %f, y: %f, z: %f)", state->main_camera_->position.x,
+        state->main_camera_->position.y, state->main_camera_->position.z);
+  }
 };
 void StatsWindow::EndRender(const GameStateUPtr &state) { ImGui::End(); };
 

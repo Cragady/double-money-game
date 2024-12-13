@@ -1,19 +1,24 @@
 #include "DMG/raygui/MainCamera.hpp"
 
 #include <raylib.h>
+#include <raymath.h>
 #include <rlgl.h>
+
+#include <cmath>
 
 #include "DMG/core/GameState.hpp"
 #include "DMG/core/events/event-functions.hpp"
 #include "DMG/core/util/color-conversion.hpp"
 
 MainCamera::MainCamera() {
-  camera_.position = (Vector3) {50.0f, 50.0f, 50.0f}; // Camera position
-  camera_.target = (Vector3) {0.0f, 10.0f, 0.0f};     // Camera looking at point
-  camera_.up = (Vector3) {0.0f, 1.0f,
-                          0.0f}; // Camera up vector (rotation towards target)
-  camera_.fovy = 45.0f;          // Camera field-of-view Y
-  camera_.projection = CAMERA_PERSPECTIVE;
+  main_camera_ = std::make_shared<Camera>();
+  main_camera_->position = (Vector3) {13.0f, 8.0f, 19.0f}; // Camera position
+  main_camera_->target =
+      (Vector3) {0.0f, 5.0f, 0.0f}; // Camera looking at point
+  main_camera_->up = (Vector3) {
+      0.0f, 1.0f, 0.0f};      // Camera up vector (rotation towards target)
+  main_camera_->fovy = 45.0f; // Camera field-of-view Y
+  main_camera_->projection = CAMERA_PERSPECTIVE;
   name_ = "Main Camera";
 }
 
@@ -24,25 +29,49 @@ MainCamera::MainCamera(char *fs_name, char *vs_name, std::string shader_path)
   shader_path_ = shader_path;
 }
 
-void MainCamera::GuiSetup() {
-  // const char *vertex_shader =
+void MainCamera::GuiSetup() {}
+void MainCamera::DataSetup(const GameStateUPtr &state) {
+  // TODO: move back to GuiSetup after GuiSetup has been hooked in to
+  // GameStateUPtr const char *vertex_shader =
   //     TextFormat("%s%s", shader_path_.c_str(), vs_file_name_.c_str());
   const char *fragment_shader =
       TextFormat("%s%s", shader_path_.c_str(), fs_file_name_.c_str());
   // shader_ = LoadShader(vertex_shader, fragment_shader);
   shader_ = LoadShader(0, fragment_shader);
+
+  shader_raymarch_ = LoadShader(
+      // 0, TextFormat("assets/vendor/raylib/shaders/glsl%i/hybrid_raymarch.fs",
+      0, TextFormat("assets/shaders/glsl%i/raymarching-simplified.glsl",
+                    GLSL_VERSION));
+
+  march_locs_.cam_pos = GetShaderLocation(shader_raymarch_, "camPos");
+  march_locs_.cam_dir = GetShaderLocation(shader_raymarch_, "camDir");
+  march_locs_.screen_center =
+      GetShaderLocation(shader_raymarch_, "screenCenter");
+
+  Vector2 screenCenter = {.x = state->screen_width_ / 2.0f,
+                          .y = state->screen_height_ / 2.0f};
+  SetShaderValue(shader_raymarch_, march_locs_.screen_center, &screenCenter,
+                 SHADER_UNIFORM_VEC2);
+  // Camera FOV is pre-calculated in the camera Distance.
+  cam_dist_ = 1.0f / (tanf(main_camera_->fovy * 0.5f * DEG2RAD));
+
   button_.open_ = true;
   button_.color_shifting_.shift_speed_ = 40;
   button_.ClickEvent = events::TestEvent;
+  button_.position_ = {2.0f, 6.6f, -5.0f};
   button_.GuiSetup();
 }
-void MainCamera::DataSetup(const GameStateUPtr &) {}
 void MainCamera::Shutdown() {
   button_.Shutdown();
   UnloadShader(shader_);
+  UnloadShader(shader_raymarch_);
 }
 void MainCamera::Update(const GameStateUPtr &state) {
-  state->mouse_ray_ = GetScreenToWorldRay(GetMousePosition(), camera_);
+  if (main_camera_ == nullptr) return;
+  state->main_camera_ = main_camera_;
+
+  state->mouse_ray_ = GetScreenToWorldRay(GetMousePosition(), *main_camera_);
   capture_cursor_ = IsMouseButtonDown(MOUSE_BUTTON_RIGHT);
   button_.Update(state);
   color_shifting_.ShiftColor(state->delta_time_);
@@ -72,13 +101,25 @@ void MainCamera::Update(const GameStateUPtr &state) {
                    (IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT)) * move_speed,
                (IsKeyDown(KEY_SPACE)) * move_speed -
                    (IsKeyDown(KEY_LEFT_CONTROL)) * move_speed};
-  UpdateCameraPro(&camera_, movement,
+  UpdateCameraPro(&(*main_camera_), movement,
                   (Vector3) {
                       GetMouseDelta().x * mouse_sensitivity, // Rotation: yaw
                       GetMouseDelta().y * mouse_sensitivity, // Rotation: pitch
                       0.0f                                   // Rotation: roll
                   },
                   GetMouseWheelMove() * 2.0f);
+
+  // Update Camera Postion in the ray march shader.
+  SetShaderValue(shader_raymarch_, march_locs_.cam_pos,
+                 &(main_camera_->position), RL_SHADER_UNIFORM_VEC3);
+
+  // Update Camera Looking Vector. Vector length determines FOV.
+  Vector3 camDir =
+      Vector3Scale(Vector3Normalize(Vector3Subtract(main_camera_->target,
+                                                    main_camera_->position)),
+                   cam_dist_);
+  SetShaderValue(shader_raymarch_, march_locs_.cam_dir, &(camDir),
+                 RL_SHADER_UNIFORM_VEC3);
 }
 void MainCamera::BeginRender(const GameStateUPtr &) {}
 void MainCamera::Render(const GameStateUPtr &) {}
@@ -86,18 +127,35 @@ void MainCamera::EndRender(const GameStateUPtr &) {}
 void MainCamera::FullRender(const GameStateUPtr &) {}
 
 void MainCamera::BeginCamera(const GameStateUPtr &state) {
-  BeginMode3D(camera_);
+  if (main_camera_ == nullptr) return;
+  BeginMode3D(*main_camera_);
 }
 void MainCamera::RenderCamera(const GameStateUPtr &state) {
+  DrawFloor(state);
+  button_.FullRender(state);
+}
+void MainCamera::EndCamera(const GameStateUPtr &state) { EndMode3D(); }
+
+void MainCamera::DrawFloor(const GameStateUPtr &state) {
+  if (main_camera_ == nullptr) return;
+  EndMode3D();
+
+  rlEnableDepthTest(); // Manually enable Depth Test to handle multiple
+                       // rendering methods.
+  BeginShaderMode(shader_raymarch_);
+  DrawRectangleRec((Rectangle) {0, 0, (float)state->screen_width_,
+                                (float)state->screen_height_},
+                   WHITE);
+  EndShaderMode();
+
+  BeginMode3D(*main_camera_);
   BeginShaderMode(shader_);
   int color_loc = GetShaderLocation(shader_, "u_fragmentColor");
 
   SetShaderValue(shader_, color_loc, &render_color_[0], RL_SHADER_UNIFORM_VEC3);
   DrawGrid(200, 10.0f);
   EndShaderMode();
-  button_.FullRender(state);
-}
-void MainCamera::EndCamera(const GameStateUPtr &state) { EndMode3D(); }
+};
 
 void MainCamera::MouseCapture(const GameStateUPtr &state) {
   if (!capture_cursor_) return;

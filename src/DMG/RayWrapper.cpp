@@ -62,11 +62,15 @@ RayWrapper::~RayWrapper() {
 }
 
 void RayWrapper::Setup(const GameStateUPtr &state) {
+  state->screen_width_ = screen_width_;
+  state->screen_height_ = screen_height_;
   page_creator_.gui_setup_ = gui_setup_;
   page_creator_.Setup(state);
   // gui_manager_->Setup(state, gui_setup_);
   window_manager_->Setup(state, gui_setup_);
   if (!gui_setup_) camera_.GuiSetup();
+  // TODO: fix
+  camera_.DataSetup(state);
   gui_setup_ = true;
 }
 
@@ -96,6 +100,8 @@ void RayWrapper::Update(const GameStateUPtr &state) {
   if (key_input_.EscapeSequence()) {
     hard_stop_ = true;
   }
+  state->screen_width_ = screen_width_;
+  state->screen_height_ = screen_height_;
   camera_.Update(state);
   camera_.BeginCamera(state);
   camera_.RenderCamera(state);
