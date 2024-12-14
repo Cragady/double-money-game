@@ -28,6 +28,8 @@ void Game::Loop() {
     HandleGui();
     game_running_ = *game_running_ptr_ && game_running_;
   }
+
+  gui_ptr_->Shutdown(game_state_ptr_);
 }
 
 void Game::Setup() {

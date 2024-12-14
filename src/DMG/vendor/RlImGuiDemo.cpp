@@ -10,16 +10,16 @@ RlImGuiDemo::RlImGuiDemo() { name_ = "RlImGui Demo Windows"; }
 RlImGuiDemo::~RlImGuiDemo() {}
 
 void RlImGuiDemo::DataSetup(const GameStateUPtr &state) {};
-void RlImGuiDemo::GuiSetup() {
-  image_viewer_.GuiSetup();
+void RlImGuiDemo::GuiSetup(const GameStateUPtr &state) {
+  image_viewer_.GuiSetup(state);
   image_viewer_.open_ = true;
-  scene_view_.GuiSetup();
+  scene_view_.GuiSetup(state);
   scene_view_.open_ = true;
 }
 
-void RlImGuiDemo::Shutdown() {
-  image_viewer_.Shutdown();
-  scene_view_.Shutdown();
+void RlImGuiDemo::Shutdown(const GameStateUPtr &state) {
+  image_viewer_.Shutdown(state);
+  scene_view_.Shutdown(state);
 };
 
 void RlImGuiDemo::Update(const GameStateUPtr &state) {

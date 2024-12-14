@@ -18,8 +18,8 @@ DebugWindow::DebugWindow() {
 DebugWindow::~DebugWindow() { open_ = false; }
 
 void DebugWindow::DataSetup(const GameStateUPtr &state) {}
-void DebugWindow::GuiSetup() {}
-void DebugWindow::Shutdown() {}
+void DebugWindow::GuiSetup(const GameStateUPtr &state) {}
+void DebugWindow::Shutdown(const GameStateUPtr &state) {}
 void DebugWindow::Update(const GameStateUPtr &state) {}
 void DebugWindow::BeginRender(const GameStateUPtr &state) {
   render_ready_ = ImGui::Begin(name_.c_str(), &open_, flags_);

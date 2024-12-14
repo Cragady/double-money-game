@@ -10,7 +10,7 @@ ImageViewerWindow::ImageViewerWindow() { name_ = "Debug - ImageViewerWindow"; }
 ImageViewerWindow::~ImageViewerWindow() {}
 
 void ImageViewerWindow::DataSetup(const GameStateUPtr &state) {}
-void ImageViewerWindow::GuiSetup() {
+void ImageViewerWindow::GuiSetup(const GameStateUPtr &state) {
   Camera.zoom = 1;
   Camera.target.x = 0;
   Camera.target.y = 0;
@@ -137,7 +137,7 @@ void ImageViewerWindow::Update(const GameStateUPtr &state) {
   }
 }
 
-void ImageViewerWindow::Shutdown() {
+void ImageViewerWindow::Shutdown(const GameStateUPtr &state) {
   UnloadRenderTexture(view_texture_);
   UnloadTexture(ImageTexture);
 }

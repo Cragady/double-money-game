@@ -12,7 +12,7 @@ SceneViewWindow::SceneViewWindow() { name_ = "Debug - SceneViewWindow"; }
 SceneViewWindow::~SceneViewWindow() {}
 
 void SceneViewWindow::DataSetup(const GameStateUPtr &state) {}
-void SceneViewWindow::GuiSetup() {
+void SceneViewWindow::GuiSetup(const GameStateUPtr &state) {
   view_texture_ = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
 
   Camera.fovy = 45;
@@ -28,7 +28,7 @@ void SceneViewWindow::GuiSetup() {
   SetTextureWrap(GridTexture, TEXTURE_WRAP_CLAMP);
 }
 
-void SceneViewWindow::Shutdown() {
+void SceneViewWindow::Shutdown(const GameStateUPtr &state) {
   UnloadRenderTexture(view_texture_);
   UnloadTexture(GridTexture);
 }

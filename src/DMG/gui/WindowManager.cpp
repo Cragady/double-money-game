@@ -30,15 +30,15 @@ WindowManager::WindowManager() {
 
 WindowManager::~WindowManager() {}
 
-void WindowManager::Shutdown() {
+void WindowManager::Shutdown(const GameStateUPtr &state) {
   for (const IWindowPtr &window : windows_) {
-    window->Shutdown();
+    window->Shutdown(state);
   }
 }
 
 void WindowManager::Setup(const GameStateUPtr &state, bool gui_setup) {
   for (const IWindowPtr &window : windows_) {
-    if (!gui_setup) window->GuiSetup();
+    if (!gui_setup) window->GuiSetup(state);
     window->DataSetup(state);
   }
 }

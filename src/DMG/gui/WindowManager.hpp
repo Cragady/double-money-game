@@ -15,7 +15,7 @@ class WindowManager {
 
   void Setup(const GameStateUPtr &, bool);
   void Update(const GameStateUPtr &);
-  void Shutdown();
+  void Shutdown(const GameStateUPtr &);
 
   bool include_debug_window_ = true;
   bool debug_window_attached_ = false;

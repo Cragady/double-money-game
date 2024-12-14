@@ -54,9 +54,6 @@ RayWrapper::RayWrapper(GameOptions game_options) {
 
 RayWrapper::~RayWrapper() {
   std::cout << TERM_RED "Shutting Down" TERM_CRESET << std::endl;
-  // gui_manager_->Shutdown();
-  window_manager_->Shutdown();
-  camera_.Shutdown();
   rlImGuiShutdown();
   CloseWindow();
 }
@@ -68,7 +65,7 @@ void RayWrapper::Setup(const GameStateUPtr &state) {
   page_creator_.Setup(state);
   // gui_manager_->Setup(state, gui_setup_);
   window_manager_->Setup(state, gui_setup_);
-  if (!gui_setup_) camera_.GuiSetup();
+  if (!gui_setup_) camera_.GuiSetup(state);
   // TODO: fix
   camera_.DataSetup(state);
   gui_setup_ = true;
@@ -113,6 +110,12 @@ void RayWrapper::Update(const GameStateUPtr &state) {
     DrawFPS(10, 10);
   }
   ImGuiDemo();
+}
+
+void RayWrapper::Shutdown(const GameStateUPtr &state) {
+  // gui_manager_->Shutdown();
+  window_manager_->Shutdown(state);
+  camera_.Shutdown(state);
 }
 
 void RayWrapper::ImGuiDemo() {

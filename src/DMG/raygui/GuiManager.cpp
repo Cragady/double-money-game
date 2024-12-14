@@ -21,7 +21,7 @@ void GuiManager::Setup(const GameStateUPtr &state, bool gui_setup) {
   }
 
   for (const IGuiPtr &gui : guis_) {
-    if (!gui_setup) gui->GuiSetup();
+    if (!gui_setup) gui->GuiSetup(state);
     gui->DataSetup(state);
   }
 };
@@ -31,8 +31,8 @@ void GuiManager::Update(const GameStateUPtr &state) {
     gui->FullRender(state);
   }
 };
-void GuiManager::Shutdown() {
+void GuiManager::Shutdown(const GameStateUPtr &state) {
   for (const IGuiPtr &gui : guis_) {
-    gui->Shutdown();
+    gui->Shutdown(state);
   }
 };

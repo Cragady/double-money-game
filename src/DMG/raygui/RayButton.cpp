@@ -21,7 +21,7 @@ RayButton::RayButton(char *fs_name, char *vs_name, std::string shader_path) {
   shader_path_ = shader_path;
 }
 
-void RayButton::GuiSetup() {
+void RayButton::GuiSetup(const GameStateUPtr &state) {
   // const char *vertex_shader =
   //     TextFormat("%s%s", shader_path_.c_str(), vs_file_name_.c_str());
   const char *fragment_shader =
@@ -31,7 +31,7 @@ void RayButton::GuiSetup() {
   font_ = GetFontDefault();
 };
 void RayButton::DataSetup(const GameStateUPtr &state) {};
-void RayButton::Shutdown() { UnloadShader(shader_); };
+void RayButton::Shutdown(const GameStateUPtr &state) { UnloadShader(shader_); };
 void RayButton::Update(const GameStateUPtr &state) {
   button_pressed_ = false;
   color_shifting_.ShiftColor(state->delta_time_);

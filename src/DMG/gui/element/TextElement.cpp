@@ -15,11 +15,11 @@ template <typename T>
 TextElement<T>::~TextElement() {};
 
 template <typename T>
-void TextElement<T>::GuiSetup() {}
+void TextElement<T>::GuiSetup(const GameStateUPtr &state) {}
 template <typename T>
 void TextElement<T>::DataSetup(const GameStateUPtr &state) {}
 template <typename T>
-void TextElement<T>::Shutdown() {};
+void TextElement<T>::Shutdown(const GameStateUPtr &state) {};
 template <typename T>
 void TextElement<T>::Update(const GameStateUPtr &state) {
     // if (std::is_same<T, void>::value) {

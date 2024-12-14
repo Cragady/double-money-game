@@ -9,9 +9,9 @@ class RlImGuiDemo : public IWindow {
   RlImGuiDemo();
   ~RlImGuiDemo();
 
-  void GuiSetup() override;
+  void GuiSetup(const GameStateUPtr &) override;
   void DataSetup(const GameStateUPtr &) override;
-  void Shutdown() override;
+  void Shutdown(const GameStateUPtr &) override;
   void Update(const GameStateUPtr &) override;
   void BeginRender(const GameStateUPtr &) override;
   void Render(const GameStateUPtr &) override;

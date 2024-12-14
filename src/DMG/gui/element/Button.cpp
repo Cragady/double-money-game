@@ -17,9 +17,9 @@ Button::Button(std::string name, std::string button_text, bool is_open,
 
 Button::~Button() { open_ = false; }
 
-void Button::GuiSetup() {}
+void Button::GuiSetup(const GameStateUPtr &state) {}
 void Button::DataSetup(const GameStateUPtr &state) {}
-void Button::Shutdown() {};
+void Button::Shutdown(const GameStateUPtr &state) {};
 void Button::Update(const GameStateUPtr &state) {};
 void Button::BeginRender(const GameStateUPtr &state) {};
 void Button::Render(const GameStateUPtr &state) {};

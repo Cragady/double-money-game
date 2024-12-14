@@ -5,8 +5,8 @@
 ImGuiMyFirstTool::ImGuiMyFirstTool() { name_ = "My First Tool"; }
 
 void ImGuiMyFirstTool::DataSetup(const GameStateUPtr &state) {}
-void ImGuiMyFirstTool::GuiSetup() {}
-void ImGuiMyFirstTool::Shutdown() {};
+void ImGuiMyFirstTool::GuiSetup(const GameStateUPtr &state) {}
+void ImGuiMyFirstTool::Shutdown(const GameStateUPtr &state) {};
 void ImGuiMyFirstTool::Update(const GameStateUPtr &state) {};
 void ImGuiMyFirstTool::BeginRender(const GameStateUPtr &state) {};
 void ImGuiMyFirstTool::Render(const GameStateUPtr &state) {};

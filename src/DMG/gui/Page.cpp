@@ -7,14 +7,14 @@ Page::Page(GamePageFlags page_flag, WindowManagerSPtr window_manager) {
 }
 
 void Page::DataSetup(const GameStateUPtr &state) {}
-void Page::GuiSetup() {
+void Page::GuiSetup(const GameStateUPtr &state) {
   if (window_manager_ == nullptr) {
     _page_valid_ = false;
     return;
   }
 };
 
-void Page::Shutdown() {
+void Page::Shutdown(const GameStateUPtr &state) {
   if (!_page_valid_) return;
 };
 void Page::Update(const GameStateUPtr &state) {

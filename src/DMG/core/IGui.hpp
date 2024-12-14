@@ -11,9 +11,11 @@
 class IGui {
  public:
   virtual ~IGui() {};
-  virtual void GuiSetup() = 0;
+  // NOTE: any setup that uses the game state in 'GuiSetup' should refresh that
+  // same reference or value within 'DataSetup'
+  virtual void GuiSetup(const GameStateUPtr &) = 0;
   virtual void DataSetup(const GameStateUPtr &) = 0;
-  virtual void Shutdown() = 0;
+  virtual void Shutdown(const GameStateUPtr &) = 0;
   virtual void Update(const GameStateUPtr &) = 0;
   virtual void BeginRender(const GameStateUPtr &) = 0;
   virtual void Render(const GameStateUPtr &) = 0;

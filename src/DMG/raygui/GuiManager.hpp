@@ -14,7 +14,7 @@ class GuiManager {
 
   void Setup(const GameStateUPtr &, bool);
   void Update(const GameStateUPtr &);
-  void Shutdown();
+  void Shutdown(const GameStateUPtr &);
 
   std::vector<IGuiPtr> guis_;
 };

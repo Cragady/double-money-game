@@ -29,7 +29,7 @@ MainCamera::MainCamera(char *fs_name, char *vs_name, std::string shader_path)
   shader_path_ = shader_path;
 }
 
-void MainCamera::GuiSetup() {}
+void MainCamera::GuiSetup(const GameStateUPtr &state) {}
 void MainCamera::DataSetup(const GameStateUPtr &state) {
   // TODO: move back to GuiSetup after GuiSetup has been hooked in to
   // GameStateUPtr const char *vertex_shader =
@@ -69,10 +69,10 @@ void MainCamera::DataSetup(const GameStateUPtr &state) {
   button_.color_shifting_.shift_speed_ = 40;
   button_.ClickEvent = events::TestEvent;
   button_.position_ = {2.0f, 6.6f, -5.0f};
-  button_.GuiSetup();
+  button_.GuiSetup(state);
 }
-void MainCamera::Shutdown() {
-  button_.Shutdown();
+void MainCamera::Shutdown(const GameStateUPtr &state) {
+  button_.Shutdown(state);
   UnloadShader(shader_);
   UnloadShader(shader_raymarch_);
 }

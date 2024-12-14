@@ -9,8 +9,8 @@
 StatsWindow::StatsWindow() { name_ = "Stats Window"; }
 
 void StatsWindow::DataSetup(const GameStateUPtr &state) {}
-void StatsWindow::GuiSetup() {}
-void StatsWindow::Shutdown() {};
+void StatsWindow::GuiSetup(const GameStateUPtr &state) {}
+void StatsWindow::Shutdown(const GameStateUPtr &state) {};
 void StatsWindow::Update(const GameStateUPtr &state) {
   delta_time_ = state->delta_time_;
   total_elapsed_time_ = state->total_elapsed_time_;

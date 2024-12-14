@@ -23,7 +23,7 @@
 //   shader_path_ = shader_path;
 // }
 //
-// void ShaderButton::GuiSetup() {
+// void ShaderButton::GuiSetup(const GameStateUPtr &state) {
 //   const char *vertex_shader =
 //       TextFormat("%s%s", shader_path_.c_str(), vs_file_name_.c_str());
 //   const char *fragment_shader =
@@ -31,7 +31,9 @@
 //   shader_ = LoadShader(vertex_shader, fragment_shader);
 // };
 // void ShaderButton::DataSetup(const GameStateUPtr &state) {};
-// void ShaderButton::Shutdown() { UnloadShader(shader_); };
+// void ShaderButton::Shutdown(const GameStateUPtr &state) {
+//   UnloadShader(shader_);
+// };
 // void ShaderButton::Update(const GameStateUPtr &state) {
 //   ColorShiftingVals delta_color =
 //       color_shifting_.ShiftColor(state->delta_time_);

@@ -23,6 +23,7 @@ class RayWrapper {
   void Setup(const GameStateUPtr &);
   void Loop(const GameStateUPtr &);
   void Update(const GameStateUPtr &);
+  void Shutdown(const GameStateUPtr &);
   void ImGuiDemo();
 
   int screen_width_;
