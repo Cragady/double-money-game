@@ -47,6 +47,9 @@ void DebugWindow::Render(const GameStateUPtr &state) {
           *_program_flag_2_ = !*_program_flag_2_;
         }
       }
+      if (ImGui::Button("Close Game")) {
+        state->hard_stop_ = true;
+      }
       ImGui::EndTabItem();
     }
 

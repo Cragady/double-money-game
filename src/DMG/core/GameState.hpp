@@ -39,6 +39,7 @@ class GameState {
       .direction = {0, 0, 0},
   };
   GamePageFlags current_page_ = GamePageFlags_Title;
+  bool hard_stop_ = false;
   bool reset_game_state_ = false;
   long double current_money_ = 0;
   long double current_percentage_currency_ = 0;

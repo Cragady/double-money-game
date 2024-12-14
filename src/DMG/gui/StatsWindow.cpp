@@ -34,9 +34,23 @@ void StatsWindow::Render(const GameStateUPtr &state) {
   ImGui::Text("Raylib Mouse Pos: x:%f y:%f", mouse_pos.x, mouse_pos.y);
   ImGui::Text("ImGui Mouse Pos: x:%f y:%f", im_mouse_pos.x, im_mouse_pos.y);
   if (state->main_camera_) {
+    ImGui::SeparatorText("Camera Stats");
     ImGui::Text(
         "Camera Pos: (x: %f, y: %f, z: %f)", state->main_camera_->position.x,
         state->main_camera_->position.y, state->main_camera_->position.z);
+    ImGui::Text("Target: (x: %f, y: %f, z: %f)", state->main_camera_->target.x,
+                state->main_camera_->target.y, state->main_camera_->target.z);
+    const char *projection =
+        state->main_camera_->projection == CAMERA_PERSPECTIVE ? "Perspective"
+                                                              : "Orthographic";
+
+    ImGui::Text("Field of view in y degrees (Perspective): %f",
+                state->main_camera_->fovy);
+    ImGui::Text("Perspective: %s", projection);
+    ImGui::Text("Camera Up V3: (x: %f, y: %f, z: %f)",
+                state->main_camera_->up.x, state->main_camera_->up.y,
+                state->main_camera_->up.z);
+    ImGui::Separator();
   }
 };
 void StatsWindow::EndRender(const GameStateUPtr &state) { ImGui::End(); };

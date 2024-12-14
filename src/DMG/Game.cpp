@@ -38,9 +38,10 @@ void Game::Setup() {
 }
 
 void Game::HandleGameState() {
-  if (!game_state_ptr_) return;
+  if (!game_state_ptr_ || !game_running_) return;
 
   game_state_ptr_->Update();
+  game_running_ = !game_state_ptr_->hard_stop_;
 
   if (game_state_ptr_->reset_game_state_) {
     game_page_backup_ = game_state_ptr_->current_page_;
@@ -54,7 +55,7 @@ void Game::HandleGameState() {
 }
 
 void Game::HandleGui() {
-  if (!gui_ptr_ || !game_state_ptr_) return;
+  if (!gui_ptr_ || !game_state_ptr_ || !game_running_) return;
   gui_ptr_->Loop(game_state_ptr_);
   game_running_ = !gui_ptr_->hard_stop_;
   if (gui_ptr_->reset_gui_) {
