@@ -13,6 +13,9 @@ class IGui {
   virtual ~IGui() {};
   // NOTE: any setup that uses the game state in 'GuiSetup' should refresh that
   // same reference or value within 'DataSetup'
+  // NOTE: I took a trip to stupidville adding GameStateUPtr to GuiSetup. There
+  // shouldn't be a reason to use game state here, but I suppose if it's
+  // absolutely necessary, then it's there for ya.
   virtual void GuiSetup(const GameStateUPtr &) = 0;
   virtual void DataSetup(const GameStateUPtr &) = 0;
   virtual void Shutdown(const GameStateUPtr &) = 0;

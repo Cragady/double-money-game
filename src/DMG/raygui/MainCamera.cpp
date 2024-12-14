@@ -29,9 +29,7 @@ MainCamera::MainCamera(char *fs_name, char *vs_name, std::string shader_path)
   shader_path_ = shader_path;
 }
 
-void MainCamera::GuiSetup(const GameStateUPtr &state) {}
-void MainCamera::DataSetup(const GameStateUPtr &state) {
-  // TODO: move back to GuiSetup after GuiSetup has been hooked in to
+void MainCamera::GuiSetup(const GameStateUPtr &state) {
   // GameStateUPtr const char *vertex_shader =
   //     TextFormat("%s%s", shader_path_.c_str(), vs_file_name_.c_str());
   const char *fragment_shader =
@@ -56,10 +54,6 @@ void MainCamera::DataSetup(const GameStateUPtr &state) {
   march_locs_.check_1 = GetShaderLocation(shader_raymarch_, "checkerColor1");
   march_locs_.check_2 = GetShaderLocation(shader_raymarch_, "checkerColor2");
 
-  Vector2 screenCenter = {.x = state->screen_width_ / 2.0f,
-                          .y = state->screen_height_ / 2.0f};
-  SetShaderValue(shader_raymarch_, march_locs_.screen_center, &screenCenter,
-                 SHADER_UNIFORM_VEC2);
   // Camera FOV is pre-calculated in the camera Distance.
   cam_dist_ = 1.0f / (tanf(main_camera_->fovy * 0.5f * DEG2RAD));
 
@@ -70,6 +64,12 @@ void MainCamera::DataSetup(const GameStateUPtr &state) {
   button_.ClickEvent = events::TestEvent;
   button_.position_ = {2.0f, 6.6f, -5.0f};
   button_.GuiSetup(state);
+}
+void MainCamera::DataSetup(const GameStateUPtr &state) {
+  Vector2 screenCenter = {.x = state->screen_width_ / 2.0f,
+                          .y = state->screen_height_ / 2.0f};
+  SetShaderValue(shader_raymarch_, march_locs_.screen_center, &screenCenter,
+                 SHADER_UNIFORM_VEC2);
 }
 void MainCamera::Shutdown(const GameStateUPtr &state) {
   button_.Shutdown(state);

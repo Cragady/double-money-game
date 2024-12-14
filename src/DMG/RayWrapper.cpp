@@ -66,7 +66,6 @@ void RayWrapper::Setup(const GameStateUPtr &state) {
   // gui_manager_->Setup(state, gui_setup_);
   window_manager_->Setup(state, gui_setup_);
   if (!gui_setup_) camera_.GuiSetup(state);
-  // TODO: fix
   camera_.DataSetup(state);
   gui_setup_ = true;
 }
