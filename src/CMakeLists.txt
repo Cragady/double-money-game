@@ -18,7 +18,8 @@ set (DMG_SOURCES
   ${DMG_SOURCES_DIR}/gui/DebugWindow.cpp
   ${DMG_SOURCES_DIR}/gui/StatsWindow.cpp
   ${DMG_SOURCES_DIR}/gui/Page.cpp
-  ${DMG_SOURCES_DIR}/gui/PageCreator.cpp
+  ${DMG_SOURCES_DIR}/gui/Scene.cpp
+  ${DMG_SOURCES_DIR}/gui/scene-creator.cpp
   ${DMG_SOURCES_DIR}/gui/element/Button.cpp
   # ${DMG_SOURCES_DIR}/gui/element/ShaderButton.cpp
   ${DMG_SOURCES_DIR}/gui/element/TextElement.cpp
@@ -36,7 +37,9 @@ set (DMG_HEADERS
   ${DMG_SOURCES_DIR}/core/GameState.hpp
   ${DMG_SOURCES_DIR}/core/RandomTracker.hpp
   ${DMG_SOURCES_DIR}/core/RandomChance.hpp
+  ${DMG_SOURCES_DIR}/core/ICoreBase.hpp
   ${DMG_SOURCES_DIR}/core/IGui.hpp
+  ${DMG_SOURCES_DIR}/core/IGuiManager.hpp
   ${DMG_SOURCES_DIR}/core/input/KeyboardInput.hpp
   ${DMG_SOURCES_DIR}/core/events/event-functions.hpp
   ${DMG_SOURCES_DIR}/core/util/color-conversion.hpp
@@ -49,7 +52,8 @@ set (DMG_HEADERS
   ${DMG_SOURCES_DIR}/gui/DebugWindow.hpp
   ${DMG_SOURCES_DIR}/gui/StatsWindow.hpp
   ${DMG_SOURCES_DIR}/gui/Page.hpp
-  ${DMG_SOURCES_DIR}/gui/PageCreator.hpp
+  ${DMG_SOURCES_DIR}/gui/Scene.hpp
+  ${DMG_SOURCES_DIR}/gui/scene-creator.hpp
   ${DMG_SOURCES_DIR}/gui/element/Button.hpp
   # ${DMG_SOURCES_DIR}/gui/element/ShaderButton.hpp
   ${DMG_SOURCES_DIR}/gui/element/TextElement.hpp

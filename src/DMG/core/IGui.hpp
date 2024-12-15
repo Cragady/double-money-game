@@ -8,6 +8,11 @@
 
 #include "DMG/core/GameState.hpp"
 
+enum class GuiType {
+  Raylib,
+  ImGui,
+};
+
 class IGui {
  public:
   virtual ~IGui() {};
@@ -25,6 +30,7 @@ class IGui {
   virtual void EndRender(const GameStateUPtr &) = 0;
   virtual void FullRender(const GameStateUPtr &) = 0;
 
+  GuiType gui_type_ = GuiType::Raylib;
   RenderTexture view_texture_;
   bool render_ready_ = false;
   bool render_ended_ = false;
@@ -35,6 +41,6 @@ class IGui {
   std::string name_ = "Debug";
 };
 
-using IGuiPtr = std::shared_ptr<IGui>;
+using IGuiSPtr = std::shared_ptr<IGui>;
 
 #endif

@@ -2,24 +2,22 @@
 #define DMG_GUI_WINDOW_MANAGER_HPP_
 
 #include <memory>
-#include <vector>
 
 #include "DMG/core/GameState.hpp"
+#include "DMG/core/IGuiManager.hpp"
 #include "DMG/gui/DebugWindow.hpp"
-#include "DMG/gui/IWindow.hpp"
 
-class WindowManager {
+class WindowManager : public IGuiManager {
  public:
   WindowManager();
   ~WindowManager();
 
-  void Setup(const GameStateUPtr &, bool);
-  void Update(const GameStateUPtr &);
-  void Shutdown(const GameStateUPtr &);
+  void Setup(const GameStateUPtr &, bool) override;
+  void Update(const GameStateUPtr &) override;
+  void Shutdown(const GameStateUPtr &) override;
 
   bool include_debug_window_ = true;
   bool debug_window_attached_ = false;
-  std::vector<IWindowPtr> windows_;
   std::shared_ptr<DebugWindow> debug_window_;
 };
 

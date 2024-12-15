@@ -2,21 +2,18 @@
 #define DMG_RAYGUI_GUI_MANAGER_HPP_
 
 #include <memory>
-#include <vector>
 
 #include "DMG/core/GameState.hpp"
-#include "DMG/core/IGui.hpp"
+#include "DMG/core/IGuiManager.hpp"
 
-class GuiManager {
+class GuiManager : public IGuiManager {
  public:
   GuiManager();
   ~GuiManager();
 
-  void Setup(const GameStateUPtr &, bool);
-  void Update(const GameStateUPtr &);
-  void Shutdown(const GameStateUPtr &);
-
-  std::vector<IGuiPtr> guis_;
+  void Setup(const GameStateUPtr &, bool) override;
+  void Update(const GameStateUPtr &) override;
+  void Shutdown(const GameStateUPtr &) override;
 };
 
 using GuiManagerSPtr = std::shared_ptr<GuiManager>;

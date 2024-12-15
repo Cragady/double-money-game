@@ -7,7 +7,6 @@
 #include <cmath>
 
 #include "DMG/core/GameState.hpp"
-#include "DMG/core/events/event-functions.hpp"
 #include "DMG/core/util/color-conversion.hpp"
 
 MainCamera::MainCamera() {
@@ -59,20 +58,24 @@ void MainCamera::GuiSetup(const GameStateUPtr &state) {
 
   color_shifting_.shift_speed_ = 20;
 
-  button_.open_ = true;
-  button_.color_shifting_.shift_speed_ = 40;
-  button_.ClickEvent = events::TestEvent;
-  button_.position_ = {2.0f, 6.6f, -5.0f};
-  button_.GuiSetup(state);
+  for (const IGuiSPtr &gui : guis_) {
+    gui->GuiSetup(state);
+  }
 }
 void MainCamera::DataSetup(const GameStateUPtr &state) {
   Vector2 screenCenter = {.x = state->screen_width_ / 2.0f,
                           .y = state->screen_height_ / 2.0f};
   SetShaderValue(shader_raymarch_, march_locs_.screen_center, &screenCenter,
                  SHADER_UNIFORM_VEC2);
+
+  for (const IGuiSPtr &gui : guis_) {
+    gui->DataSetup(state);
+  }
 }
 void MainCamera::Shutdown(const GameStateUPtr &state) {
-  button_.Shutdown(state);
+  for (const IGuiSPtr &gui : guis_) {
+    gui->Shutdown(state);
+  }
   UnloadShader(shader_);
   UnloadShader(shader_raymarch_);
 }
@@ -82,7 +85,6 @@ void MainCamera::Update(const GameStateUPtr &state) {
 
   state->mouse_ray_ = GetScreenToWorldRay(GetMousePosition(), *main_camera_);
   capture_cursor_ = IsMouseButtonDown(MOUSE_BUTTON_RIGHT);
-  button_.Update(state);
   color_shifting_.ShiftColor(state->delta_time_);
   Hsv color_to_convert = Hsv {
       .h = color_shifting_.colors_[0],
@@ -146,23 +148,23 @@ void MainCamera::Update(const GameStateUPtr &state) {
                  RL_SHADER_UNIFORM_VEC3);
 }
 void MainCamera::BeginRender(const GameStateUPtr &) {}
-void MainCamera::Render(const GameStateUPtr &) {}
-void MainCamera::EndRender(const GameStateUPtr &) {}
-void MainCamera::FullRender(const GameStateUPtr &) {}
-
-void MainCamera::BeginCamera(const GameStateUPtr &state) {
-  if (main_camera_ == nullptr) return;
-  BeginMode3D(*main_camera_);
-}
-void MainCamera::RenderCamera(const GameStateUPtr &state) {
+void MainCamera::Render(const GameStateUPtr &state) {
   DrawFloor(state);
-  button_.FullRender(state);
+  for (const IGuiSPtr &gui : guis_) {
+    gui->Update(state);
+    gui->FullRender(state);
+  }
 }
-void MainCamera::EndCamera(const GameStateUPtr &state) { EndMode3D(); }
+void MainCamera::EndRender(const GameStateUPtr &state) {}
+
+void MainCamera::FullRender(const GameStateUPtr &state) {
+  BeginRender(state);
+  Render(state);
+  EndRender(state);
+}
 
 void MainCamera::DrawFloor(const GameStateUPtr &state) {
   if (main_camera_ == nullptr) return;
-  EndMode3D();
 
   rlEnableDepthTest(); // Manually enable Depth Test to handle multiple
                        // rendering methods.
@@ -179,6 +181,7 @@ void MainCamera::DrawFloor(const GameStateUPtr &state) {
   SetShaderValue(shader_, color_loc, &render_color_[0], RL_SHADER_UNIFORM_VEC3);
   DrawGrid(200, 10.0f);
   EndShaderMode();
+  EndMode3D();
 };
 
 void MainCamera::MouseCapture(const GameStateUPtr &state) {

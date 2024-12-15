@@ -20,19 +20,19 @@ void GuiManager::Setup(const GameStateUPtr &state, bool gui_setup) {
     // guis_.push_back(button);
   }
 
-  for (const IGuiPtr &gui : guis_) {
+  for (const IGuiSPtr &gui : guis_) {
     if (!gui_setup) gui->GuiSetup(state);
     gui->DataSetup(state);
   }
 };
 void GuiManager::Update(const GameStateUPtr &state) {
-  for (const IGuiPtr &gui : guis_) {
+  for (const IGuiSPtr &gui : guis_) {
     gui->Update(state);
     gui->FullRender(state);
   }
 };
 void GuiManager::Shutdown(const GameStateUPtr &state) {
-  for (const IGuiPtr &gui : guis_) {
+  for (const IGuiSPtr &gui : guis_) {
     gui->Shutdown(state);
   }
 };

@@ -3,6 +3,8 @@
 
 #include <common.h>
 
+#include <vector>
+
 #include "DMG/core/GameState.hpp"
 #include "DMG/core/IGui.hpp"
 #include "DMG/core/util/ColorShifting.hpp"
@@ -26,16 +28,13 @@ class MainCamera : public IGui {
   void EndRender(const GameStateUPtr &) override;
   void FullRender(const GameStateUPtr &) override;
 
-  void BeginCamera(const GameStateUPtr &);
-  void RenderCamera(const GameStateUPtr &);
-  void EndCamera(const GameStateUPtr &);
-
   void DrawFloor(const GameStateUPtr &);
 
   void MouseCapture(const GameStateUPtr &);
   void CorrectMouse(const GameStateUPtr &, Vector2, Vector2);
 
-  RayButton button_;
+  std::vector<IGuiSPtr> guis_;
+  bool ready_ = false;
   Shader shader_;
   Shader shader_raymarch_;
   RaymarchLocs march_locs_ = {0};
@@ -48,5 +47,7 @@ class MainCamera : public IGui {
   std::string vs_file_name_ = "vs-basic-color.glsl";
   std::string shader_path_ = DMG_SHADER_PATH;
 };
+
+using MainCameraSPtr = std::shared_ptr<MainCamera>;
 
 #endif

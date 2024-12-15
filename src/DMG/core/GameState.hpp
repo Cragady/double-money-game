@@ -6,6 +6,7 @@
 #include "DMG/core/RandomTracker.hpp"
 #include "raylib.h"
 
+// TODO: consider moving enum to diff file
 enum GamePageFlags_ {
   GamePageFlags_None = 1 << 0,
   GamePageFlags_Debug = 1 << 1,
@@ -38,7 +39,7 @@ class GameState {
       .position = {0, 0, 0},
       .direction = {0, 0, 0},
   };
-  GamePageFlags current_page_ = GamePageFlags_Title;
+  GamePageFlags current_page_ = GamePageFlags_Debug;
   bool hard_stop_ = false;
   bool reset_game_state_ = false;
   long double current_money_ = 0;

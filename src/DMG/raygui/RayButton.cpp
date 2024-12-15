@@ -75,6 +75,7 @@ void RayButton::Update(const GameStateUPtr &state) {
 void RayButton::BeginRender(const GameStateUPtr &state) {
   if (!open_) return;
 
+  BeginMode3D(*state->main_camera_);
   BeginShaderMode(shader_);
   int color_loc = GetShaderLocation(shader_, "u_fragmentColor");
 
@@ -91,6 +92,7 @@ void RayButton::Render(const GameStateUPtr &state) {
 void RayButton::EndRender(const GameStateUPtr &state) {
   if (!open_) return;
   EndShaderMode();
+  EndMode3D();
 };
 void RayButton::FullRender(const GameStateUPtr &state) {
   BeginRender(state);

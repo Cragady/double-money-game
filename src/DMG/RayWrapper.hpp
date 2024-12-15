@@ -3,13 +3,22 @@
 
 #include "DMG/GameOptions.hpp"
 #include "DMG/core/GameState.hpp"
+#include "DMG/core/ICoreBase.hpp"
 #include "DMG/core/input/KeyboardInput.hpp"
-#include "DMG/gui/PageCreator.hpp"
-#include "DMG/gui/WindowManager.hpp"
-#include "DMG/raygui/GuiManager.hpp"
-#include "DMG/raygui/MainCamera.hpp"
+#include "DMG/gui/scene-creator.hpp"
 
-class RayWrapper {
+namespace scenecreator {
+class SceneCreator;
+}
+
+class Scene;
+using SceneSPtr = std::shared_ptr<Scene>;
+class MainCamera;
+using MainCameraSPtr = std::shared_ptr<MainCamera>;
+class DebugWindow;
+using DebugWindowSPtr = std::shared_ptr<DebugWindow>;
+
+class RayWrapper : public ICoreBase {
  public:
   RayWrapper(GameOptions game_options = GameOptions {
                  .width = 1200,
@@ -18,12 +27,15 @@ class RayWrapper {
                  .name = "Econ Wrecker: DMG"});
   ~RayWrapper();
 
+  // ICoreBase
+  void Setup(const GameStateUPtr &, bool = false) override;
+  void Update(const GameStateUPtr &) override;
+  void Shutdown(const GameStateUPtr &) override;
+
+  // RayWrapper
   void StartOfLoop();
   void EndOfLoop();
-  void Setup(const GameStateUPtr &);
   void Loop(const GameStateUPtr &);
-  void Update(const GameStateUPtr &);
-  void Shutdown(const GameStateUPtr &);
   void ImGuiDemo();
 
   int screen_width_;
@@ -31,17 +43,20 @@ class RayWrapper {
   int target_fps_;
   bool draw_fps_ = false;
 
-  PageCreator page_creator_;
-  WindowManagerSPtr window_manager_ = nullptr;
-  GuiManagerSPtr gui_manager_ = nullptr;
   KeyboardInput key_input_;
 
-  MainCamera camera_;
+  scenecreator::SceneCreator scene_creator_;
+  SceneSPtr current_scene_ = nullptr;
+  MainCameraSPtr default_camera_ = nullptr;
+  DebugWindowSPtr debug_window_ = nullptr;
   bool hard_stop_ = false;
   bool glfw_ready_ = false;
   bool imgui_demo_active_ = false;
   bool reset_gui_ = false;
   bool gui_setup_ = false;
+
+ private:
+  GamePageFlags _page_ = GamePageFlags_Debug;
 };
 
 #endif

@@ -11,7 +11,10 @@
 
 #include "DMG/RayWrapper.hpp"
 #include "DMG/core/GameState.hpp"
-// #include "DMG/raygui/GuiManager.hpp"
+#include "DMG/gui/DebugWindow.hpp"
+#include "DMG/gui/Scene.hpp"
+#include "DMG/gui/scene-creator.hpp"
+#include "DMG/raygui/MainCamera.hpp"
 #include "imgui.h"
 #include "rlImGui.h"
 
@@ -20,10 +23,11 @@ RayWrapper::RayWrapper(GameOptions game_options) {
   screen_height_ = game_options.height;
   target_fps_ = game_options.fps;
 
-  // gui_manager_ = std::make_shared<GuiManager>();
-  window_manager_ = std::make_shared<WindowManager>();
-  page_creator_ = PageCreator(window_manager_);
-  std::shared_ptr<DebugWindow> debug_window_ = window_manager_->debug_window_;
+  default_camera_ = std::make_shared<MainCamera>();
+  debug_window_ = std::make_shared<DebugWindow>();
+
+  scene_creator_ = scenecreator::SceneCreator(default_camera_, debug_window_);
+
   debug_window_->CopyBoolPtrOne(
       Dw_CbpArgs {.name = "ImGui Demo", .bool_ptr = &imgui_demo_active_});
   debug_window_->SetProgramFlag(
@@ -58,15 +62,12 @@ RayWrapper::~RayWrapper() {
   CloseWindow();
 }
 
-void RayWrapper::Setup(const GameStateUPtr &state) {
+void RayWrapper::Setup(const GameStateUPtr &state, bool) {
   state->screen_width_ = screen_width_;
   state->screen_height_ = screen_height_;
-  page_creator_.gui_setup_ = gui_setup_;
-  page_creator_.Setup(state);
-  // gui_manager_->Setup(state, gui_setup_);
-  window_manager_->Setup(state, gui_setup_);
-  if (!gui_setup_) camera_.GuiSetup(state);
-  camera_.DataSetup(state);
+  if (!current_scene_) current_scene_ = scene_creator_.Setup(state);
+  if (!current_scene_) return;
+  current_scene_->Setup(state, gui_setup_);
   gui_setup_ = true;
 }
 
@@ -98,13 +99,10 @@ void RayWrapper::Update(const GameStateUPtr &state) {
   }
   state->screen_width_ = screen_width_;
   state->screen_height_ = screen_height_;
-  camera_.Update(state);
-  camera_.BeginCamera(state);
-  camera_.RenderCamera(state);
-  camera_.EndCamera(state);
   draw_fps_ = state->draw_fps_;
-  // gui_manager_->Update(state);
-  window_manager_->Update(state);
+  if (current_scene_) {
+    current_scene_->Update(state);
+  }
   if (draw_fps_) {
     DrawFPS(10, 10);
   }
@@ -112,9 +110,8 @@ void RayWrapper::Update(const GameStateUPtr &state) {
 }
 
 void RayWrapper::Shutdown(const GameStateUPtr &state) {
-  // gui_manager_->Shutdown();
-  window_manager_->Shutdown(state);
-  camera_.Shutdown(state);
+  if (!current_scene_) return;
+  current_scene_->Shutdown(state);
 }
 
 void RayWrapper::ImGuiDemo() {

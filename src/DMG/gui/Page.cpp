@@ -20,7 +20,7 @@ void Page::Shutdown(const GameStateUPtr &state) {
 void Page::Update(const GameStateUPtr &state) {
   if (!_page_valid_) return;
   CheckCurrentPage(state);
-  for (const IWindowPtr &element : elements_) {
+  for (const IGuiSPtr &element : elements_) {
     element->open_ = is_page_present_;
   }
 };

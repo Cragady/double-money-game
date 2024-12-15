@@ -10,7 +10,8 @@ void GameState::Update() {
 
 void GameState::ManageGamePageFlag(GamePageFlags flag, bool should_be_active) {
   if (should_be_active) {
-    current_page_ |= flag;
+    // current_page_ |= flag;
+    current_page_ = flag;
   } else {
     current_page_ &= ~flag;
   }

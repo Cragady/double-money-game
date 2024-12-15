@@ -2,10 +2,10 @@
 #define DMG_GUI_PAGE_HPP_
 
 #include "DMG/core/GameState.hpp"
-#include "DMG/gui/IWindow.hpp"
+#include "DMG/core/IGui.hpp"
 #include "DMG/gui/WindowManager.hpp"
 
-class Page : public IWindow {
+class Page : public IGui {
  public:
   Page(GamePageFlags, WindowManagerSPtr = nullptr);
 
@@ -21,7 +21,7 @@ class Page : public IWindow {
   bool CheckCurrentPage(const GameStateUPtr &);
 
   WindowManagerSPtr window_manager_ = nullptr;
-  std::vector<IWindowPtr> elements_;
+  std::vector<IGuiSPtr> elements_;
   bool is_page_present_ = false;
 
  private:
