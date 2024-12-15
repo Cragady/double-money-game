@@ -12,7 +12,7 @@
 // #include "DMG/gui/element/ShaderButton.hpp"
 #include "DMG/gui/imgui/element/TextElement.hpp"
 #include "DMG/gui/imgui/examples/ImGuiMyFirstTool.hpp"
-#include "DMG/raygui/RayButton.hpp"
+#include "DMG/gui/element/RayButton.hpp"
 #include "DMG/vendor/RlImGuiDemo.hpp"
 
 namespace scenecreator {

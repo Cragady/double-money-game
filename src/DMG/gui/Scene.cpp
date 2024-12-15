@@ -1,6 +1,6 @@
 #include "DMG/gui/Scene.hpp"
 
-#include "DMG/raygui/MainCamera.hpp"
+#include "DMG/gui/MainCamera.hpp"
 
 Scene::Scene(MainCameraSPtr main_camera, DebugWindowSPtr debug_window) {
   // TODO: implement a configuration for a camera for a scene if needed

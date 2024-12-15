@@ -5,7 +5,7 @@
 
 #include "DMG/core/GameState.hpp"
 #include "DMG/core/IGuiManager.hpp"
-#include "DMG/gui/DebugWindow.hpp"
+#include "DMG/gui/imgui/DebugWindow.hpp"
 
 class WindowManager : public IGuiManager {
  public:

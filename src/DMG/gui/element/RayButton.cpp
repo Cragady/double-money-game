@@ -1,4 +1,4 @@
-#include "DMG/raygui/RayButton.hpp"
+#include "DMG/gui/element/RayButton.hpp"
 
 #include <raylib.h>
 #include <rlgl.h>

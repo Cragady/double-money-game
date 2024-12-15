@@ -11,11 +11,11 @@ set (DMG_SOURCES
   ${DMG_SOURCES_DIR}/core/events/event-functions.cpp
   ${DMG_SOURCES_DIR}/core/util/color-conversion.cpp
   ${DMG_SOURCES_DIR}/core/util/ColorShifting.cpp
-  ${DMG_SOURCES_DIR}/raygui/MainCamera.cpp
-  ${DMG_SOURCES_DIR}/raygui/RayButton.cpp
+  ${DMG_SOURCES_DIR}/gui/MainCamera.cpp
   ${DMG_SOURCES_DIR}/gui/Scene.cpp
   ${DMG_SOURCES_DIR}/gui/SceneManager.cpp
   ${DMG_SOURCES_DIR}/gui/scene-creator.cpp
+  ${DMG_SOURCES_DIR}/gui/element/RayButton.cpp
   ${DMG_SOURCES_DIR}/gui/imgui/DebugWindow.cpp
   ${DMG_SOURCES_DIR}/gui/imgui/StatsWindow.cpp
   ${DMG_SOURCES_DIR}/gui/imgui/element/Button.cpp
@@ -42,11 +42,11 @@ set (DMG_HEADERS
   ${DMG_SOURCES_DIR}/core/events/event-functions.hpp
   ${DMG_SOURCES_DIR}/core/util/color-conversion.hpp
   ${DMG_SOURCES_DIR}/core/util/ColorShifting.hpp
-  ${DMG_SOURCES_DIR}/raygui/MainCamera.hpp
-  ${DMG_SOURCES_DIR}/raygui/RayButton.hpp
+  ${DMG_SOURCES_DIR}/gui/MainCamera.hpp
   ${DMG_SOURCES_DIR}/gui/Scene.hpp
   ${DMG_SOURCES_DIR}/gui/SceneManager.hpp
   ${DMG_SOURCES_DIR}/gui/scene-creator.hpp
+  ${DMG_SOURCES_DIR}/gui/element/RayButton.hpp
   ${DMG_SOURCES_DIR}/gui/imgui/IWindow.hpp
   ${DMG_SOURCES_DIR}/gui/imgui/DebugWindow.hpp
   ${DMG_SOURCES_DIR}/gui/imgui/StatsWindow.hpp

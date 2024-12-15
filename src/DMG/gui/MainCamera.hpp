@@ -1,5 +1,5 @@
-#ifndef DMG_RAYGUI_MAIN_CAMERA_HPP_
-#define DMG_RAYGUI_MAIN_CAMERA_HPP_
+#ifndef DMG_GUI_MAIN_CAMERA_HPP_
+#define DMG_GUI_MAIN_CAMERA_HPP_
 
 #include <common.h>
 
@@ -8,7 +8,7 @@
 #include "DMG/core/GameState.hpp"
 #include "DMG/core/IGui.hpp"
 #include "DMG/core/util/ColorShifting.hpp"
-#include "DMG/raygui/RayButton.hpp"
+#include "DMG/gui/element/RayButton.hpp"
 
 struct RaymarchLocs {
   unsigned int cam_pos, cam_dir, screen_center, check_1, check_2;

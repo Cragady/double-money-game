@@ -1,4 +1,4 @@
-#include "DMG/raygui/MainCamera.hpp"
+#include "DMG/gui/MainCamera.hpp"
 
 #include <raylib.h>
 #include <raymath.h>

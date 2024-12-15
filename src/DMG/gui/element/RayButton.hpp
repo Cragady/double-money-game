@@ -1,5 +1,5 @@
-#ifndef DMG_RAYGUI_RAY_BUTTON_HPP_
-#define DMG_RAYGUI_RAY_BUTTON_HPP_
+#ifndef DMG_GUI_ELEMENT_RAY_BUTTON_HPP_
+#define DMG_GUI_ELEMENT_RAY_BUTTON_HPP_
 
 #include <common.h>
 #include <raylib.h>
