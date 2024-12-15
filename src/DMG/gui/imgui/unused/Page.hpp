@@ -1,9 +1,9 @@
-#ifndef DMG_GUI_PAGE_HPP_
-#define DMG_GUI_PAGE_HPP_
+#ifndef DMG_GUI_IMGUI_UNUSED_PAGE_HPP_
+#define DMG_GUI_IMGUI_UNUSED_PAGE_HPP_
 
 #include "DMG/core/GameState.hpp"
 #include "DMG/core/IGui.hpp"
-#include "DMG/gui/WindowManager.hpp"
+#include "DMG/gui/imgui/unused/WindowManager.hpp"
 
 class Page : public IGui {
  public:

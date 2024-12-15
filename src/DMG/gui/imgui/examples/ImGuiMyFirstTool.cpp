@@ -1,4 +1,4 @@
-#include "DMG/gui/examples/ImGuiMyFirstTool.hpp"
+#include "DMG/gui/imgui/examples/ImGuiMyFirstTool.hpp"
 
 #include <cmath>
 

@@ -1,10 +1,10 @@
-#include "DMG/gui/WindowManager.hpp"
+#include "DMG/gui/imgui/unused/WindowManager.hpp"
 
 #include <memory>
 
 #include "DMG/core/GameState.hpp"
 #include "DMG/gui/DebugWindow.hpp"
-#include "DMG/gui/examples/ImGuiMyFirstTool.hpp"
+#include "DMG/gui/imgui/examples/ImGuiMyFirstTool.hpp"
 #include "DMG/vendor/RlImGuiDemo.hpp"
 
 WindowManager::WindowManager() {

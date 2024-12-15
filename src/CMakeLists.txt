@@ -18,10 +18,10 @@ set (DMG_SOURCES
   ${DMG_SOURCES_DIR}/gui/Scene.cpp
   ${DMG_SOURCES_DIR}/gui/SceneManager.cpp
   ${DMG_SOURCES_DIR}/gui/scene-creator.cpp
-  ${DMG_SOURCES_DIR}/gui/element/Button.cpp
-  # ${DMG_SOURCES_DIR}/gui/element/ShaderButton.cpp
-  ${DMG_SOURCES_DIR}/gui/element/TextElement.cpp
-  ${DMG_SOURCES_DIR}/gui/examples/ImGuiMyFirstTool.cpp
+  ${DMG_SOURCES_DIR}/gui/imgui/element/Button.cpp
+  # ${DMG_SOURCES_DIR}/gui/imgui/element/ShaderButton.cpp
+  ${DMG_SOURCES_DIR}/gui/imgui/element/TextElement.cpp
+  ${DMG_SOURCES_DIR}/gui/imgui/examples/ImGuiMyFirstTool.cpp
   ${DMG_SOURCES_DIR}/vendor/util/raylib-text-draw-3d.cpp
   ${DMG_SOURCES_DIR}/vendor/ImageViewerWindow.cpp
   ${DMG_SOURCES_DIR}/vendor/SceneViewWindow.cpp
@@ -50,10 +50,10 @@ set (DMG_HEADERS
   ${DMG_SOURCES_DIR}/gui/Scene.hpp
   ${DMG_SOURCES_DIR}/gui/SceneManager.hpp
   ${DMG_SOURCES_DIR}/gui/scene-creator.hpp
-  ${DMG_SOURCES_DIR}/gui/element/Button.hpp
-  # ${DMG_SOURCES_DIR}/gui/element/ShaderButton.hpp
-  ${DMG_SOURCES_DIR}/gui/element/TextElement.hpp
-  ${DMG_SOURCES_DIR}/gui/examples/ImGuiMyFirstTool.hpp
+  ${DMG_SOURCES_DIR}/gui/imgui/element/Button.hpp
+  # ${DMG_SOURCES_DIR}/gui/imgui/element/ShaderButton.hpp
+  ${DMG_SOURCES_DIR}/gui/imgui/element/TextElement.hpp
+  ${DMG_SOURCES_DIR}/gui/imgui/examples/ImGuiMyFirstTool.hpp
   ${DMG_SOURCES_DIR}/vendor/util/raylib-text-draw-3d.cpp
   ${DMG_SOURCES_DIR}/vendor/ImageViewerWindow.hpp
   ${DMG_SOURCES_DIR}/vendor/SceneViewWindow.hpp

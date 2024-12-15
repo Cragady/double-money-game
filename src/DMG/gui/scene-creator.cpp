@@ -8,10 +8,10 @@
 #include "DMG/gui/DebugWindow.hpp"
 #include "DMG/gui/Scene.hpp"
 #include "DMG/gui/StatsWindow.hpp"
-#include "DMG/gui/element/Button.hpp"
+#include "DMG/gui/imgui/element/Button.hpp"
 // #include "DMG/gui/element/ShaderButton.hpp"
-#include "DMG/gui/element/TextElement.hpp"
-#include "DMG/gui/examples/ImGuiMyFirstTool.hpp"
+#include "DMG/gui/imgui/element/TextElement.hpp"
+#include "DMG/gui/imgui/examples/ImGuiMyFirstTool.hpp"
 #include "DMG/raygui/RayButton.hpp"
 #include "DMG/vendor/RlImGuiDemo.hpp"
 
