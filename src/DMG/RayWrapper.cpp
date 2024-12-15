@@ -3,7 +3,6 @@
 #include <terminal-colors.h>
 
 #include <iostream>
-#include <memory>
 // clang-format off
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
@@ -11,27 +10,14 @@
 
 #include "DMG/RayWrapper.hpp"
 #include "DMG/core/GameState.hpp"
-#include "DMG/gui/DebugWindow.hpp"
-#include "DMG/gui/Scene.hpp"
+#include "DMG/gui/SceneManager.hpp"
 #include "DMG/gui/scene-creator.hpp"
-#include "DMG/raygui/MainCamera.hpp"
-#include "imgui.h"
 #include "rlImGui.h"
 
 RayWrapper::RayWrapper(GameOptions game_options) {
   screen_width_ = game_options.width;
   screen_height_ = game_options.height;
   target_fps_ = game_options.fps;
-
-  default_camera_ = std::make_shared<MainCamera>();
-  debug_window_ = std::make_shared<DebugWindow>();
-
-  scene_creator_ = scenecreator::SceneCreator(default_camera_, debug_window_);
-
-  debug_window_->CopyBoolPtrOne(
-      Dw_CbpArgs {.name = "ImGui Demo", .bool_ptr = &imgui_demo_active_});
-  debug_window_->SetProgramFlag(
-      Dw_CbpArgs {.name = "Reset GUI", .bool_ptr = &reset_gui_});
 
   glfw_ready_ = glfwInit();
   if (!glfw_ready_) {
@@ -65,9 +51,9 @@ RayWrapper::~RayWrapper() {
 void RayWrapper::Setup(const GameStateUPtr &state, bool) {
   state->screen_width_ = screen_width_;
   state->screen_height_ = screen_height_;
-  if (!current_scene_) current_scene_ = scene_creator_.Setup(state);
-  if (!current_scene_) return;
-  current_scene_->Setup(state, gui_setup_);
+
+  scene_manager_.Setup(state, gui_setup_);
+
   gui_setup_ = true;
 }
 
@@ -100,20 +86,13 @@ void RayWrapper::Update(const GameStateUPtr &state) {
   state->screen_width_ = screen_width_;
   state->screen_height_ = screen_height_;
   draw_fps_ = state->draw_fps_;
-  if (current_scene_) {
-    current_scene_->Update(state);
-  }
+  scene_manager_.Update(state);
+  reset_gui_ = scene_manager_.reset_gui_;
   if (draw_fps_) {
     DrawFPS(10, 10);
   }
-  ImGuiDemo();
 }
 
 void RayWrapper::Shutdown(const GameStateUPtr &state) {
-  if (!current_scene_) return;
-  current_scene_->Shutdown(state);
-}
-
-void RayWrapper::ImGuiDemo() {
-  if (imgui_demo_active_) ImGui::ShowDemoWindow(&imgui_demo_active_);
+  scene_manager_.Shutdown(state);
 }

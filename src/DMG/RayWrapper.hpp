@@ -5,6 +5,7 @@
 #include "DMG/core/GameState.hpp"
 #include "DMG/core/ICoreBase.hpp"
 #include "DMG/core/input/KeyboardInput.hpp"
+#include "DMG/gui/SceneManager.hpp"
 #include "DMG/gui/scene-creator.hpp"
 
 namespace scenecreator {
@@ -36,7 +37,6 @@ class RayWrapper : public ICoreBase {
   void StartOfLoop();
   void EndOfLoop();
   void Loop(const GameStateUPtr &);
-  void ImGuiDemo();
 
   int screen_width_;
   int screen_height_;
@@ -45,13 +45,10 @@ class RayWrapper : public ICoreBase {
 
   KeyboardInput key_input_;
 
-  scenecreator::SceneCreator scene_creator_;
-  SceneSPtr current_scene_ = nullptr;
-  MainCameraSPtr default_camera_ = nullptr;
-  DebugWindowSPtr debug_window_ = nullptr;
+  SceneManager scene_manager_;
+
   bool hard_stop_ = false;
   bool glfw_ready_ = false;
-  bool imgui_demo_active_ = false;
   bool reset_gui_ = false;
   bool gui_setup_ = false;
 

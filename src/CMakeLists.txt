@@ -19,6 +19,7 @@ set (DMG_SOURCES
   ${DMG_SOURCES_DIR}/gui/StatsWindow.cpp
   ${DMG_SOURCES_DIR}/gui/Page.cpp
   ${DMG_SOURCES_DIR}/gui/Scene.cpp
+  ${DMG_SOURCES_DIR}/gui/SceneManager.cpp
   ${DMG_SOURCES_DIR}/gui/scene-creator.cpp
   ${DMG_SOURCES_DIR}/gui/element/Button.cpp
   # ${DMG_SOURCES_DIR}/gui/element/ShaderButton.cpp
@@ -53,6 +54,7 @@ set (DMG_HEADERS
   ${DMG_SOURCES_DIR}/gui/StatsWindow.hpp
   ${DMG_SOURCES_DIR}/gui/Page.hpp
   ${DMG_SOURCES_DIR}/gui/Scene.hpp
+  ${DMG_SOURCES_DIR}/gui/SceneManager.hpp
   ${DMG_SOURCES_DIR}/gui/scene-creator.hpp
   ${DMG_SOURCES_DIR}/gui/element/Button.hpp
   # ${DMG_SOURCES_DIR}/gui/element/ShaderButton.hpp
