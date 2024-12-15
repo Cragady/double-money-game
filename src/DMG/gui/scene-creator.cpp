@@ -5,9 +5,9 @@
 
 #include "DMG/core/GameState.hpp"
 #include "DMG/core/events/event-functions.hpp"
-#include "DMG/gui/DebugWindow.hpp"
+#include "DMG/gui/imgui/DebugWindow.hpp"
 #include "DMG/gui/Scene.hpp"
-#include "DMG/gui/StatsWindow.hpp"
+#include "DMG/gui/imgui/StatsWindow.hpp"
 #include "DMG/gui/imgui/element/Button.hpp"
 // #include "DMG/gui/element/ShaderButton.hpp"
 #include "DMG/gui/imgui/element/TextElement.hpp"

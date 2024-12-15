@@ -1,4 +1,4 @@
-#include "DMG/gui/StatsWindow.hpp"
+#include "DMG/gui/imgui/StatsWindow.hpp"
 
 #include <raylib.h>
 

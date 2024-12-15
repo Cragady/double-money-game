@@ -1,4 +1,4 @@
-#include "DMG/gui/DebugWindow.hpp"
+#include "DMG/gui/imgui/DebugWindow.hpp"
 
 #include <terminal-colors.h>
 

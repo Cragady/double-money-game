@@ -3,7 +3,7 @@
 #include <memory>
 
 #include "DMG/core/GameState.hpp"
-#include "DMG/gui/DebugWindow.hpp"
+#include "DMG/gui/imgui/DebugWindow.hpp"
 #include "DMG/gui/Scene.hpp"
 #include "DMG/gui/scene-creator.hpp"
 #include "DMG/raygui/MainCamera.hpp"

@@ -1,5 +1,5 @@
-#ifndef DMG_GUI_STATS_WINDOW_HPP_
-#define DMG_GUI_STATS_WINDOW_HPP_
+#ifndef DMG_GUI_IMGUI_STATS_WINDOW_HPP_
+#define DMG_GUI_IMGUI_STATS_WINDOW_HPP_
 
 #include "DMG/gui/imgui/IWindow.hpp"
 
