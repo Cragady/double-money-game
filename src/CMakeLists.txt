@@ -14,10 +14,8 @@ set (DMG_SOURCES
   ${DMG_SOURCES_DIR}/raygui/GuiManager.cpp
   ${DMG_SOURCES_DIR}/raygui/MainCamera.cpp
   ${DMG_SOURCES_DIR}/raygui/RayButton.cpp
-  ${DMG_SOURCES_DIR}/gui/WindowManager.cpp
   ${DMG_SOURCES_DIR}/gui/DebugWindow.cpp
   ${DMG_SOURCES_DIR}/gui/StatsWindow.cpp
-  ${DMG_SOURCES_DIR}/gui/Page.cpp
   ${DMG_SOURCES_DIR}/gui/Scene.cpp
   ${DMG_SOURCES_DIR}/gui/SceneManager.cpp
   ${DMG_SOURCES_DIR}/gui/scene-creator.cpp
@@ -48,11 +46,9 @@ set (DMG_HEADERS
   ${DMG_SOURCES_DIR}/raygui/GuiManager.hpp
   ${DMG_SOURCES_DIR}/raygui/MainCamera.hpp
   ${DMG_SOURCES_DIR}/raygui/RayButton.hpp
-  ${DMG_SOURCES_DIR}/gui/WindowManager.hpp
   ${DMG_SOURCES_DIR}/gui/IWindow.hpp
   ${DMG_SOURCES_DIR}/gui/DebugWindow.hpp
   ${DMG_SOURCES_DIR}/gui/StatsWindow.hpp
-  ${DMG_SOURCES_DIR}/gui/Page.hpp
   ${DMG_SOURCES_DIR}/gui/Scene.hpp
   ${DMG_SOURCES_DIR}/gui/SceneManager.hpp
   ${DMG_SOURCES_DIR}/gui/scene-creator.hpp
