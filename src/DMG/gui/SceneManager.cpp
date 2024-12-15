@@ -3,10 +3,10 @@
 #include <memory>
 
 #include "DMG/core/GameState.hpp"
-#include "DMG/gui/imgui/DebugWindow.hpp"
-#include "DMG/gui/Scene.hpp"
-#include "DMG/gui/scene-creator.hpp"
 #include "DMG/gui/MainCamera.hpp"
+#include "DMG/gui/Scene.hpp"
+#include "DMG/gui/imgui/DebugWindow.hpp"
+#include "DMG/gui/scene-creator.hpp"
 
 SceneManager::SceneManager() {
   default_camera_ = std::make_shared<MainCamera>();

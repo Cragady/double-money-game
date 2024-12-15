@@ -20,9 +20,11 @@
 //         Dw_CbpArgs {.name = my_tool->name_, .bool_ptr = &(my_tool->open_)});
 //     guis_.push_back(my_tool);
 //
-//     std::shared_ptr<RlImGuiDemo> rlimgui_demo = std::make_shared<RlImGuiDemo>();
-//     debug_window_->RlimguiCtrl(Dw_CbpArgs {.name = rlimgui_demo->name_,
-//                                            .bool_ptr = &(rlimgui_demo->open_)});
+//     std::shared_ptr<RlImGuiDemo> rlimgui_demo =
+//     std::make_shared<RlImGuiDemo>(); debug_window_->RlimguiCtrl(Dw_CbpArgs
+//     {.name = rlimgui_demo->name_,
+//                                            .bool_ptr =
+//                                            &(rlimgui_demo->open_)});
 //     guis_.push_back(rlimgui_demo);
 //   }
 // }
