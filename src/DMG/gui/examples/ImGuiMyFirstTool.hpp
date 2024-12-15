@@ -1,7 +1,7 @@
 #ifndef DMG_GUI_EXAMPLES_IMGUI_MY_FIRST_TOOL_HPP_
 #define DMG_GUI_EXAMPLES_IMGUI_MY_FIRST_TOOL_HPP_
 
-#include "DMG/gui/IWindow.hpp"
+#include "DMG/gui/imgui/IWindow.hpp"
 
 class ImGuiMyFirstTool : public IWindow {
  public:

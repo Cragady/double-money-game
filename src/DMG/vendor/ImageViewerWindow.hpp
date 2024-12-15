@@ -1,7 +1,7 @@
 #ifndef IMAGE_VIEWER_WINDOW_HPP
 #define IMAGE_VIEWER_WINDOW_HPP
 
-#include "DMG/gui/IWindow.hpp"
+#include "DMG/gui/imgui/IWindow.hpp"
 
 class ImageViewerWindow : public IWindow {
  public:

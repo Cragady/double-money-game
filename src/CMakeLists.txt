@@ -46,7 +46,7 @@ set (DMG_HEADERS
   ${DMG_SOURCES_DIR}/raygui/GuiManager.hpp
   ${DMG_SOURCES_DIR}/raygui/MainCamera.hpp
   ${DMG_SOURCES_DIR}/raygui/RayButton.hpp
-  ${DMG_SOURCES_DIR}/gui/IWindow.hpp
+  ${DMG_SOURCES_DIR}/gui/imgui/IWindow.hpp
   ${DMG_SOURCES_DIR}/gui/DebugWindow.hpp
   ${DMG_SOURCES_DIR}/gui/StatsWindow.hpp
   ${DMG_SOURCES_DIR}/gui/Scene.hpp

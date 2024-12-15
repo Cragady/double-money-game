@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "DMG/gui/IWindow.hpp"
+#include "DMG/gui/imgui/IWindow.hpp"
 #include "imgui.h"
 
 template <typename T = void>

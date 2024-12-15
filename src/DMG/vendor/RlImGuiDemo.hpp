@@ -3,6 +3,7 @@
 
 #include "DMG/vendor/ImageViewerWindow.hpp"
 #include "DMG/vendor/SceneViewWindow.hpp"
+#include "DMG/gui/imgui/IWindow.hpp"
 
 class RlImGuiDemo : public IWindow {
  public:

@@ -1,5 +1,5 @@
-#ifndef DMG_GUI_I_WINDOW_HPP_
-#define DMG_GUI_I_WINDOW_HPP_
+#ifndef DMG_GUI_IMGUI_I_WINDOW_HPP_
+#define DMG_GUI_IMGUI_I_WINDOW_HPP_
 
 #include <raylib.h>
 

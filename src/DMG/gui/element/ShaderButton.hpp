@@ -6,7 +6,7 @@
 // #include <string>
 //
 // #include "DMG/core/util/ColorShifting.hpp"
-// #include "DMG/gui/IWindow.hpp"
+// #include "DMG/gui/imgui/IWindow.hpp"
 //
 // class ShaderButton : public IWindow {
 //  public:

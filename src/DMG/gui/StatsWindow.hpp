@@ -1,7 +1,7 @@
 #ifndef DMG_GUI_STATS_WINDOW_HPP_
 #define DMG_GUI_STATS_WINDOW_HPP_
 
-#include "DMG/gui/IWindow.hpp"
+#include "DMG/gui/imgui/IWindow.hpp"
 
 class StatsWindow : public IWindow {
  public:

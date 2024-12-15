@@ -4,7 +4,7 @@
 #include <raylib.h>
 
 #include "DMG/core/GameState.hpp"
-#include "DMG/gui/IWindow.hpp"
+#include "DMG/gui/imgui/IWindow.hpp"
 
 // TODO: clean/dry this class up
 

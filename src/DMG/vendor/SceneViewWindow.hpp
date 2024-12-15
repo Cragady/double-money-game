@@ -3,7 +3,7 @@
 
 #include <raylib.h>
 
-#include "DMG/gui/IWindow.hpp"
+#include "DMG/gui/imgui/IWindow.hpp"
 
 class SceneViewWindow : public IWindow {
  public:
