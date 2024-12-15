@@ -11,7 +11,6 @@ set (DMG_SOURCES
   ${DMG_SOURCES_DIR}/core/events/event-functions.cpp
   ${DMG_SOURCES_DIR}/core/util/color-conversion.cpp
   ${DMG_SOURCES_DIR}/core/util/ColorShifting.cpp
-  ${DMG_SOURCES_DIR}/raygui/GuiManager.cpp
   ${DMG_SOURCES_DIR}/raygui/MainCamera.cpp
   ${DMG_SOURCES_DIR}/raygui/RayButton.cpp
   ${DMG_SOURCES_DIR}/gui/DebugWindow.cpp
@@ -43,7 +42,6 @@ set (DMG_HEADERS
   ${DMG_SOURCES_DIR}/core/events/event-functions.hpp
   ${DMG_SOURCES_DIR}/core/util/color-conversion.hpp
   ${DMG_SOURCES_DIR}/core/util/ColorShifting.hpp
-  ${DMG_SOURCES_DIR}/raygui/GuiManager.hpp
   ${DMG_SOURCES_DIR}/raygui/MainCamera.hpp
   ${DMG_SOURCES_DIR}/raygui/RayButton.hpp
   ${DMG_SOURCES_DIR}/gui/imgui/IWindow.hpp
