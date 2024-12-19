@@ -6,6 +6,7 @@
 imgui.ini
 gladsources/
 *.log
+gdb-commands/main.txt
 
 # Cmake
 CMakeLists.txt.user

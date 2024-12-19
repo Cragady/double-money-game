@@ -18,6 +18,23 @@ add_custom_target(
   COMMAND valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=${CMAKE_SOURCE_DIR}/log/valgrind.log ${CMAKE_SOURCE_DIR}/build/DMG
 )
 
+if (NOT EXISTS "${CMAKE_SOURCE_DIR}/gdb-commands/main.txt")
+  execute_process(
+    COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_SOURCE_DIR}/gdb-commands/example-main.txt" "${CMAKE_SOURCE_DIR}/gdb-commands/main.txt"
+  )
+endif()
+
+add_custom_target(
+  gdb
+  COMMAND ${CMAKE_COMMAND} -DGENERATE_DEBUG_INFO=true .
+)
+
+add_custom_target(
+  run-gdb
+  DEPENDS gdb DMG ${CMAKE_SOURCE_DIR}/gdb-commands/main.txt
+  COMMAND gdb ${CMAKE_SOURCE_DIR}/build/DMG --command ${CMAKE_SOURCE_DIR}/gdb-commands/main.txt
+)
+
 add_custom_target(
   og
   COMMAND gcc ${CMAKE_SOURCE_DIR}/ref/double-money-game.c -Iinclude -Wall -Wpedantic -Werror -o ${CMAKE_SOURCE_DIR}/build/og.out

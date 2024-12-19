@@ -11,6 +11,11 @@ add_if_flag_compiles(-Werror=implicit-function-declaration CMAKE_C_FLAGS)
 # Allows some casting of pointers without generating a warning
 add_if_flag_compiles(-fno-strict-aliasing CMAKE_C_FLAGS)
 
+if (GENERATE_DEBUG_INFO)
+  add_if_flag_compiles(-g CMAKE_C_FLAGS)
+  add_if_flag_compiles(-g CMAKE_CXX_FLAGS)
+endif()
+
 if (ENABLE_MSAN AND ENABLE_ASAN)
     # MSAN and ASAN both work on memory - ASAN does more things
     MESSAGE(WARNING "Compiling with both AddressSanitizer and MemorySanitizer is not recommended")
