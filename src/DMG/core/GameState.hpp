@@ -18,7 +18,9 @@ enum GamePageFlags_ {
 
 using GamePageFlags = int;
 
+class DebugWindow;
 using CameraSPtr = std::shared_ptr<Camera>;
+using DebugWindowWPtr = std::weak_ptr<DebugWindow>;
 
 class GameState {
  public:
@@ -27,6 +29,8 @@ class GameState {
   bool GetGamePageFlag(GamePageFlags);
   int GetTotalButtonClicks();
 
+  // TODO: change below to react to compile time constant somewhere
+  bool is_debug_active_ = true;
   float delta_time_ = 0.0f;
   double total_elapsed_time_ = 0.0f;
   int fps_ = 0;
@@ -34,6 +38,7 @@ class GameState {
   int screen_width_ = 0;
   int screen_height_ = 0;
   CameraSPtr main_camera_ = nullptr;
+  DebugWindowWPtr debug_window_;
 
   Ray mouse_ray_ = {
       .position = {0, 0, 0},

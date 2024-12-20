@@ -10,7 +10,7 @@
 
 SceneManager::SceneManager() {
   default_camera_ = std::make_shared<MainCamera>();
-  debug_window_ = std::make_shared<DebugWindow>();
+  debug_window_ = DebugWindow::Create();
 
   scene_creator_ = scenecreator::SceneCreator(default_camera_, debug_window_);
 

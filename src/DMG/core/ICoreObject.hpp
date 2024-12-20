@@ -3,10 +3,14 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtc/quaternion.hpp>
+#include <memory>
+
+class ICoreObject;
+using ICoreObjectSPtr = std::shared_ptr<ICoreObject>;
 
 class ICoreObject {
  public:
-  virtual ICoreObject *SelectObject() = 0;
+  virtual ICoreObjectSPtr SelectObject() = 0;
 
   glm::vec3 position_ = glm::vec3(0.0f);
   glm::quat rotation_ = glm::quat();

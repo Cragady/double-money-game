@@ -11,9 +11,13 @@
 #include "DMG/core/GameState.hpp"
 #include "DMG/core/util/color-conversion.hpp"
 #include "DMG/gui/GuiObject.hpp"
+#include "DMG/gui/imgui/DebugWindow.hpp"
 #include "DMG/vendor/util/raylib-text-draw-3d.hpp"
 
-RayButton::RayButton() { name_ = "Test Button"; }
+RayButton::RayButton() {
+  name_ = "Test Button";
+  gui_object_ = GuiObject::Create();
+}
 
 RayButton::RayButton(char *fs_name, char *vs_name, std::string shader_path)
     : RayButton() {
@@ -43,10 +47,10 @@ void RayButton::Update(const GameStateUPtr &state) {
       .v = 1,
   };
 
-  Vector3 position = {gui_object_.position_.x, gui_object_.position_.y,
-                      gui_object_.position_.z};
-  Vector3 size = {gui_object_.size_.x, gui_object_.size_.y,
-                  gui_object_.size_.z};
+  Vector3 position = {gui_object_->position_.x, gui_object_->position_.y,
+                      gui_object_->position_.z};
+  Vector3 size = {gui_object_->size_.x, gui_object_->size_.y,
+                  gui_object_->size_.z};
 
   RayCollision collision = GetRayCollisionBox(
       state->mouse_ray_,
@@ -62,14 +66,7 @@ void RayButton::Update(const GameStateUPtr &state) {
 
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
       button_pressed_ = true;
-      if (ClickEvent) {
-        ClickEvent(state);
-      } else {
-        std::cout << TERM_YEL
-            "Click Event not assigned! Assign it via constructor or "
-            "post ctor!" TERM_CRESET
-                  << std::endl;
-      }
+      ClickEventWrapper(state);
     }
   }
 
@@ -90,10 +87,10 @@ void RayButton::BeginRender(const GameStateUPtr &state) {
 void RayButton::Render(const GameStateUPtr &state) {
   if (!open_) return;
 
-  Vector3 position = {gui_object_.position_.x, gui_object_.position_.y,
-                      gui_object_.position_.z};
-  Vector3 size = {gui_object_.size_.x, gui_object_.size_.y,
-                  gui_object_.size_.z};
+  Vector3 position = {gui_object_->position_.x, gui_object_->position_.y,
+                      gui_object_->position_.z};
+  Vector3 size = {gui_object_->size_.x, gui_object_->size_.y,
+                  gui_object_->size_.z};
   DrawCubeV(position, size, WHITE);
   // DrawRectangleRec(rect_, WHITE);
   // DrawTexture(texture_2d_, 0, 0, WHITE);
@@ -123,17 +120,17 @@ void RayButton::RenderText(const GameStateUPtr &state) {
       font_, display_text.c_str(), test_font_size, font_spacing, line_spacing);
   bool resize_cube = false;
 
-  Vector3 position = {gui_object_.position_.x, gui_object_.position_.y,
-                      gui_object_.position_.z};
-  Vector3 size = {gui_object_.size_.x, gui_object_.size_.y,
-                  gui_object_.size_.z};
+  Vector3 position = {gui_object_->position_.x, gui_object_->position_.y,
+                      gui_object_->position_.z};
+  Vector3 size = {gui_object_->size_.x, gui_object_->size_.y,
+                  gui_object_->size_.z};
 
   if (text_size.x > size.x) {
-    gui_object_.size_.x = text_size.x + 0.5f;
+    gui_object_->size_.x = text_size.x + 0.5f;
     resize_cube = true;
   }
   if (text_size.y > size.y) {
-    gui_object_.size_.y = text_size.y + 0.5f;
+    gui_object_->size_.y = text_size.y + 0.5f;
     resize_cube = true;
   }
   if (resize_cube) {
@@ -190,6 +187,26 @@ void RayButton::RenderText(const GameStateUPtr &state) {
                         state->total_elapsed_time_, WHITE);
   rlPopMatrix();
 };
+
+void RayButton::ClickEventWrapper(const GameStateUPtr &state) {
+  // TODO: fix || true below - we should have compile time constants set this
+  // somewhere in scene-creator or elsewhere
+  gui_object_->selectable_ = true;
+  if (gui_object_->selectable_) {
+    DebugWindowSPtr debug = state->debug_window_.lock();
+    if (debug) {
+      debug->SetObjectReference(gui_object_->SelectObject());
+    }
+  }
+  if (ClickEvent) {
+    ClickEvent(state);
+  } else {
+    std::cout << TERM_YEL
+        "Click Event not assigned! Assign it via constructor or "
+        "post ctor!" TERM_CRESET
+              << std::endl;
+  }
+}
 
 void RayButton::DefaultEvent(const GameStateUPtr &) {
   std::cout << "Click Event!!!" << std::endl;

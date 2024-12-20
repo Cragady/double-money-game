@@ -2,17 +2,25 @@
 
 #include <terminal-colors.h>
 
+#include <cstdio>
 #include <iostream>
+#include <string>
 
 #include "DMG/core/GameState.hpp"
+#include "DMG/core/ICoreObject.hpp"
+#include "DMG/gui/element/RayButton.hpp"
 #include "imgui.h"
 
 // TODO: clean/dry this class up
 
-DebugWindow::DebugWindow() {
+DebugWindow::DebugWindow(Private) {
   open_ = true;
   name_ = "Debug Window";
   // flags_ = ImGuiWindowFlags_NoBackground;
+}
+
+DebugWindowSPtr DebugWindow::Create() {
+  return std::make_shared<DebugWindow>(Private());
 }
 
 DebugWindow::~DebugWindow() { open_ = false; }
@@ -20,7 +28,9 @@ DebugWindow::~DebugWindow() { open_ = false; }
 void DebugWindow::DataSetup(const GameStateUPtr &state) {}
 void DebugWindow::GuiSetup(const GameStateUPtr &state) {}
 void DebugWindow::Shutdown(const GameStateUPtr &state) {}
-void DebugWindow::Update(const GameStateUPtr &state) {}
+void DebugWindow::Update(const GameStateUPtr &state) {
+  state->debug_window_ = shared_from_this();
+}
 void DebugWindow::BeginRender(const GameStateUPtr &state) {
   render_ready_ = ImGui::Begin(name_.c_str(), &open_, flags_);
   render_ended_ = false;
@@ -50,6 +60,60 @@ void DebugWindow::Render(const GameStateUPtr &state) {
       if (ImGui::Button("Close Game")) {
         state->hard_stop_ = true;
       }
+      ImGui::EndTabItem();
+    }
+
+    if (state->is_debug_active_ && ImGui::BeginTabItem("Object Ctl")) {
+      ICoreObjectSPtr selected_object = _selected_object_.lock();
+      if (selected_object) {
+        static char buf_dec_x[BYTE_32] = "";
+        if (buf_dec_x[0] == 0) {
+          std::snprintf(buf_dec_x, BYTE_32 - 1, "%f",
+                        selected_object->position_.x);
+          buf_dec_x[BYTE_32 - 1] = 0;
+        }
+        static char buf_dec_y[BYTE_32] = "";
+        if (buf_dec_y[0] == 0) {
+          std::snprintf(buf_dec_y, BYTE_32 - 1, "%f",
+                        selected_object->position_.y);
+          buf_dec_y[BYTE_32 - 1] = 0;
+        }
+        static char buf_dec_z[BYTE_32] = "";
+        if (buf_dec_z[0] == 0) {
+          std::snprintf(buf_dec_z, BYTE_32 - 1, "%f",
+                        selected_object->position_.z);
+          buf_dec_z[BYTE_32 - 1] = 0;
+        }
+        ImGui::Text("Position: x:%f, y:%f, z:%f", selected_object->position_.x,
+                    selected_object->position_.y, selected_object->position_.z);
+        if (_editing_object_) {
+          ImGui::InputText("Pos X", buf_dec_x, BYTE_32,
+                           ImGuiInputTextFlags_CharsDecimal);
+          ImGui::InputText("Pos Y", buf_dec_y, BYTE_32,
+                           ImGuiInputTextFlags_CharsDecimal);
+          ImGui::InputText("Pos Z", buf_dec_z, BYTE_32,
+                           ImGuiInputTextFlags_CharsDecimal);
+        }
+
+        if (!_editing_object_) {
+          if (ImGui::Button("Edit")) {
+            _editing_object_ = true;
+          }
+        } else {
+          if (ImGui::Button("Cancel")) {
+            _editing_object_ = false;
+          }
+          if (ImGui::Button("Save")) {
+            selected_object->position_.x = std::stof(buf_dec_x);
+            selected_object->position_.y = std::stof(buf_dec_y);
+            selected_object->position_.z = std::stof(buf_dec_z);
+          }
+        }
+        // _editing_object_
+      } else {
+        ImGui::SeparatorText("Please select an object to edit.");
+      }
+
       ImGui::EndTabItem();
     }
 
@@ -172,3 +236,7 @@ void DebugWindow::SetProgramFlag2(Dw_CbpArgs ctrl) {
   _program_flag_2_ = ctrl.bool_ptr;
   _program_flag_show_2_ = ctrl.name;
 };
+
+void DebugWindow::SetObjectReference(ICoreObjectWPtr ref) {
+  _selected_object_ = ref;
+}

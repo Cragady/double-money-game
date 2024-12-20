@@ -51,6 +51,8 @@ RayWrapper::~RayWrapper() {
 void RayWrapper::Setup(const GameStateUPtr &state, bool) {
   state->screen_width_ = screen_width_;
   state->screen_height_ = screen_height_;
+  // TODO: make reactive to startup
+  state->is_debug_active_ = true;
 
   scene_manager_.Setup(state, gui_setup_);
 

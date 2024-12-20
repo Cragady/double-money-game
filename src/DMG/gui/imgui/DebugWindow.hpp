@@ -3,6 +3,8 @@
 
 #include <raylib.h>
 
+#include <memory>
+
 #include "DMG/core/GameState.hpp"
 #include "DMG/gui/imgui/IWindow.hpp"
 
@@ -13,9 +15,20 @@ struct Dw_CbpArgs {
   bool *bool_ptr;
 };
 
-class DebugWindow : public IWindow {
+class ICoreObject;
+class DebugWindow;
+using DebugWindowSPtr = std::shared_ptr<DebugWindow>;
+using ICoreObjectWPtr = std::weak_ptr<ICoreObject>;
+
+class DebugWindow : public IWindow,
+                    public std::enable_shared_from_this<DebugWindow> {
+ private:
+  struct Private {
+    explicit Private() = default;
+  };
+
  public:
-  DebugWindow();
+  DebugWindow(Private);
   DebugWindow(bool *, bool *);
   ~DebugWindow();
   // Copy ctors
@@ -24,6 +37,8 @@ class DebugWindow : public IWindow {
   // Move ctors
   DebugWindow(DebugWindow &&) = delete;
   DebugWindow &operator=(DebugWindow &&) = delete;
+
+  static DebugWindowSPtr Create();
 
   void GuiSetup(const GameStateUPtr &) override;
   void DataSetup(const GameStateUPtr &) override;
@@ -39,6 +54,7 @@ class DebugWindow : public IWindow {
   void RlimguiCtrl(Dw_CbpArgs ctrl);
   void SetProgramFlag(Dw_CbpArgs ctrl);
   void SetProgramFlag2(Dw_CbpArgs ctrl);
+  void SetObjectReference(ICoreObjectWPtr);
 
  private:
   bool _default_false_ = false;
@@ -52,6 +68,9 @@ class DebugWindow : public IWindow {
   std::string _control_2_ = "";
   bool *_rlimgui_show_ = nullptr;
   std::string _rlimgui_name_ = "";
+
+  std::weak_ptr<ICoreObject> _selected_object_;
+  bool _editing_object_ = false;
 };
 
 #endif

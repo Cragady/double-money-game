@@ -139,8 +139,8 @@ void SceneCreator::CreateDebugScene(const GameStateUPtr &state) {
     debug_3D_button->open_ = true;
     debug_3D_button->color_shifting_.shift_speed_ = 40;
 
-    debug_3D_button->gui_object_.position_ = glm::vec3(2.0f, 6.6f, -5.0f);
-    debug_3D_button->gui_object_.size_ = glm::vec3(10.0f, 2.5f, 2.0f);
+    debug_3D_button->gui_object_->position_ = glm::vec3(2.0f, 6.6f, -5.0f);
+    debug_3D_button->gui_object_->size_ = glm::vec3(10.0f, 2.5f, 2.0f);
     AddWindowToCollections(debug_3D_button);
   };
   AddAndCreate(lambda, &current_element);
