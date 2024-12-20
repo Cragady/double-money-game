@@ -6,6 +6,7 @@
 
 #include "DMG/core/IGui.hpp"
 #include "DMG/core/util/ColorShifting.hpp"
+#include "DMG/gui/GuiObject.hpp"
 
 class RayButton : public IGui {
  public:
@@ -28,8 +29,8 @@ class RayButton : public IGui {
 
   Font font_;
   Shader shader_;
-  Vector3 position_ = {2.0f, 20.0f, -5.0f};
-  Vector3 size_ = {10.0f, 2.5f, 2.0f};
+
+  GuiObject gui_object_;
   bool button_pressed_ = false;
   ColorShifting color_shifting_;
   float render_color_[3];

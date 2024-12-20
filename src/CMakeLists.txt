@@ -12,6 +12,7 @@ set (DMG_SOURCES
   ${DMG_SOURCES_DIR}/core/util/color-conversion.cpp
   ${DMG_SOURCES_DIR}/core/util/ColorShifting.cpp
   ${DMG_SOURCES_DIR}/gui/MainCamera.cpp
+  ${DMG_SOURCES_DIR}/gui/GuiObject.cpp
   ${DMG_SOURCES_DIR}/gui/Scene.cpp
   ${DMG_SOURCES_DIR}/gui/SceneManager.cpp
   ${DMG_SOURCES_DIR}/gui/scene-creator.cpp
@@ -33,6 +34,7 @@ set (DMG_HEADERS
   ${DMG_SOURCES_DIR}/GameOptions.hpp
   ${DMG_SOURCES_DIR}/RayWrapper.hpp
   ${DMG_SOURCES_DIR}/core/GameState.hpp
+  ${DMG_SOURCES_DIR}/core/ICoreObject.hpp
   ${DMG_SOURCES_DIR}/core/RandomTracker.hpp
   ${DMG_SOURCES_DIR}/core/RandomChance.hpp
   ${DMG_SOURCES_DIR}/core/ICoreBase.hpp
@@ -43,6 +45,7 @@ set (DMG_HEADERS
   ${DMG_SOURCES_DIR}/core/util/color-conversion.hpp
   ${DMG_SOURCES_DIR}/core/util/ColorShifting.hpp
   ${DMG_SOURCES_DIR}/gui/MainCamera.hpp
+  ${DMG_SOURCES_DIR}/gui/GuiObject.hpp
   ${DMG_SOURCES_DIR}/gui/Scene.hpp
   ${DMG_SOURCES_DIR}/gui/SceneManager.hpp
   ${DMG_SOURCES_DIR}/gui/scene-creator.hpp

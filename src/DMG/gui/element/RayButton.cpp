@@ -10,12 +10,13 @@
 
 #include "DMG/core/GameState.hpp"
 #include "DMG/core/util/color-conversion.hpp"
+#include "DMG/gui/GuiObject.hpp"
 #include "DMG/vendor/util/raylib-text-draw-3d.hpp"
 
 RayButton::RayButton() { name_ = "Test Button"; }
 
-RayButton::RayButton(char *fs_name, char *vs_name, std::string shader_path) {
-  name_ = "Test Button";
+RayButton::RayButton(char *fs_name, char *vs_name, std::string shader_path)
+    : RayButton() {
   fs_file_name_ = fs_name;
   vs_file_name_ = vs_name;
   shader_path_ = shader_path;
@@ -42,13 +43,18 @@ void RayButton::Update(const GameStateUPtr &state) {
       .v = 1,
   };
 
+  Vector3 position = {gui_object_.position_.x, gui_object_.position_.y,
+                      gui_object_.position_.z};
+  Vector3 size = {gui_object_.size_.x, gui_object_.size_.y,
+                  gui_object_.size_.z};
+
   RayCollision collision = GetRayCollisionBox(
       state->mouse_ray_,
       (BoundingBox) {
-          (Vector3) {position_.x - size_.x / 2, position_.y - size_.y / 2,
-                     position_.z - size_.z / 2},
-          (Vector3) {position_.x + size_.x / 2, position_.y + size_.y / 2,
-                     position_.z + size_.z / 2}});
+          (Vector3) {position.x - size.x / 2, position.y - size.y / 2,
+                     position.z - size.z / 2},
+          (Vector3) {position.x + size.x / 2, position.y + size.y / 2,
+                     position.z + size.z / 2}});
 
   if (collision.hit) {
     color_to_convert.s = 0.5f;
@@ -84,7 +90,11 @@ void RayButton::BeginRender(const GameStateUPtr &state) {
 void RayButton::Render(const GameStateUPtr &state) {
   if (!open_) return;
 
-  DrawCubeV(position_, size_, WHITE);
+  Vector3 position = {gui_object_.position_.x, gui_object_.position_.y,
+                      gui_object_.position_.z};
+  Vector3 size = {gui_object_.size_.x, gui_object_.size_.y,
+                  gui_object_.size_.z};
+  DrawCubeV(position, size, WHITE);
   // DrawRectangleRec(rect_, WHITE);
   // DrawTexture(texture_2d_, 0, 0, WHITE);
   RenderText(state);
@@ -112,17 +122,23 @@ void RayButton::RenderText(const GameStateUPtr &state) {
   Vector3 text_size = vutil::MeasureText3D(
       font_, display_text.c_str(), test_font_size, font_spacing, line_spacing);
   bool resize_cube = false;
-  if (text_size.x > size_.x) {
-    size_.x = text_size.x + 0.5f;
+
+  Vector3 position = {gui_object_.position_.x, gui_object_.position_.y,
+                      gui_object_.position_.z};
+  Vector3 size = {gui_object_.size_.x, gui_object_.size_.y,
+                  gui_object_.size_.z};
+
+  if (text_size.x > size.x) {
+    gui_object_.size_.x = text_size.x + 0.5f;
     resize_cube = true;
   }
-  if (text_size.y > size_.y) {
-    size_.y = text_size.y + 0.5f;
+  if (text_size.y > size.y) {
+    gui_object_.size_.y = text_size.y + 0.5f;
     resize_cube = true;
   }
   if (resize_cube) {
     BeginShaderMode(shader_);
-    DrawCubeV(position_, size_, WHITE);
+    DrawCubeV(position, size, WHITE);
     EndShaderMode();
   }
 
@@ -136,11 +152,11 @@ void RayButton::RenderText(const GameStateUPtr &state) {
   glm::vec3 og_text_pos = glm::vec3(
       // .x = (rect_.width / 2 + rect_.x) - text_size.x / 2,
       // .y = (rect_.height / 2 + rect_.y) - text_size.y / 2,
-      // (position_.x + size_.x / 2) - text_size.x / 2,
-      // (position_.y + size_.y / 2) - text_size.y / 2,
-      (position_.x) - text_size.x / 2,
+      // (position.x +size.x / 2) - text_size.x / 2,
+      // (position.y +size.y / 2) - text_size.y / 2,
+      (position.x) - text_size.x / 2,
       // We use .z here because the text is originally rotated!
-      (position_.y) + text_size.z / 2, (position_.z + size_.z / 2) + 0.1);
+      (position.y) + text_size.z / 2, (position.z + size.z / 2) + 0.1);
 
   for (int i = 0; i < ROTS; i++) {
     glm::vec3 rotation = rotations[i];
