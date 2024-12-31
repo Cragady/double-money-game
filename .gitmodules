@@ -19,3 +19,6 @@
 [submodule "vendor/glm"]
 	path = vendor/glm
 	url = git@github.com:g-truc/glm.git
+[submodule "vendor/yaml-cpp"]
+	path = vendor/yaml-cpp
+	url = git@github.com:jbeder/yaml-cpp.git

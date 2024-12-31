@@ -40,6 +40,7 @@ include(RLImGuiImport)
 include(glfwImport)
 include(gladImport)
 include(glmImport)
+include(yaml-cppInclude)
 
 include(CompilerFlags)
 include(PlatformFlags)
@@ -53,6 +54,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 add_subdirectory(src ${BUILD_OUTPUT}/DMG_SRC)
 
 add_subdirectory(test ${BUILD_OUTPUT}/test)
+
+add_subdirectory(ref/yaml-test ${BUILD_OUTPUT}/YamlTest_SRC)
 
 include(CustomTargetsImport)
 

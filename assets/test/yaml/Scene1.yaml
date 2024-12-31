@@ -1,0 +1,4 @@
+name: Scene1
+objects:
+  - assets/test/yaml/NewObject.yaml
+  - assets/test/yaml/GameStuff.yaml

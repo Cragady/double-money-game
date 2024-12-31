@@ -90,7 +90,7 @@ target_include_directories(DMGlib
   $<BUILD_INTERFACE:${DMG_SOURCES_DIR}/..>
   $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
 )
-target_link_libraries(DMGlib raylib imgui rlimgui glad_gl_core_33 glfw glm::glm)
+target_link_libraries(DMGlib raylib imgui rlimgui glad_gl_core_33 glfw glm::glm yaml-cpp::yaml-cpp)
 
 add_executable(DMG main.cpp)
 target_link_libraries(DMG DMGlib)

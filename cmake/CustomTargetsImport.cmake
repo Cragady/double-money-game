@@ -78,3 +78,8 @@ add_custom_target(
   git-clean
   COMMAND git clean -dfX --exclude="\!.idea/" --exclude="\!.idea/*" --exclude="\!.playground/" --exclude="\!.playground/*" --exclude="\!log/*" --exclude="\!imgui.ini"
 )
+
+add_custom_target(
+  yaml-run
+  COMMAND YamlTest
+)
