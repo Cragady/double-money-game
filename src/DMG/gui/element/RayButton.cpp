@@ -14,9 +14,11 @@
 #include "DMG/gui/imgui/DebugWindow.hpp"
 #include "DMG/vendor/util/raylib-text-draw-3d.hpp"
 
+// TODO: implement display text thats separate from name
 RayButton::RayButton() {
-  name_ = "Test Button";
+  name_ = "RayButton Debug";
   gui_object_ = GuiObject::Create();
+  gui_object_->name_ = name_;
 }
 
 RayButton::RayButton(char *fs_name, char *vs_name, std::string shader_path)
@@ -74,7 +76,14 @@ void RayButton::Update(const GameStateUPtr &state) {
   render_color_[0] = (float)color_h.r;
   render_color_[1] = (float)color_h.g;
   render_color_[2] = (float)color_h.b;
+
+  if (gui_object_->updateable_) {
+    name_ = gui_object_->name_;
+    gui_object_->size_ = gui_object_->og_size_;
+    gui_object_->updateable_ = false;
+  }
 };
+
 void RayButton::BeginRender(const GameStateUPtr &state) {
   if (!open_) return;
 
@@ -169,6 +178,7 @@ void RayButton::RenderText(const GameStateUPtr &state) {
     rotation_matrix =
         glm::rotate(rotation_matrix, glm::radians(angle), rotation);
   }
+
   glm::vec3 rotated_text_pos = rotation_matrix * glm::vec4(og_text_pos, 1);
   Vector3 text_pos = {
       .x = rotated_text_pos.x,

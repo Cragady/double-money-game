@@ -38,7 +38,7 @@ class IGui {
   RenderTexture texture_;
   bool focused_ = false;
   Rectangle content_rect_ = {0};
-  std::string name_ = "Debug";
+  std::string name_ = "IGui Debug";
 };
 
 using IGuiSPtr = std::shared_ptr<IGui>;

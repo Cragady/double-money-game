@@ -7,7 +7,9 @@ GuiObject::GuiObject(glm::vec3 position, glm::vec3 scale, glm::vec3 size,
     : GuiObject(Private()) {
   position_ = position;
   scale_ = scale;
+  og_scale_ = scale;
   size_ = size;
+  og_size_ = size;
   rotation_ = rotation;
 };
 

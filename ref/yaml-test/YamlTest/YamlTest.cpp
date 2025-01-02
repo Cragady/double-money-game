@@ -6,7 +6,9 @@
 #include <cstdio>
 #include <fstream>
 #include <iostream>
+#include <string>
 
+#include "yaml-cpp/node/detail/iterator_fwd.h"
 #include "yaml-cpp/node/parse.h"
 
 const int BYTE_1024 = 1024;
@@ -66,13 +68,33 @@ void YamlTest::Run() {
 
     YAML::Node current = objects[i];
 
-    std::cout << "Name: " << current["name"].as<std::string>() << std::endl;
-    // NOTE: the '.as<float>()' conversions here are not necessary.
-    // Just showing.
-    std::cout << "Pos: { x: " << current["position"]["x"].as<float>();
-    std::cout << ", y: " << current["position"]["y"].as<float>();
-    std::cout << ", z: " << current["position"]["z"].as<float>() << " }"
-              << std::endl;
+    for (YAML::const_iterator it = current.begin(); it != current.end(); it++) {
+      std::string key = it->first.as<std::string>();
+      bool captured = false;
+
+      if (key == "name") {
+        captured = true;
+        std::cout << key << ": " << it->second.as<std::string>() << std::endl;
+      }
+      if (key == "position") {
+        captured = true;
+        YAML::Node pos = it->second;
+        std::cout << key << ": " << "{ x: " << pos["x"].as<float>() << ", "
+                  << "y: " << pos["y"].as<float>() << ", "
+                  << "z: " << pos["z"].as<float>() << " }" << std::endl;
+      }
+
+      if (!captured)
+        std::cout << "Unparsed: " << it->first.as<std::string>() << "\n";
+    }
+
+    // std::cout << "Name: " << current["name"].as<std::string>() << std::endl;
+    // // NOTE: the '.as<float>()' conversions here are not necessary.
+    // // Just showing.
+    // std::cout << "Pos: { x: " << current["position"]["x"].as<float>();
+    // std::cout << ", y: " << current["position"]["y"].as<float>();
+    // std::cout << ", z: " << current["position"]["z"].as<float>() << " }"
+    //           << std::endl;
   }
 
   // NOTE: works

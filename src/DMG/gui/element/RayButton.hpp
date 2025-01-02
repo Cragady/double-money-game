@@ -9,6 +9,7 @@
 #include "DMG/core/util/ColorShifting.hpp"
 #include "DMG/gui/GuiObject.hpp"
 
+// TODO: implement display text thats separate from name
 class RayButton : public IGui {
  public:
   RayButton();

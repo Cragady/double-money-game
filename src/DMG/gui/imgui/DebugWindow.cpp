@@ -84,9 +84,18 @@ void DebugWindow::Render(const GameStateUPtr &state) {
                         selected_object->position_.z);
           buf_dec_z[BYTE_32 - 1] = 0;
         }
+        static char buf_str_name[BYTE_64] = "";
+        if (buf_str_name[0] == 0) {
+          std::snprintf(buf_str_name, BYTE_64 - 1, "%s",
+                        selected_object->name_.c_str());
+          buf_str_name[BYTE_64 - 1] = 0;
+
+        }
+        ImGui::Text("Object Name: %s", buf_str_name);
         ImGui::Text("Position: x:%f, y:%f, z:%f", selected_object->position_.x,
                     selected_object->position_.y, selected_object->position_.z);
         if (_editing_object_) {
+          ImGui::InputText("Name: ", buf_str_name, BYTE_64);
           ImGui::InputText("Pos X", buf_dec_x, BYTE_32,
                            ImGuiInputTextFlags_CharsDecimal);
           ImGui::InputText("Pos Y", buf_dec_y, BYTE_32,
@@ -104,9 +113,11 @@ void DebugWindow::Render(const GameStateUPtr &state) {
             _editing_object_ = false;
           }
           if (ImGui::Button("Save")) {
+            selected_object->name_ = buf_str_name;
             selected_object->position_.x = std::stof(buf_dec_x);
             selected_object->position_.y = std::stof(buf_dec_y);
             selected_object->position_.z = std::stof(buf_dec_z);
+            selected_object->updateable_ = true;
           }
         }
         // _editing_object_
