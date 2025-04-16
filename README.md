@@ -18,6 +18,22 @@ Assets that are under any directory or sub-directory that has the name of `vendo
 
 I know my code and/or cmake setup may be disastrous, I am open to feedback. I am not open to being bullied unless it's funny and good natured.
 
+## Dependencies
+
+* libx11-dev (Ubuntu)
+* libxrandr-dev (Ubuntu)
+* libxinerama-dev (Ubuntu)
+* libxcursor-dev (Ubuntu)
+* libxi-dev (Ubuntu)
+
+### Install Dependencies
+
+* `sudo apt-get install libx11-dev`
+* `sudo apt-get install libxrandr-dev`
+* `sudo apt-get install libxinerama-dev`
+* `sudo apt-get install libxcursor-dev`
+* `sudo apt-get install libxi-dev`
+
 ## Cloning / Running
 
 So far this has only been tested on Ubuntu.
