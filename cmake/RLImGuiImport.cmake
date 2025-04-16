@@ -10,7 +10,7 @@ if (NOT RLImGui_Loaded)
     "${RLIMGUI_VENDOR_DIR}/rlImGui.cpp"
   )
   target_include_directories(rlimgui PUBLIC ${CMAKE_SOURCE_DIR}/vendor/rlImGui)
-  target_link_libraries(rlimgui PUBLIC imgui)
+  target_link_libraries(rlimgui PUBLIC imgui raylib)
 
   file(COPY "${RLIMGUI_VENDOR_DIR}/resources" DESTINATION "${CMAKE_SOURCE_DIR}/assets/vendor/rlImGui")
 

@@ -25,6 +25,7 @@ I know my code and/or cmake setup may be disastrous, I am open to feedback. I am
 * libxinerama-dev (Ubuntu)
 * libxcursor-dev (Ubuntu)
 * libxi-dev (Ubuntu)
+* libgl1-mesa-dev (Ubuntu)
 
 ### Install Dependencies
 
@@ -33,6 +34,7 @@ I know my code and/or cmake setup may be disastrous, I am open to feedback. I am
 * `sudo apt-get install libxinerama-dev`
 * `sudo apt-get install libxcursor-dev`
 * `sudo apt-get install libxi-dev`
+* `sudo apt-get install libgl1-mesa-dev`
 
 ## Cloning / Running
 
